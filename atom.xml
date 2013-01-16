@@ -4,13 +4,31 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-14T18:52:12-08:00</updated>
+  <updated>2013-01-16T14:22:26-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Joshua Montross]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[awesome]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/16/awesome/"/>
+    <updated>2013-01-16T14:16:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/16/awesome</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[first post]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/14/first-post/"/>
+    <updated>2013-01-14T19:05:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/14/first-post</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
 </feed>

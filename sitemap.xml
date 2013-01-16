@@ -1,15 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://jmontross.github.com/blog/2013/01/14/first-post/</loc>
+        <lastmod>2013-01-14T19:07:32-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/01/16/awesome/</loc>
+        <lastmod>2013-01-16T14:16:00-08:00</lastmod>
+    </url>
+    <url>
         <loc>http://jmontross.github.com/blog/archives/</loc>
-        <lastmod>2013-01-14T18:48:54-08:00</lastmod>
+        <lastmod>2013-01-16T14:16:00-08:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/</loc>
-        <lastmod>2013-01-14T18:48:54-08:00</lastmod>
+        <lastmod>2013-01-16T14:16:00-08:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/robots.txt</loc>
-        <lastmod>2013-01-14T18:48:54-08:00</lastmod>
+        <lastmod>2013-01-14T19:00:26-08:00</lastmod>
     </url>
 </urlset>
