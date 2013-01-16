@@ -1,3 +1,13 @@
+## how to commit and push to github in case you forget!
+
+  http://octopress.org/docs/deploying/github/
+
+  git push origin source
+
+## how to blog
+  http://octopress.org/docs/blogging/
+
+
 ## What is Octopress?
 
 Octopress is [Jekyll](https://github.com/mojombo/jekyll) blogging at its finest.
