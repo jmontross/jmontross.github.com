@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-23T11:27:27-08:00</updated>
+  <updated>2013-01-23T11:28:31-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -50,13 +50,10 @@ This one gets asked differently&#8230; AKA - what is the difference between proc
 
 <p> class Foo</p>
 
-<p>   def method_missing(method,*args)</p>
-
-<pre><code>   puts "you tried to call #{method} but it doesnt exist"
-   puts "Why not define a new method called #{method} that accepts #{args}"
-</code></pre>
-
-<p>   end</p>
+<p> def method_missing(method,*args)
+   puts &#8220;you tried to call #{method} but it doesnt exist&#8221;
+   puts &#8220;Why not define a new method called #{method} that accepts #{args}&#8221;
+ end</p>
 
 <p> end</p>
 
@@ -87,7 +84,8 @@ Also asked as : what is the difference between include and extend?</p></li>
     <id>http://jmontross.github.com/blog/2013/01/16/awesome</id>
     <content type="html"><![CDATA[<p>Just testing out how this octopress framework works.  Interesting use of rake tasks.</p>
 
-<p>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy</p>
+<pre><code>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy
+</code></pre>
 ]]></content>
   </entry>
   

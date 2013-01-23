@@ -180,13 +180,10 @@ This one gets asked differently&#8230; AKA - what is the difference between proc
 
 <p> class Foo</p>
 
-<p>   def method_missing(method,*args)</p>
-
-<pre><code>   puts "you tried to call #{method} but it doesnt exist"
-   puts "Why not define a new method called #{method} that accepts #{args}"
-</code></pre>
-
-<p>   end</p>
+<p> def method_missing(method,*args)
+   puts &#8220;you tried to call #{method} but it doesnt exist&#8221;
+   puts &#8220;Why not define a new method called #{method} that accepts #{args}&#8221;
+ end</p>
 
 <p> end</p>
 
@@ -244,7 +241,8 @@ Also asked as : what is the difference between include and extend?</p></li>
 
   <div class="entry-content"><p>Just testing out how this octopress framework works.  Interesting use of rake tasks.</p>
 
-<p>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy</p>
+<pre><code>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy
+</code></pre>
 </div>
   
   

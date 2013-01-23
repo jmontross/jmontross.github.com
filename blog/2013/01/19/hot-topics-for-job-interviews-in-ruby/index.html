@@ -104,13 +104,10 @@ This one gets asked differently&#8230; AKA - what is the difference between proc
 
 <p> class Foo</p>
 
-<p>   def method_missing(method,*args)</p>
-
-<pre><code>   puts "you tried to call #{method} but it doesnt exist"
-   puts "Why not define a new method called #{method} that accepts #{args}"
-</code></pre>
-
-<p>   end</p>
+<p> def method_missing(method,*args)
+   puts &#8220;you tried to call #{method} but it doesnt exist&#8221;
+   puts &#8220;Why not define a new method called #{method} that accepts #{args}&#8221;
+ end</p>
 
 <p> end</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Bay Area | My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/blog/categories/bay-area/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-23T11:27:27-08:00</updated>
+  <updated>2013-01-23T11:28:31-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -32,13 +32,10 @@ This one gets asked differently... AKA - what is the difference between proc, la
 
 <p> class Foo</p>
 
-<p>   def method_missing(method,*args)</p>
-
-<pre><code>   puts "you tried to call #{method} but it doesnt exist"
+<p> def method_missing(method,*args)
+   puts "you tried to call #{method} but it doesnt exist"
    puts "Why not define a new method called #{method} that accepts #{args}"
-</code></pre>
-
-<p>   end</p>
+ end</p>
 
 <p> end</p>
 
