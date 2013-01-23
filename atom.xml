@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-23T11:29:17-08:00</updated>
+  <updated>2013-01-23T11:32:59-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -14,11 +14,19 @@
 
   
   <entry>
-    <title type="html"><![CDATA[awesome test]]></title>
+    <title type="html"><![CDATA[What is a named_scope and a scope?]]></title>
     <link href="http://jmontross.github.com/blog/2013/01/23/awesome-test/"/>
     <updated>2013-01-23T09:14:00-08:00</updated>
     <id>http://jmontross.github.com/blog/2013/01/23/awesome-test</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>scopes are like queries that you can add to models in rails 3.  named_scopes are the 2.x equivalents.</p>
+
+<p>The big key is that lamdas let you pass arguments to scopes.</p>
+
+<p>&#8220;When a lambda is used for a scope, it can take arguments&#8221;</p>
+
+<p>http://guides.rubyonrails.org/active_record_querying.html#working-with-scopes</p>
+
+<p>http://ablogaboutcode.com/2011/02/19/scopes-in-rails-3/</p>
 ]]></content>
   </entry>
   
