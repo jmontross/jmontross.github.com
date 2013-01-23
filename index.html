@@ -107,6 +107,42 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/01/21/make-dreams-real-mlk-day-100startups/">Make Dreams Real - MLK Day - 100startups</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-21T19:36:00-08:00" pubdate data-updated="true">Jan 21<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>worked on karmagrove.com today&#8230; want a place to sell things and allow purchaser to have rights to give away profits.  starting off with the granola bars I like to make&#8230; not sure if should put QR code on individual packaging to allow sales offline and donations online at later date &#8230; or just go online first.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/">Hot Topics for Job Interviews in Ruby</a></h1>
     
     
@@ -140,28 +176,26 @@
 => [1,4]</p></li>
 <li><p>What are the four types of closures in ruby?
 This one gets asked differently&#8230; AKA - what is the difference between proc, lamda, and a method?  they are all closures.  The fourth closure is a block.</p></li>
-<li><p>What is method missing?</p></li>
-</ol>
+<li><p>What is method missing?</p>
 
+<p> class Foo</p>
 
-<p>  class Foo</p>
+<p>   def method_missing(method,*args)</p>
 
-<pre><code>def method_missing(method,*args)
-    puts "you tried to call #{method} but it doesnt exist"
-    puts "Why not define a new method called #{method} that accepts #{args}"
-end
+<pre><code>   puts "you tried to call #{method} but it doesnt exist"
+   puts "Why not define a new method called #{method} that accepts #{args}"
 </code></pre>
 
-<p>  end</p>
+<p>   end</p>
 
-<p>  Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
-=>
-  you tried to call missing_method but it doesnt exist
-  Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p>
+<p> end</p>
 
-<ol>
-<li>Can you tell me how to do inheritance in basic ruby?
-Also asked as : what is the difference between include and extend?</li>
+<p> Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
+ =>
+ you tried to call missing_method but it doesnt exist
+ Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p></li>
+<li><p>Can you tell me how to do inheritance in basic ruby?
+Also asked as : what is the difference between include and extend?</p></li>
 </ol>
 
 
@@ -208,7 +242,9 @@ Also asked as : what is the difference between include and extend?</li>
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><p>Just testing out how this octopress framework works.  Interesting use of rake tasks.</p>
+
+<p>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy</p>
 </div>
   
   
@@ -277,6 +313,10 @@ and git push origin source</p>
     
       <li class="post">
         <a href="/blog/2013/01/23/awesome-test/">awesome test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/21/make-dreams-real-mlk-day-100startups/">make dreams real - MLK day - 100startups</a>
       </li>
     
       <li class="post">

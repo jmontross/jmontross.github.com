@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-23T09:15:09-08:00</updated>
+  <updated>2013-01-23T11:27:08-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -23,6 +23,15 @@
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[make dreams real - MLK day - 100startups]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/21/make-dreams-real-mlk-day-100startups/"/>
+    <updated>2013-01-21T19:36:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/21/make-dreams-real-mlk-day-100startups</id>
+    <content type="html"><![CDATA[<p>worked on karmagrove.com today&#8230; want a place to sell things and allow purchaser to have rights to give away profits.  starting off with the granola bars I like to make&#8230; not sure if should put QR code on individual packaging to allow sales offline and donations online at later date &#8230; or just go online first.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[hot topics for job interviews in ruby]]></title>
     <link href="http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/"/>
     <updated>2013-01-19T15:44:00-08:00</updated>
@@ -37,28 +46,26 @@
 => [1,4]</p></li>
 <li><p>What are the four types of closures in ruby?
 This one gets asked differently&#8230; AKA - what is the difference between proc, lamda, and a method?  they are all closures.  The fourth closure is a block.</p></li>
-<li><p>What is method missing?</p></li>
-</ol>
+<li><p>What is method missing?</p>
 
+<p> class Foo</p>
 
-<p>  class Foo</p>
+<p>   def method_missing(method,*args)</p>
 
-<pre><code>def method_missing(method,*args)
-    puts "you tried to call #{method} but it doesnt exist"
-    puts "Why not define a new method called #{method} that accepts #{args}"
-end
+<pre><code>   puts "you tried to call #{method} but it doesnt exist"
+   puts "Why not define a new method called #{method} that accepts #{args}"
 </code></pre>
 
-<p>  end</p>
+<p>   end</p>
 
-<p>  Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
-=>
-  you tried to call missing_method but it doesnt exist
-  Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p>
+<p> end</p>
 
-<ol>
-<li>Can you tell me how to do inheritance in basic ruby?
-Also asked as : what is the difference between include and extend?</li>
+<p> Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
+ =>
+ you tried to call missing_method but it doesnt exist
+ Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p></li>
+<li><p>Can you tell me how to do inheritance in basic ruby?
+Also asked as : what is the difference between include and extend?</p></li>
 </ol>
 
 
@@ -78,7 +85,9 @@ Also asked as : what is the difference between include and extend?</li>
     <link href="http://jmontross.github.com/blog/2013/01/16/awesome/"/>
     <updated>2013-01-16T14:16:00-08:00</updated>
     <id>http://jmontross.github.com/blog/2013/01/16/awesome</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>Just testing out how this octopress framework works.  Interesting use of rake tasks.</p>
+
+<p>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy</p>
 ]]></content>
   </entry>
   

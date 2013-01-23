@@ -100,28 +100,26 @@
 => [1,4]</p></li>
 <li><p>What are the four types of closures in ruby?
 This one gets asked differently&#8230; AKA - what is the difference between proc, lamda, and a method?  they are all closures.  The fourth closure is a block.</p></li>
-<li><p>What is method missing?</p></li>
-</ol>
+<li><p>What is method missing?</p>
 
+<p> class Foo</p>
 
-<p>  class Foo</p>
+<p>   def method_missing(method,*args)</p>
 
-<pre><code>def method_missing(method,*args)
-    puts "you tried to call #{method} but it doesnt exist"
-    puts "Why not define a new method called #{method} that accepts #{args}"
-end
+<pre><code>   puts "you tried to call #{method} but it doesnt exist"
+   puts "Why not define a new method called #{method} that accepts #{args}"
 </code></pre>
 
-<p>  end</p>
+<p>   end</p>
 
-<p>  Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
-=>
-  you tried to call missing_method but it doesnt exist
-  Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p>
+<p> end</p>
 
-<ol>
-<li>Can you tell me how to do inheritance in basic ruby?
-Also asked as : what is the difference between include and extend?</li>
+<p> Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
+ =>
+ you tried to call missing_method but it doesnt exist
+ Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p></li>
+<li><p>Can you tell me how to do inheritance in basic ruby?
+Also asked as : what is the difference between include and extend?</p></li>
 </ol>
 
 
@@ -181,7 +179,7 @@ Also asked as : what is the difference between include and extend?</li>
         <a class="basic-alignment left" href="/blog/2013/01/16/awesome/" title="Previous Post: awesome">&laquo; awesome</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/01/23/awesome-test/" title="Next Post: awesome test">awesome test &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/01/21/make-dreams-real-mlk-day-100startups/" title="Next Post: make dreams real - MLK day - 100startups">make dreams real - MLK day - 100startups &raquo;</a>
       
     </p>
   </footer>
@@ -197,6 +195,10 @@ Also asked as : what is the difference between include and extend?</li>
     
       <li class="post">
         <a href="/blog/2013/01/23/awesome-test/">awesome test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/21/make-dreams-real-mlk-day-100startups/">make dreams real - MLK day - 100startups</a>
       </li>
     
       <li class="post">
