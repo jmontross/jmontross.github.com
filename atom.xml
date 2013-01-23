@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-16T14:22:26-08:00</updated>
+  <updated>2013-01-23T09:15:09-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[awesome test]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/23/awesome-test/"/>
+    <updated>2013-01-23T09:14:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/23/awesome-test</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[hot topics for job interviews in ruby]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/"/>
+    <updated>2013-01-19T15:44:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby</id>
+    <content type="html"><![CDATA[<p>Been looking for jobs as a web developer / rails developer / ruby developer / software engineer?  So have I for about 3 montsh now.  I&#8217;ve worked previously for a few years using ruby as well as rails from time to time.  You&#8217;d think that ruby and rails were the same thing from all the hype. Here&#8217;s my list of things to know for a ruby tinted interview&#8230;.</p>
+
+<ol>
+<li><p>Know about the iterators: each, inject, map
+[1,2].inject(2){|k,v| v + k}
+=> 5
+[1,2].map{|k,v|  k**2 }
+=> [1,4]</p></li>
+<li><p>What are the four types of closures in ruby?
+This one gets asked differently&#8230; AKA - what is the difference between proc, lamda, and a method?  they are all closures.  The fourth closure is a block.</p></li>
+<li><p>What is method missing?</p></li>
+</ol>
+
+
+<p>  class Foo</p>
+
+<pre><code>def method_missing(method,*args)
+    puts "you tried to call #{method} but it doesnt exist"
+    puts "Why not define a new method called #{method} that accepts #{args}"
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
+=>
+  you tried to call missing_method but it doesnt exist
+  Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p>
+
+<ol>
+<li>Can you tell me how to do inheritance in basic ruby?
+Also asked as : what is the difference between include and extend?</li>
+</ol>
+
+
+<p>  You can include or extend a module to inherit methods.</p>
+
+<ol>
+<li>What are some assumptions active record makes?</li>
+</ol>
+
+
+<p>  It assumes that you have a primary key of one&#8230;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[awesome]]></title>
@@ -27,7 +87,18 @@
     <link href="http://jmontross.github.com/blog/2013/01/14/first-post/"/>
     <updated>2013-01-14T19:05:00-08:00</updated>
     <id>http://jmontross.github.com/blog/2013/01/14/first-post</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>First post in Octopress&#8230; interesting.
+bundle exec rake new_post[&#8216;first post&#8217;]</p>
+
+<p>then it makes this markdown file in source/_posts</p>
+
+<p>then I run</p>
+
+<p>bundle exec rake generate</p>
+
+<p>and git add .
+git commit -m &#8216;first post&#8217;
+and git push origin source</p>
 ]]></content>
   </entry>
   
