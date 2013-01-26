@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-26T09:34:03-08:00</updated>
+  <updated>2013-01-26T13:27:37-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -12,6 +12,106 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[given unsorted array and integer x part 2]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"/>
+    <updated>2013-01-26T12:27:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2</id>
+    <content type="html"><![CDATA[<pre><code>Given an integer x and an unsorted array of integers,
+describe an algorithm to  determine  whether two of the numbers add up to x.
+</code></pre>
+
+<p>I tell this mysterious hiring manager about my new implementation to the above solution <a href="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/"> here </a> that uses hashes and is faster than n<sup>2</sup> and he says,</p>
+
+<pre><code>"Hashed are good shortcuts. But can you do it without hashes?"
+</code></pre>
+
+<p>I think to myself&#8230;. unsorted array and I&#8217;m looking for sums</p>
+
+<p>I could first sort the array.  Then I could do a binary search?
+I could even optimize it for only positive integers&#8230;.</p>
+
+<p>I&#8217;m a little unsure.  Anyone have any ideas?</p>
+
+<pre><code> def even_more_awesome?(unsorted_array,integer_x)
+   sorted_array = unsorted_array.sort
+   # at this point I could search the array
+     # to see if there is
+     # an upper bound where my integer_x exists
+
+     sorted_array.each_with_index do |item, index|
+         target = integer_x - item
+       ## not sure what to do here?
+         if item &gt; integer_x
+           return false
+         end
+       if sorted_array[index+1,sorted_array.length-1].include?(target)
+           return [item, target]
+         end
+     end
+
+    end
+
+     even_more_awesome? [1,3,5], 8
+ =&gt; [3, 5]
+</code></pre>
+
+<p>it works but it could be better&#8230;</p>
+
+<pre><code>def even_more_awesome?(unsorted_array,integer_x)
+  sorted_array = unsorted_array.sort
+  sorted_array.each_with_index do |item, index|
+    target = integer_x - item
+    if item &gt; integer_x
+      return false
+    end
+
+    for i in sorted_array[index+1,sorted_array.length-1]
+      return false if i &gt; target
+      return [item, target] if i == target
+    end
+
+  end
+
+ end
+
+ even_more_awesome? [1,3,5], 8
+ =&gt; [3, 5]
+</code></pre>
+
+<p>Now it works&#8230; I wonder how it compares to my other solutions?  I also wonder if my earlier test was very biased.  I decided to use a larger random data set and to run it twice with bmbm instead of bm.</p>
+
+<pre><code>require 'benchmark'
+
+Benchmark.bmbm do |x|
+   unsorted_array = (1..10000).map { rand(10000) }
+   integer_x = rand(10000)
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+   x.report { even_more_awesome? unsorted_array, integer_x}
+end
+
+
+ user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.004102)
+ 0.000000   0.000000   0.000000 (  0.001029)
+ 0.000000   0.000000   0.000000 (  0.002773)
+
+
+ user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.004330)
+ 0.010000   0.000000   0.010000 (  0.003086)
+ 0.000000   0.000000   0.000000 (  0.002471)
+
+
+ user     system      total        real
+ 0.010000   0.000000   0.010000 (  0.003542)
+ 0.000000   0.000000   0.000000 (  0.000349)
+ 0.000000   0.000000   0.000000 (  0.002454)
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The difference between n^2 and 2n algorithm example]]></title>

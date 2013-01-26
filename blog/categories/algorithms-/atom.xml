@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: ruby | My Octopress Blog]]></title>
-  <link href="http://jmontross.github.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <title><![CDATA[Category: algorithms, | My Octopress Blog]]></title>
+  <link href="http://jmontross.github.com/blog/categories/algorithms-/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
   <updated>2013-01-26T13:27:37-08:00</updated>
   <id>http://jmontross.github.com/</id>

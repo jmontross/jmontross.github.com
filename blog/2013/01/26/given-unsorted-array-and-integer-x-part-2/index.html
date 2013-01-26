@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>The difference between n^2 and 2n algorithm example - My Octopress Blog</title>
+  <title>given unsorted array and integer x part 2 - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230; And I&#8217;m linked to this question &hellip;">
+  <meta name="description" content="Given an integer x and an unsorted array of integers,
+describe an algorithm to  determine  whether two of the numbers add up to x. I tell this &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">The Difference Between N^2 and 2n Algorithm Example</h1>
+      <h1 class="entry-title">Given Unsorted Array and Integer X Part 2</h1>
     
     
       <p class="meta">
@@ -83,80 +84,105 @@
   
 
 
-<time datetime="2013-01-26T07:34:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+<time datetime="2013-01-26T12:27:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230;  And I&#8217;m linked to this question</p>
-
-<pre><code>Given an integer x and an unsorted array of integers,
+<div class="entry-content"><pre><code>Given an integer x and an unsorted array of integers,
 describe an algorithm to  determine  whether two of the numbers add up to x.
 </code></pre>
 
-<p>Type or speak? I write to him as we are on phone and viewing same screen&#8230; he says typing is fine&#8230; so i type out this pseudo code of sorts.</p>
+<p>I tell this mysterious hiring manager about my new implementation to the above solution <a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/"> here </a> that uses hashes and is faster than n<sup>2</sup> and he says,</p>
 
-<p>iterate over the unsorted array, and for each number iterate over the rest adding them and checking if it is equal to our given integer.  if it is equal to given integer return the two numbers</p>
+<pre><code>"Hashed are good shortcuts. But can you do it without hashes?"
+</code></pre>
 
-<p>he says.. that&#8217;s got an efficiency of n<sup>2</sup> as shown below&#8230;</p>
+<p>I think to myself&#8230;. unsorted array and I&#8217;m looking for sums</p>
 
-<p>(n-1) * n  => n<sup>2</sup></p>
+<p>I could first sort the array.  Then I could do a binary search?
+I could even optimize it for only positive integers&#8230;.</p>
 
-<p>That&#8217;s not very efficient says the interviewer from a silicon valley startup that will go unnamed.</p>
+<p>I&#8217;m a little unsure.  Anyone have any ideas?</p>
 
-<p>In actual ruby code, which I didn&#8217;t write as I attempted to write the faster solution than n<sup>2&#8230;</sup> though I was clueless</p>
+<pre><code> def even_more_awesome?(unsorted_array,integer_x)
+   sorted_array = unsorted_array.sort
+   # at this point I could search the array
+     # to see if there is
+     # an upper bound where my integer_x exists
 
-<pre><code>def awesome(unsorted_array,integer_x)
-  unsorted_array.each_with_index do |item, first_index|
-     unsorted_array.each_with_index do |other_item, second_index|
-       if (item + other_item == integer_x) &amp;&amp; (first_index != second_index)
-       return [item, other_item]
-       end
+     sorted_array.each_with_index do |item, index|
+         target = integer_x - item
+       ## not sure what to do here?
+         if item &gt; integer_x
+           return false
+         end
+       if sorted_array[index+1,sorted_array.length-1].include?(target)
+           return [item, target]
+         end
      end
-  end
- end
-</code></pre>
 
-<p>awesome [1, 2, 5, 6], 7
- => [1, 6]</p>
-
-<p>How do we make this faster than n<sup>2?</sup></p>
-
-<p>The hint is to use hashes?  Why use a hash?</p>
-
-<pre><code>def more_awesome(unsorted_array,integer_x)
-  desired_addition = {}
-  unsorted_array.each_with_index do |item, first_index|
-    desired_addition[integer_x - item] = first_index
-  end
-
-  unsorted_array.each_with_index do |other_item, second_index|
-    if (desired_addition[other_item]) &amp;&amp; (desired_addition[other_item] != second_index)
-      return [integer_x - other_item, other_item]
     end
+
+     even_more_awesome? [1,3,5], 8
+ =&gt; [3, 5]
+</code></pre>
+
+<p>it works but it could be better&#8230;</p>
+
+<pre><code>def even_more_awesome?(unsorted_array,integer_x)
+  sorted_array = unsorted_array.sort
+  sorted_array.each_with_index do |item, index|
+    target = integer_x - item
+    if item &gt; integer_x
+      return false
+    end
+
+    for i in sorted_array[index+1,sorted_array.length-1]
+      return false if i &gt; target
+      return [item, target] if i == target
+    end
+
   end
 
  end
+
+ even_more_awesome? [1,3,5], 8
+ =&gt; [3, 5]
 </code></pre>
 
-<p>This solution is 2N because we loop over the array twice and no more to find if there is an answer.</p>
-
-<p>Let&#8217;s see if it&#8217;s actually faster&#8230;.</p>
+<p>Now it works&#8230; I wonder how it compares to my other solutions?  I also wonder if my earlier test was very biased.  I decided to use a larger random data set and to run it twice with bmbm instead of bm.</p>
 
 <pre><code>require 'benchmark'
 
-Benchmark.bm do |x|
-  x.report { more_awesome unsorted_array,integer_x }
-  x.report { awesome unsorted_array,integer_x }
+Benchmark.bmbm do |x|
+   unsorted_array = (1..10000).map { rand(10000) }
+   integer_x = rand(10000)
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+   x.report { even_more_awesome? unsorted_array, integer_x}
 end
-   user     system      total        real
-   0.000000   0.000000   0.000000 (  0.000036)
-   0.000000   0.000000   0.000000 (  0.000018)
-</code></pre>
 
-<p>Why isn&#8217;t it faster?</p>
+
+ user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.004102)
+ 0.000000   0.000000   0.000000 (  0.001029)
+ 0.000000   0.000000   0.000000 (  0.002773)
+
+
+ user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.004330)
+ 0.010000   0.000000   0.010000 (  0.003086)
+ 0.000000   0.000000   0.000000 (  0.002471)
+
+
+ user     system      total        real
+ 0.010000   0.000000   0.010000 (  0.003542)
+ 0.000000   0.000000   0.000000 (  0.000349)
+ 0.000000   0.000000   0.000000 (  0.002454)
+</code></pre>
 </div>
 
 
@@ -179,15 +205,21 @@ end
   
 
 
-<time datetime="2013-01-26T07:34:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+<time datetime="2013-01-26T12:27:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/algorithms-/'>algorithms,</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/" >Tweet</a>
   
   
   
@@ -196,10 +228,8 @@ end
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/26/using-heroku-for-multiple-environments/" title="Previous Post: Using heroku for multiple environments">&laquo; Using heroku for multiple environments</a>
+        <a class="basic-alignment left" href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/" title="Previous Post: The difference between n^2 and 2n algorithm example">&laquo; The difference between n^2 and 2n algorithm example</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/" title="Next Post: given unsorted array and integer x part 2">given unsorted array and integer x part 2 &raquo;</a>
       
     </p>
   </footer>
