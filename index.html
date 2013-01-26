@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="scopes are like queries that you can add to models in rails 3. named_scopes are the 2.x equivalents. The big key is that lamdas let you pass &hellip;">
+  <meta name="description" content="Given an integer x and an unsorted array of integers, describe an algorithm to  determine  whether two of the numbers add up to x. Type or speak? &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,118 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">The Difference Between N^2 and 2n Algorithm Example</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T07:34:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Given an integer x and an unsorted array of integers, describe an algorithm to  determine  whether two of the numbers add up to x.</p>
+
+<p>Type or speak?</p>
+
+<p>iterate over the unsorted array, and for each number iterate over the rest adding them and checking if it is equal to our given integer.  if it is equal to given integer return the two numbers</p>
+
+<p>(n-1) * n  => n<sup>2</sup></p>
+
+<p>In actual ruby code</p>
+
+<pre><code>  unsorted_array.each_with_index do |item, first_index|
+     unsorted_array.each_with_index do |other_item, second_index|
+       return [item, other_item] if item + other_item == integer_x and first_index != second_index
+     end
+  end
+</code></pre>
+
+<p>How do we make this faster than n<sup>2?</sup></p>
+
+<p>The hint is to use hashes?  Why use a hash?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/using-heroku-for-multiple-environments/">Using Heroku for Multiple Environments</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T07:33:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would break the prod site because of some difference in my local mac environment and the heroku servers.  Even though we have no users, I&#8217;d rather figure out these speedbumps on a development or staging server.  Let&#8217;s call it development.</p>
+
+<p>First thing is to point my DNS to heroku&#8217;s servers with a CNAME record</p>
+
+<p>With namecheap it was as simple as adding in this reference&#8230;</p>
+
+<p>Login&#8230; click &#8220;all host records&#8221;</p>
+
+<p>add a subdomain setting for dev that points to #{dev-your-heroku-appname-here}.herokuapp.com.</p>
+
+<p>The period at the end counts.  1800 for TTL.</p>
+
+<p>make sure of course that you also do a heroku create dev-your-heroku-appname-here</p>
+
+<p>After this point the guys at stack overflow have already answered it pretty well.</p>
+
+<p>  git remote add staging staging-your-app.heroku.git
+  git push staging staging:master</p>
+
+<p>http://stackoverflow.com/questions/7713042/deploying-2-different-heroku-apps-with-same-git-repository</p>
+
+<p>Now what does the staging:master mean in git push command above and in the answer on SO?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -317,6 +429,14 @@ and git push origin source</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">The difference between n^2 and 2n algorithm example</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/26/using-heroku-for-multiple-environments/">Using heroku for multiple environments</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/23/awesome-test/">What is a named_scope and a scope?</a>
       </li>
     
@@ -326,14 +446,6 @@ and git push origin source</p>
     
       <li class="post">
         <a href="/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/">hot topics for job interviews in ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/16/awesome/">awesome</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/14/first-post/">first post</a>
       </li>
     
   </ul>

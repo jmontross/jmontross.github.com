@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-23T11:32:59-08:00</updated>
+  <updated>2013-01-26T08:40:12-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The difference between n^2 and 2n algorithm example]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/"/>
+    <updated>2013-01-26T07:34:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example</id>
+    <content type="html"><![CDATA[<p>Given an integer x and an unsorted array of integers, describe an algorithm to  determine  whether two of the numbers add up to x.</p>
+
+<p>Type or speak?</p>
+
+<p>iterate over the unsorted array, and for each number iterate over the rest adding them and checking if it is equal to our given integer.  if it is equal to given integer return the two numbers</p>
+
+<p>(n-1) * n  => n<sup>2</sup></p>
+
+<p>In actual ruby code</p>
+
+<pre><code>  unsorted_array.each_with_index do |item, first_index|
+     unsorted_array.each_with_index do |other_item, second_index|
+       return [item, other_item] if item + other_item == integer_x and first_index != second_index
+     end
+  end
+</code></pre>
+
+<p>How do we make this faster than n<sup>2?</sup></p>
+
+<p>The hint is to use hashes?  Why use a hash?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using heroku for multiple environments]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments/"/>
+    <updated>2013-01-26T07:33:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments</id>
+    <content type="html"><![CDATA[<p>I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would break the prod site because of some difference in my local mac environment and the heroku servers.  Even though we have no users, I&#8217;d rather figure out these speedbumps on a development or staging server.  Let&#8217;s call it development.</p>
+
+<p>First thing is to point my DNS to heroku&#8217;s servers with a CNAME record</p>
+
+<p>With namecheap it was as simple as adding in this reference&#8230;</p>
+
+<p>Login&#8230; click &#8220;all host records&#8221;</p>
+
+<p>add a subdomain setting for dev that points to #{dev-your-heroku-appname-here}.herokuapp.com.</p>
+
+<p>The period at the end counts.  1800 for TTL.</p>
+
+<p>make sure of course that you also do a heroku create dev-your-heroku-appname-here</p>
+
+<p>After this point the guys at stack overflow have already answered it pretty well.</p>
+
+<p>  git remote add staging staging-your-app.heroku.git
+  git push staging staging:master</p>
+
+<p>http://stackoverflow.com/questions/7713042/deploying-2-different-heroku-apps-with-same-git-repository</p>
+
+<p>Now what does the staging:master mean in git push command above and in the answer on SO?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What is a named_scope and a scope?]]></title>

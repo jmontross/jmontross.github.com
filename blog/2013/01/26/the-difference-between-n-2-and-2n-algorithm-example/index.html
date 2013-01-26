@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>first post - My Octopress Blog</title>
+  <title>The difference between n^2 and 2n algorithm example - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="First post in Octopress&#8230; interesting.
-bundle exec rake new_post[&#8216;first post&#8217;] then it makes this markdown file in source/_posts &hellip;">
+  <meta name="description" content="Given an integer x and an unsorted array of integers, describe an algorithm to  determine  whether two of the numbers add up to x. Type or speak? &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ bundle exec rake new_post[&#8216;first post&#8217;] then it makes this markdown 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/01/14/first-post/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -68,7 +67,7 @@ bundle exec rake new_post[&#8216;first post&#8217;] then it makes this markdown 
   
   <header>
     
-      <h1 class="entry-title">First Post</h1>
+      <h1 class="entry-title">The Difference Between N^2 and 2n Algorithm Example</h1>
     
     
       <p class="meta">
@@ -84,25 +83,33 @@ bundle exec rake new_post[&#8216;first post&#8217;] then it makes this markdown 
   
 
 
-<time datetime="2013-01-14T19:05:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
+<time datetime="2013-01-26T07:34:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>First post in Octopress&#8230; interesting.
-bundle exec rake new_post[&#8216;first post&#8217;]</p>
+<div class="entry-content"><p>Given an integer x and an unsorted array of integers, describe an algorithm to  determine  whether two of the numbers add up to x.</p>
 
-<p>then it makes this markdown file in source/_posts</p>
+<p>Type or speak?</p>
 
-<p>then I run</p>
+<p>iterate over the unsorted array, and for each number iterate over the rest adding them and checking if it is equal to our given integer.  if it is equal to given integer return the two numbers</p>
 
-<p>bundle exec rake generate</p>
+<p>(n-1) * n  => n<sup>2</sup></p>
 
-<p>and git add .
-git commit -m &#8216;first post&#8217;
-and git push origin source</p>
+<p>In actual ruby code</p>
+
+<pre><code>  unsorted_array.each_with_index do |item, first_index|
+     unsorted_array.each_with_index do |other_item, second_index|
+       return [item, other_item] if item + other_item == integer_x and first_index != second_index
+     end
+  end
+</code></pre>
+
+<p>How do we make this faster than n<sup>2?</sup></p>
+
+<p>The hint is to use hashes?  Why use a hash?</p>
 </div>
 
 
@@ -125,7 +132,7 @@ and git push origin source</p>
   
 
 
-<time datetime="2013-01-14T19:05:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
+<time datetime="2013-01-26T07:34:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
       
 
 
@@ -133,7 +140,7 @@ and git push origin source</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/01/14/first-post/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/01/14/first-post/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/" >Tweet</a>
   
   
   
@@ -142,8 +149,8 @@ and git push origin source</p>
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2013/01/26/using-heroku-for-multiple-environments/" title="Previous Post: Using heroku for multiple environments">&laquo; Using heroku for multiple environments</a>
       
-        <a class="basic-alignment right" href="/blog/2013/01/16/awesome/" title="Next Post: awesome">awesome &raquo;</a>
       
     </p>
   </footer>
