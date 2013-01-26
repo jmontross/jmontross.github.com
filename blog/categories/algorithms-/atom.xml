@@ -4,7 +4,7 @@
   <title><![CDATA[Category: algorithms, | My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/blog/categories/algorithms-/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-26T13:27:37-08:00</updated>
+  <updated>2013-01-26T13:35:58-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -68,12 +68,12 @@ I could even optimize it for only positive integers....</p>
     end
 
     for i in sorted_array[index+1,sorted_array.length-1]
-      return false if i &gt; target
+      break if i &gt; target
       return [item, target] if i == target
     end
 
-  end
-
+   end
+   return false
  end
 
  even_more_awesome? [1,3,5], 8

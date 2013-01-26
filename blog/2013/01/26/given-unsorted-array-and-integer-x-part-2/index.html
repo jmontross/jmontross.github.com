@@ -141,12 +141,12 @@ I could even optimize it for only positive integers&#8230;.</p>
     end
 
     for i in sorted_array[index+1,sorted_array.length-1]
-      return false if i &gt; target
+      break if i &gt; target
       return [item, target] if i == target
     end
 
-  end
-
+   end
+   return false
  end
 
  even_more_awesome? [1,3,5], 8
