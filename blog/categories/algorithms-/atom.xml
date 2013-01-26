@@ -4,7 +4,7 @@
   <title><![CDATA[Category: algorithms, | My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/blog/categories/algorithms-/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-26T13:35:58-08:00</updated>
+  <updated>2013-01-26T13:37:34-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -94,21 +94,14 @@ end
 
 
  user     system      total        real
- 0.000000   0.000000   0.000000 (  0.004102)
- 0.000000   0.000000   0.000000 (  0.001029)
- 0.000000   0.000000   0.000000 (  0.002773)
-
-
- user     system      total        real
- 0.000000   0.000000   0.000000 (  0.004330)
- 0.010000   0.000000   0.010000 (  0.003086)
- 0.000000   0.000000   0.000000 (  0.002471)
-
+0.000000   0.000000   0.000000 (  0.003523)
+0.000000   0.000000   0.000000 (  0.000252)
+0.010000   0.000000   0.010000 (  0.002643)
 
  user     system      total        real
- 0.010000   0.000000   0.010000 (  0.003542)
- 0.000000   0.000000   0.000000 (  0.000349)
- 0.000000   0.000000   0.000000 (  0.002454)
+0.000000   0.000000   0.000000 (  0.004666)
+0.000000   0.000000   0.000000 (  0.002127)
+0.000000   0.000000   0.000000 (  0.001775)
 </code></pre>
 ]]></content>
   </entry>
