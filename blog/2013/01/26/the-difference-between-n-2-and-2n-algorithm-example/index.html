@@ -144,9 +144,9 @@
 
 <p>Let&#8217;s see if it&#8217;s actually faster&#8230;.</p>
 
-<p>require &#8216;benchmark&#8217;</p>
+<pre><code>require 'benchmark'
 
-<pre><code>Benchmark.bm do |x|
+Benchmark.bm do |x|
   x.report { more_awesome unsorted_array,integer_x }
   x.report { awesome unsorted_array,integer_x }
 end
