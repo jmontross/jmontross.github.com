@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-26T13:37:34-08:00</updated>
+  <updated>2013-01-26T13:51:24-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -103,6 +103,55 @@ end
 0.000000   0.000000   0.000000 (  0.002127)
 0.000000   0.000000   0.000000 (  0.001775)
 </code></pre>
+
+<p>Now I&#8217;m just getting crazy but I want it to be better&#8230;</p>
+
+<pre><code>def faster?(unsorted_array,integer_x)
+  sorted_array = unsorted_array.sort
+  sorted_array.each_with_index do |item, index|
+    target = integer_x - item
+    if item &gt; integer_x
+      return false
+    end
+
+    max = sorted_array.length-1
+    next_index = index+1
+    for i in sorted_array[index+1,max]
+      max = next_index &amp;&amp; break if i &gt; target
+      return [item, target] if i == target
+      next_index +=1
+    end
+
+   end
+   return false
+ end
+</code></pre>
+
+<p>I figured that this should be fastest, and my results from before may be biased because the arrays were too small.  I made them 100 times larger and moved the array declaration and integer_x outside the bmbm block.</p>
+
+<pre><code>require 'benchmark'
+unsorted_array = (1..1000000).map { rand(1000000) }
+integer_x = rand(1000000)
+
+Benchmark.bmbm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+   x.report { even_more_awesome? unsorted_array, integer_x}
+   x.report { faster?  unsorted_array, integer_x }
+end
+</code></pre>
+
+<p>   user     system      total        real
+   0.620000   0.010000   0.630000 (  0.632894)
+   0.270000   0.000000   0.270000 (  0.266455)
+   0.340000   0.000000   0.340000 (  0.340122)
+   0.340000   0.000000   0.340000 (  0.349022)</p>
+
+<p>   user     system      total        real
+   0.640000   0.010000   0.650000 (  0.644997)
+   0.270000   0.000000   0.270000 (  0.269851)
+   0.340000   0.000000   0.340000 (  0.348532)
+   0.350000   0.000000   0.350000 (  0.354552)</p>
 ]]></content>
   </entry>
   
