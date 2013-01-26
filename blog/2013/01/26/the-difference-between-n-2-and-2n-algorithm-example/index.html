@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Given an integer x and an unsorted array of integers, describe an algorithm to  determine  whether two of the numbers add up to x. Type or speak? &hellip;">
+  <meta name="description" content="Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230; And I&#8217;m linked to this question &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,26 +90,72 @@
   </header>
 
 
-<div class="entry-content"><p>Given an integer x and an unsorted array of integers, describe an algorithm to  determine  whether two of the numbers add up to x.</p>
+<div class="entry-content"><p>Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230;  And I&#8217;m linked to this question</p>
 
-<p>Type or speak?</p>
+<pre><code>Given an integer x and an unsorted array of integers, describe an algorithm to  determine  whether two of the numbers add up to x.
+</code></pre>
+
+<p>Type or speak? I write to him as we are on phone and viewing same screen&#8230; he says typing is fine&#8230; so i type out this pseudo code of sorts.</p>
 
 <p>iterate over the unsorted array, and for each number iterate over the rest adding them and checking if it is equal to our given integer.  if it is equal to given integer return the two numbers</p>
 
+<p>he says.. that&#8217;s got an efficiency of n<sup>2</sup> as shown below&#8230;</p>
+
 <p>(n-1) * n  => n<sup>2</sup></p>
 
-<p>In actual ruby code</p>
+<p>That&#8217;s not very efficient says the interviewer from a silicon valley startup that will go unnamed.</p>
 
-<pre><code>  unsorted_array.each_with_index do |item, first_index|
+<p>In actual ruby code, which I didn&#8217;t write as I attempted to write the faster solution than n<sup>2&#8230;</sup> though I was clueless</p>
+
+<pre><code>def awesome(unsorted_array,integer_x)
+  unsorted_array.each_with_index do |item, first_index|
      unsorted_array.each_with_index do |other_item, second_index|
-       return [item, other_item] if item + other_item == integer_x and first_index != second_index
+       if (item + other_item == integer_x) &amp;&amp; (first_index != second_index)
+       return [item, other_item]
+       end
      end
   end
+ end
 </code></pre>
+
+<p>awesome [1, 2, 5, 6], 7
+ => [1, 6]</p>
 
 <p>How do we make this faster than n<sup>2?</sup></p>
 
 <p>The hint is to use hashes?  Why use a hash?</p>
+
+<pre><code>def more_awesome(unsorted_array,integer_x)
+  desired_addition = {}
+  unsorted_array.each_with_index do |item, first_index|
+    desired_addition[integer_x - item] = first_index
+  end
+
+  unsorted_array.each_with_index do |other_item, second_index|
+    if (desired_addition[other_item]) &amp;&amp; (desired_addition[other_item] != second_index)
+      return [integer_x - other_item, other_item]
+    end
+  end
+
+ end
+</code></pre>
+
+<p>This solution is 2N because we loop over the array twice and no more to find if there is an answer.</p>
+
+<p>Let&#8217;s see if it&#8217;s actually faster&#8230;.</p>
+
+<p>require &#8216;benchmark&#8217;</p>
+
+<pre><code>Benchmark.bm do |x|
+  x.report { more_awesome unsorted_array,integer_x }
+  x.report { awesome unsorted_array,integer_x }
+end
+   user     system      total        real
+   0.000000   0.000000   0.000000 (  0.000036)
+   0.000000   0.000000   0.000000 (  0.000018)
+</code></pre>
+
+<p>Why isn&#8217;t it faster?</p>
 </div>
 
 
