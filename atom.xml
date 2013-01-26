@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-01-26T09:33:18-08:00</updated>
+  <updated>2013-01-26T09:34:03-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -20,7 +20,8 @@
     <id>http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example</id>
     <content type="html"><![CDATA[<p>Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230;  And I&#8217;m linked to this question</p>
 
-<pre><code>Given an integer x and an unsorted array of integers, describe an algorithm to  determine  whether two of the numbers add up to x.
+<pre><code>Given an integer x and an unsorted array of integers,
+describe an algorithm to  determine  whether two of the numbers add up to x.
 </code></pre>
 
 <p>Type or speak? I write to him as we are on phone and viewing same screen&#8230; he says typing is fine&#8230; so i type out this pseudo code of sorts.</p>
