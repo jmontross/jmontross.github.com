@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - My Octopress Blog</title>
+  <title>how to make inject method - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Blog Archive 2013 how to make inject method
-Feb 07 2013 given unsorted array and integer x part 2
-Jan 26 2013 posted in algorithms,, ruby The &hellip;">
+  <meta name="description" content="This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ Jan 26 2013 posted in algorithms,, ruby The &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/archives/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -65,119 +63,93 @@ Jan 26 2013 posted in algorithms,, ruby The &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">How to Make Inject Method</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-07T18:31:00-08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is 1, I&#8217;m like a 7.</p>
 
-  
-  <h2>2013</h2>
+<p>He goes, okay, so what if we didn&#8217;t have the inject method, can you make it?</p>
 
-<article>
-  
-<h1><a href="/blog/2013/02/07/how-to-make-inject-method/">how to make inject method</a></h1>
-<time datetime="2013-02-07T18:31:00-08:00" pubdate><span class='month'>Feb</span> <span class='day'>07</span> <span class='year'>2013</span></time>
+<p>I&#8217;m thining I am probably more like a 6 now&#8230;.</p>
 
+<pre><code>def inject(initializer, &amp;block)
+   response = initializer
+   self.each do |item|
+     response = yield initializer, item
+   end
+   response
+end
+</code></pre>
 
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">given unsorted array and integer x part 2</a></h1>
-<time datetime="2013-01-26T12:27:00-08:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/algorithms-/'>algorithms,</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">The difference between n^2 and 2n algorithm example</a></h1>
-<time datetime="2013-01-26T07:34:00-08:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/01/26/using-heroku-for-multiple-environments/">Using heroku for multiple environments</a></h1>
-<time datetime="2013-01-26T07:33:00-08:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/01/23/awesome-test/">What is a named_scope and a scope?</a></h1>
-<time datetime="2013-01-23T09:14:00-08:00" pubdate><span class='month'>Jan</span> <span class='day'>23</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/01/21/make-dreams-real-mlk-day-100startups/">make dreams real - MLK day - 100startups</a></h1>
-<time datetime="2013-01-21T19:36:00-08:00" pubdate><span class='month'>Jan</span> <span class='day'>21</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/">hot topics for job interviews in ruby</a></h1>
-<time datetime="2013-01-19T15:44:00-08:00" pubdate><span class='month'>Jan</span> <span class='day'>19</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/bay-area/'>Bay Area</a>, <a class='category' href='/blog/categories/job-interviews/'>Job Interviews</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/01/16/awesome/">awesome</a></h1>
-<time datetime="2013-01-16T14:16:00-08:00" pubdate><span class='month'>Jan</span> <span class='day'>16</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/01/14/first-post/">first post</a></h1>
-<time datetime="2013-01-14T19:05:00-08:00" pubdate><span class='month'>Jan</span> <span class='day'>14</span> <span class='year'>2013</span></time>
-
-
-</article>
-
+<p>And imagine that is inside the Array class&#8230;</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-07T18:31:00-08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/" title="Previous Post: given unsorted array and integer x part 2">&laquo; given unsorted array and integer x part 2</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
