@@ -109,7 +109,6 @@ It is an enumerable method that can have an initializer and takes a block, and r
    # I think I'll need to store the initializer
    response = initializer
    self.each do |item|
-     ## I got stuck here.
      ## How do I yield to the block to build the response
      ## response = use_my_block(response,item)
    end
@@ -130,7 +129,7 @@ end
 
 <p>And imagine that is inside the Array class&#8230;</p>
 
-<p>To make it a little nicer.</p>
+<p>To make it a little nicer and refactor a bit.</p>
 
 <pre><code>class Array
   def inject(initializer, &amp;block)
