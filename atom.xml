@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-08T00:53:04-08:00</updated>
+  <updated>2013-02-08T00:54:01-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -29,9 +29,11 @@ It is an enumerable method that can have an initializer and takes a block, and r
 ## first it comes across the item of 1 and ads 1 to it, then the result
 ## is 2, which is the initializer that is then added to 2, giving us
 =&gt; 4
+</code></pre>
 
+<p>So now that we know how inject works, let&#8217;s implement it!</p>
 
-def inject(initializer, &amp;block)
+<pre><code>def inject(initializer, &amp;block)
    # I think I'll need to store the initializer
    response = initializer
    self.each do |item|

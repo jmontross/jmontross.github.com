@@ -104,9 +104,11 @@ It is an enumerable method that can have an initializer and takes a block, and r
 ## first it comes across the item of 1 and ads 1 to it, then the result
 ## is 2, which is the initializer that is then added to 2, giving us
 =&gt; 4
+</code></pre>
 
+<p>So now that we know how inject works, let&#8217;s implement it!</p>
 
-def inject(initializer, &amp;block)
+<pre><code>def inject(initializer, &amp;block)
    # I think I'll need to store the initializer
    response = initializer
    self.each do |item|
