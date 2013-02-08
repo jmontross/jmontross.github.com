@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-07T18:34:55-08:00</updated>
+  <updated>2013-02-08T00:53:04-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -22,18 +22,55 @@
 
 <p>He goes, okay, so what if we didn&#8217;t have the inject method, can you make it?</p>
 
-<p>I&#8217;m thining I am probably more like a 6 now&#8230;.</p>
+<p>I&#8217;m thnking, this shouldn&#8217;t be so hard&#8230; I know how inject works.
+It is an enumerable method that can have an initializer and takes a block, and returns a single value.  For instance</p>
+
+<pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
+## first it comes across the item of 1 and ads 1 to it, then the result
+## is 2, which is the initializer that is then added to 2, giving us
+=&gt; 4
+
+
+def inject(initializer, &amp;block)
+   # I think I'll need to store the initializer
+   response = initializer
+   self.each do |item|
+     ## I got stuck here.
+     ## How do I yield to the block to build the response
+     ## response = use_my_block(response,item)
+   end
+   response
+end
+</code></pre>
+
+<p>I mention to the interviewer that I&#8217;m thining I am probably more like a 6 now&#8230;He chuckles and says many a time he&#8217;s taken a 7 down to a 4.  He asks me if I&#8217;ve heard of the yield method, which fixes my method_missing above</p>
 
 <pre><code>def inject(initializer, &amp;block)
    response = initializer
    self.each do |item|
-     response = yield initializer, item
+     response = yield response, item
    end
    response
 end
 </code></pre>
 
 <p>And imagine that is inside the Array class&#8230;</p>
+
+<p>To make it a little nicer.</p>
+
+<p>   class Array</p>
+
+<pre><code> def inject(initializer, &amp;block)
+   self.each do |item|
+     initializer = yield initializer, item
+   end
+   initializer
+  end
+end
+
+[1,2].inject(1) { |initializer,item| initializer + item }
+=&gt; 4
+</code></pre>
 ]]></content>
   </entry>
   
