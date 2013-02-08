@@ -412,6 +412,8 @@ describe an algorithm to  determine  whether two of the numbers add up to x.
 
 <pre><code>require 'benchmark'
 
+unsorted_array = [1,2,5,6]
+integer_x = 7
 Benchmark.bm do |x|
   x.report { more_awesome unsorted_array,integer_x }
   x.report { awesome unsorted_array,integer_x }
@@ -422,6 +424,50 @@ end
 </code></pre>
 
 <p>Why isn&#8217;t it faster?</p>
+
+<p>I think it might be because the sample is too small.  Our sample data set used small list and in this case the less efficient solution executes faster  due to the fact that the answer is a combination of the first and last item, so the result is found after only 3 computations because we first loop over the 1, and then add the 2 to see if it is 7, then we check if 1 + 5 is seven, then we return 1 and 6 because they equal 7.</p>
+
+<p>In the &#8220;more efficient&#8221; solution we are only more efficient in the worst case scenario, which in the case of the above answers would be if we wanted 11.</p>
+
+<pre><code>unsorted_array = [1,2,5,6]
+integer_x = 11
+
+ Benchmark.bm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+ end
+
+     user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.000024)
+ 0.000000   0.000000   0.000000 (  0.000020)
+</code></pre>
+
+<p>Looks really close&#8230;. but still not faster?  Maybe it&#8217;s because the array is just too small and the time it takes to build the hash just doesn&#8217;t cut it.</p>
+
+<pre><code>unsorted_array = [1,1,1,1,1,1,2,5,6]
+integer_x = 11
+## same benchmark
+    user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.000040)
+ 0.000000   0.000000   0.000000 (  0.000054)
+</code></pre>
+
+<p>Nice. We got our more efficient solution to actually run faster.  Now let&#8217;s stop making contrived tests to make our answer seem right and use something a little more fair.</p>
+
+<pre><code>require 'benchmark'
+
+unsorted_array = (1..10000).map { rand(10000) }
+integer_x = rand(10000)
+
+Benchmark.bm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+end
+
+  user     system      total        real
+0.000000   0.000000   0.000000 (  0.007244)
+0.010000   0.000000   0.010000 (  0.011289)
+</code></pre>
 </div>
   
   
