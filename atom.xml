@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-08T00:54:01-08:00</updated>
+  <updated>2013-02-08T00:54:20-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -60,9 +60,8 @@ end
 
 <p>To make it a little nicer.</p>
 
-<p>   class Array</p>
-
-<pre><code> def inject(initializer, &amp;block)
+<pre><code>class Array
+  def inject(initializer, &amp;block)
    self.each do |item|
      initializer = yield initializer, item
    end

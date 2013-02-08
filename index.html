@@ -135,9 +135,8 @@ end
 
 <p>To make it a little nicer.</p>
 
-<p>   class Array</p>
-
-<pre><code> def inject(initializer, &amp;block)
+<pre><code>class Array
+  def inject(initializer, &amp;block)
    self.each do |item|
      initializer = yield initializer, item
    end
