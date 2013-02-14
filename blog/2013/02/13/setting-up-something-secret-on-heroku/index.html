@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>how to make inject method - My Octopress Blog</title>
+  <title>setting up something secret on heroku - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is &hellip;">
+  <meta name="description" content="I was wanting to run stripe on my new site www.karmagrove.com I put the fake keys into my config file like a bad developer/ops person, which is of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/13/setting-up-something-secret-on-heroku/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">How to Make Inject Method</h1>
+      <h1 class="entry-title">Setting Up Something Secret on Heroku</h1>
     
     
       <p class="meta">
@@ -83,69 +83,44 @@
   
 
 
-<time datetime="2013-02-07T18:31:00-08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
+<time datetime="2013-02-13T14:23:00-08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is 1, I&#8217;m like a 7.</p>
+<div class="entry-content"><p>I was wanting to run stripe on my new site www.karmagrove.com</p>
 
-<p>He goes, okay, so what if we didn&#8217;t have the inject method, can you make it?</p>
+<p>I put the fake keys into my config file like a bad developer/ops person, which is of course a security problem because it&#8217;s an open source app.</p>
 
-<p>I&#8217;m thnking, this shouldn&#8217;t be so hard&#8230; I know how inject works.
-It is an enumerable method that can have an initializer and takes a block, and returns a single value.  For instance</p>
+<p>So I add some new yaml file called strip.yaml to my config</p>
 
-<pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
-## first it comes across the item of 1 and ads 1 to it, then the result
-## is 2, which is the initializer that is then added to 2, giving us
-=&gt; 4
+<pre><code>api_key: ENV['stripe_api_key']
+public_key: ENV['stripe_public_key']
 </code></pre>
 
-<p>So now that we know how inject works, let&#8217;s implement it!</p>
+<p>I create a new file called setup_heroku_keys.sh and add it to my git ignore.</p>
 
-<pre><code>def inject(initializer, &amp;block)
-   # I think I'll need to store the initializer
-   response = initializer
-   self.each do |item|
-     ## How do I yield to the block to build the response
-     ## response = use_my_block(response,item)
-   end
-   response
-end
+<pre><code>touch setup_heroku_keys.sh &amp;&amp; echo "setup_heroku_keys.sh" &gt;&gt; .gitignore
 </code></pre>
 
-<p>I mention to the interviewer that I&#8217;m thining I am probably more like a 6 now&#8230;He chuckles and says many a time he&#8217;s taken a 7 down to a 4.  He asks me if I&#8217;ve heard of the yield method, which fixes my method_missing above</p>
+<p>Then I add the following lines to my setup_heroku_keys.sh file</p>
 
-<pre><code>def inject(initializer, &amp;block)
-   response = initializer
-   self.each do |item|
-     response = yield response, item
-   end
-   response
-end
+<pre><code>heroku config:add STRIPE_API_KEY=sk_live_MY_SECRET
+heroku config:add STRIPE_PUBLIC_KEY=pk_live_MY_PUBLISHABLE_KEY
+
+bash setup_heroku_keys.sh
+
+=&gt;
+Setting config vars and restarting karma-grove... done, v16
+STRIPE_API_KEY: sk_live_HIDDEN
+Setting config vars and restarting karma-grove... done, v17
+STRIPE_PUBLIC_KEY: pk_live_HIDDEN
 </code></pre>
 
-<p>And imagine that is inside the Array class&#8230;</p>
-
-<p>To make it a little nicer and refactor a bit.</p>
-
-<pre><code>class Array
-  def inject(initializer, &amp;block)
-   self.each do |item|
-     initializer = yield initializer, item
-   end
-   initializer
-  end
-end
-</code></pre>
-
-<p>Let&#8217;s test it out and see if our new inject works the same as the real implementation that was shown at beginning&#8230;</p>
-
-<pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
-=&gt; 4
-</code></pre>
+<p>I got this inspiration from the helpful heroku docs&#8230;
+https://devcenter.heroku.com/articles/config-vars</p>
 </div>
 
 
@@ -168,7 +143,7 @@ end
   
 
 
-<time datetime="2013-02-07T18:31:00-08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
+<time datetime="2013-02-13T14:23:00-08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2013</time>
       
 
 
@@ -176,7 +151,7 @@ end
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/13/setting-up-something-secret-on-heroku/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/13/setting-up-something-secret-on-heroku/" >Tweet</a>
   
   
   
@@ -185,10 +160,8 @@ end
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/" title="Previous Post: given unsorted array and integer x part 2">&laquo; given unsorted array and integer x part 2</a>
+        <a class="basic-alignment left" href="/blog/2013/02/07/how-to-make-inject-method/" title="Previous Post: how to make inject method">&laquo; how to make inject method</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/02/13/setting-up-something-secret-on-heroku/" title="Next Post: setting up something secret on heroku">setting up something secret on heroku &raquo;</a>
       
     </p>
   </footer>

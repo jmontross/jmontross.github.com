@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is &hellip;">
+  <meta name="description" content="I was wanting to run stripe on my new site www.karmagrove.com I put the fake keys into my config file like a bad developer/ops person, which is of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,72 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">Setting Up Something Secret on Heroku</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-13T14:23:00-08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was wanting to run stripe on my new site www.karmagrove.com</p>
+
+<p>I put the fake keys into my config file like a bad developer/ops person, which is of course a security problem because it&#8217;s an open source app.</p>
+
+<p>So I add some new yaml file called strip.yaml to my config</p>
+
+<pre><code>api_key: ENV['stripe_api_key']
+public_key: ENV['stripe_public_key']
+</code></pre>
+
+<p>I create a new file called setup_heroku_keys.sh and add it to my git ignore.</p>
+
+<pre><code>touch setup_heroku_keys.sh &amp;&amp; echo "setup_heroku_keys.sh" &gt;&gt; .gitignore
+</code></pre>
+
+<p>Then I add the following lines to my setup_heroku_keys.sh file</p>
+
+<pre><code>heroku config:add STRIPE_API_KEY=sk_live_MY_SECRET
+heroku config:add STRIPE_PUBLIC_KEY=pk_live_MY_PUBLISHABLE_KEY
+
+bash setup_heroku_keys.sh
+
+=&gt;
+Setting config vars and restarting karma-grove... done, v16
+STRIPE_API_KEY: sk_live_HIDDEN
+Setting config vars and restarting karma-grove... done, v17
+STRIPE_PUBLIC_KEY: pk_live_HIDDEN
+</code></pre>
+
+<p>I got this inspiration from the helpful heroku docs&#8230;
+https://devcenter.heroku.com/articles/config-vars</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -784,6 +850,10 @@ and git push origin source</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">setting up something secret on heroku</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/07/how-to-make-inject-method/">how to make inject method</a>
       </li>
     
@@ -797,10 +867,6 @@ and git push origin source</p>
     
       <li class="post">
         <a href="/blog/2013/01/26/using-heroku-for-multiple-environments/">Using heroku for multiple environments</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/23/awesome-test/">What is a named_scope and a scope?</a>
       </li>
     
   </ul>

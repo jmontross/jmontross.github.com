@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-08T01:21:09-08:00</updated>
+  <updated>2013-02-13T17:21:19-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[setting up something secret on heroku]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/13/setting-up-something-secret-on-heroku/"/>
+    <updated>2013-02-13T14:23:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/13/setting-up-something-secret-on-heroku</id>
+    <content type="html"><![CDATA[<p>I was wanting to run stripe on my new site www.karmagrove.com</p>
+
+<p>I put the fake keys into my config file like a bad developer/ops person, which is of course a security problem because it&#8217;s an open source app.</p>
+
+<p>So I add some new yaml file called strip.yaml to my config</p>
+
+<pre><code>api_key: ENV['stripe_api_key']
+public_key: ENV['stripe_public_key']
+</code></pre>
+
+<p>I create a new file called setup_heroku_keys.sh and add it to my git ignore.</p>
+
+<pre><code>touch setup_heroku_keys.sh &amp;&amp; echo "setup_heroku_keys.sh" &gt;&gt; .gitignore
+</code></pre>
+
+<p>Then I add the following lines to my setup_heroku_keys.sh file</p>
+
+<pre><code>heroku config:add STRIPE_API_KEY=sk_live_MY_SECRET
+heroku config:add STRIPE_PUBLIC_KEY=pk_live_MY_PUBLISHABLE_KEY
+
+bash setup_heroku_keys.sh
+
+=&gt;
+Setting config vars and restarting karma-grove... done, v16
+STRIPE_API_KEY: sk_live_HIDDEN
+Setting config vars and restarting karma-grove... done, v17
+STRIPE_PUBLIC_KEY: pk_live_HIDDEN
+</code></pre>
+
+<p>I got this inspiration from the helpful heroku docs&#8230;
+https://devcenter.heroku.com/articles/config-vars</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[how to make inject method]]></title>
