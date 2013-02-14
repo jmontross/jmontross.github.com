@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Using heroku for multiple environments - My Octopress Blog</title>
+  <title>algoirthm analysis - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would &hellip;">
+  <meta name="description" content="&#8220;Algorithms are the most important and durable part of computer science because
+they can be studied in a language- and machine-independent way &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Using Heroku for Multiple Environments</h1>
+      <h1 class="entry-title">Algoirthm Analysis</h1>
     
     
       <p class="meta">
@@ -83,35 +84,21 @@
   
 
 
-<time datetime="2013-01-26T07:33:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would break the prod site because of some difference in my local mac environment and the heroku servers.  Even though we have no users, I&#8217;d rather figure out these speedbumps on a development or staging server.  Let&#8217;s call it development.</p>
+<div class="entry-content"><p>&#8220;Algorithms are the most important and durable part of computer science because
+they can be studied in a language- and machine-independent way&#8221;</p>
 
-<p>First thing is to point my DNS to heroku&#8217;s servers with a CNAME record</p>
+<p>&#8220;It is traditional for the author to magnanimously accept the blame for whatever
+deﬁciencies remain. I don’t. Any errors, deﬁciencies, or problems in this book are
+somebody else’s fault, but I would appreciate knowing about them so as to determine who is to blame.&#8221;</p>
 
-<p>With namecheap it was as simple as adding in this reference&#8230;</p>
-
-<p>Login&#8230; click &#8220;all host records&#8221;</p>
-
-<p>add a subdomain setting for dev that points to #{dev-your-heroku-appname-here}.herokuapp.com.</p>
-
-<p>The period at the end counts.  1800 for TTL.</p>
-
-<p>make sure of course that you also do a heroku create dev-your-heroku-appname-here</p>
-
-<p>After this point the guys at stack overflow have already answered it pretty well.</p>
-
-<p>  git remote add staging staging-your-app.heroku.git
-  git push staging staging:master</p>
-
-<p>http://stackoverflow.com/questions/7713042/deploying-2-different-heroku-apps-with-same-git-repository</p>
-
-<p>Now what does the staging:master mean in git push command above and in the answer on SO?</p>
+<p>These quotes come from the Algorithm Design Manual.  I just began reading it at the recommendation of a trusted and wise Sherif of the devbootcamp in San Francisco.  Best, Worst, and Average-Case Complexity => these are the ideas that the book describes nicely using graphs.  I&#8217;d like to get some pretty graphs of my three solutions to the unsorted array and integer x problem, and I need a nice way to make graphs on an X/Y plane in ruby&#8230; I&#8217;m thinking I&#8217;ll just use a js library</p>
 </div>
 
 
@@ -134,7 +121,7 @@
   
 
 
-<time datetime="2013-01-26T07:33:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
       
 
 
@@ -142,7 +129,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/" >Tweet</a>
   
   
   
@@ -151,10 +138,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/23/awesome-test/" title="Previous Post: What is a named_scope and a scope?">&laquo; What is a named_scope and a scope?</a>
+        <a class="basic-alignment left" href="/blog/2013/02/13/setting-up-something-secret-on-heroku/" title="Previous Post: setting up something secret on heroku">&laquo; setting up something secret on heroku</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/" title="Next Post: The difference between n^2 and 2n algorithm example">The difference between n^2 and 2n algorithm example &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" title="Next Post: given unsorted array and integer x part 3">given unsorted array and integer x part 3 &raquo;</a>
       
     </p>
   </footer>

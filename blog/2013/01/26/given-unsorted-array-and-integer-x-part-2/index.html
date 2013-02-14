@@ -228,39 +228,7 @@ user     system      total        real
 0.350000   0.000000   0.350000 (  0.354552)
 </code></pre>
 
-<p>It looks like I went down the wrong worm hole&#8230; All my newest results are much slower and are simply two variations of more inefficient solutions.  I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
-
-<pre><code>def adds_to_x?(array,integer_x)
-  answers = []
-  array.sort
-  array.each do |item|
-    if answers.last == item
-      return [integer_x - item, item]
-    end
-    answers &lt;&lt; (integer_x - item)
-
-    while answers.first &amp;&amp; answers.first &lt; item
-      answers.shift
-    end
-    if answers.first == item
-      return [integer_x - item, item]
-    end
-  end
-end
-
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { adds_to_x? unsorted_array,integer_x }
-
-end
-       user     system      total        real
-       0.590000   0.000000   0.590000 (  0.601332)
-       0.370000   0.010000   0.380000 (  0.367863)
-       0.300000   0.000000   0.300000 (  0.297452)
-</code></pre>
-
-<p>We will look into just how efficient each of these algorithms are soon enough.</p>
+<p>It looks like I went down the wrong worm hole&#8230; All my newest results are much slower and are simply two variations of more inefficient solutions.  I&#8217;ll need to come back to this&#8230;</p>
 </div>
 
 
@@ -324,7 +292,11 @@ end
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/02/14/algoirthm-analysis/">algoirthm analysis</a>
+        <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/algorithm-analysis/">algoirthm analysis</a>
       </li>
     
       <li class="post">
@@ -337,10 +309,6 @@ end
     
       <li class="post">
         <a href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">given unsorted array and integer x part 2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">The difference between n^2 and 2n algorithm example</a>
       </li>
     
   </ul>

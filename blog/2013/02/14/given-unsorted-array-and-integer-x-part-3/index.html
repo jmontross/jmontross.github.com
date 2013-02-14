@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>algoirthm analysis - My Octopress Blog</title>
+  <title>given unsorted array and integer x part 3 - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way &hellip;">
+  <meta name="description" content="After sending over my results from part 2 of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ they can be studied in a language- and machine-independent way &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/algoirthm-analysis/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -68,7 +67,7 @@ they can be studied in a language- and machine-independent way &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Algoirthm Analysis</h1>
+      <h1 class="entry-title">Given Unsorted Array and Integer X Part 3</h1>
     
     
       <p class="meta">
@@ -84,21 +83,48 @@ they can be studied in a language- and machine-independent way &hellip;">
   
 
 
-<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way&#8221;</p>
+<div class="entry-content"><p> After sending over my results from part 2 of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
 
-<p>&#8220;It is traditional for the author to magnanimously accept the blame for whatever
-deﬁciencies remain. I don’t. Any errors, deﬁciencies, or problems in this book are
-somebody else’s fault, but I would appreciate knowing about them so as to determine who is to blame.&#8221;</p>
+<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
 
-<p>These quotes come from the Algorithm Design Manual.  I just began reading it at the recommendation of a trusted and wise Sherif of the devbootcamp in San Francisco.  Best, Worst, and Average-Case Complexity => these are the ideas that the book describes nicely using graphs.  I&#8217;d like to get some pretty graphs of my three solutions to the unsorted array and integer x problem, and I need a nice way to make graphs on an X/Y plane in ruby&#8230; I&#8217;m thinking I&#8217;ll just use a js library</p>
+<pre><code>def adds_to_x?(array,integer_x)
+  answers = []
+  array.sort
+  array.each do |item|
+    if answers.last == item
+      return [integer_x - item, item]
+    end
+    answers &lt;&lt; (integer_x - item)
+
+    while answers.first &amp;&amp; answers.first &lt; item
+      answers.shift
+    end
+    if answers.first == item
+      return [integer_x - item, item]
+    end
+  end
+end
+
+Benchmark.bmbm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+   x.report { adds_to_x? unsorted_array,integer_x }
+
+end
+       user     system      total        real
+       0.590000   0.000000   0.590000 (  0.601332)
+       0.370000   0.010000   0.380000 (  0.367863)
+       0.300000   0.000000   0.300000 (  0.297452)
+</code></pre>
+
+<p>We will look into just how efficient each of these algorithms are soon enough.</p>
 </div>
 
 
@@ -121,7 +147,7 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
   
 
 
-<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
       
 
 
@@ -129,7 +155,7 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/algoirthm-analysis/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/algoirthm-analysis/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" >Tweet</a>
   
   
   
@@ -138,7 +164,7 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/13/setting-up-something-secret-on-heroku/" title="Previous Post: setting up something secret on heroku">&laquo; setting up something secret on heroku</a>
+        <a class="basic-alignment left" href="/blog/2013/02/14/algorithm-analysis/" title="Previous Post: algoirthm analysis">&laquo; algoirthm analysis</a>
       
       
     </p>
@@ -154,7 +180,11 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/02/14/algoirthm-analysis/">algoirthm analysis</a>
+        <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/algorithm-analysis/">algoirthm analysis</a>
       </li>
     
       <li class="post">
@@ -167,10 +197,6 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
       <li class="post">
         <a href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">given unsorted array and integer x part 2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">The difference between n^2 and 2n algorithm example</a>
       </li>
     
   </ul>

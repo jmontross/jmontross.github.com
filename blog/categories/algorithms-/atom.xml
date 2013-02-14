@@ -4,7 +4,7 @@
   <title><![CDATA[Category: algorithms, | My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/blog/categories/algorithms-/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-14T02:07:00-08:00</updated>
+  <updated>2013-02-14T02:15:51-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -155,39 +155,7 @@ user     system      total        real
 0.350000   0.000000   0.350000 (  0.354552)
 </code></pre>
 
-<p>It looks like I went down the wrong worm hole... All my newest results are much slower and are simply two variations of more inefficient solutions.  I've decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
-
-<pre><code>def adds_to_x?(array,integer_x)
-  answers = []
-  array.sort
-  array.each do |item|
-    if answers.last == item
-      return [integer_x - item, item]
-    end
-    answers &lt;&lt; (integer_x - item)
-
-    while answers.first &amp;&amp; answers.first &lt; item
-      answers.shift
-    end
-    if answers.first == item
-      return [integer_x - item, item]
-    end
-  end
-end
-
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { adds_to_x? unsorted_array,integer_x }
-
-end
-       user     system      total        real
-       0.590000   0.000000   0.590000 (  0.601332)
-       0.370000   0.010000   0.380000 (  0.367863)
-       0.300000   0.000000   0.300000 (  0.297452)
-</code></pre>
-
-<p>We will look into just how efficient each of these algorithms are soon enough.</p>
+<p>It looks like I went down the wrong worm hole... All my newest results are much slower and are simply two variations of more inefficient solutions.  I'll need to come back to this...</p>
 ]]></content>
   </entry>
   

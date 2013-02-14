@@ -9,8 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way &hellip;">
+  <meta name="description" content="After sending over my results from part 2 of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +70,77 @@ they can be studied in a language- and machine-independent way &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/02/14/algoirthm-analysis/">Algoirthm Analysis</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">Given Unsorted Array and Integer X Part 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p> After sending over my results from part 2 of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
+
+<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
+
+<pre><code>def adds_to_x?(array,integer_x)
+  answers = []
+  array.sort
+  array.each do |item|
+    if answers.last == item
+      return [integer_x - item, item]
+    end
+    answers &lt;&lt; (integer_x - item)
+
+    while answers.first &amp;&amp; answers.first &lt; item
+      answers.shift
+    end
+    if answers.first == item
+      return [integer_x - item, item]
+    end
+  end
+end
+
+Benchmark.bmbm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+   x.report { adds_to_x? unsorted_array,integer_x }
+
+end
+       user     system      total        real
+       0.590000   0.000000   0.590000 (  0.601332)
+       0.370000   0.010000   0.380000 (  0.367863)
+       0.300000   0.000000   0.300000 (  0.297452)
+</code></pre>
+
+<p>We will look into just how efficient each of these algorithms are soon enough.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/14/algorithm-analysis/">Algoirthm Analysis</a></h1>
     
     
       <p class="meta">
@@ -431,39 +500,7 @@ user     system      total        real
 0.350000   0.000000   0.350000 (  0.354552)
 </code></pre>
 
-<p>It looks like I went down the wrong worm hole&#8230; All my newest results are much slower and are simply two variations of more inefficient solutions.  I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
-
-<pre><code>def adds_to_x?(array,integer_x)
-  answers = []
-  array.sort
-  array.each do |item|
-    if answers.last == item
-      return [integer_x - item, item]
-    end
-    answers &lt;&lt; (integer_x - item)
-
-    while answers.first &amp;&amp; answers.first &lt; item
-      answers.shift
-    end
-    if answers.first == item
-      return [integer_x - item, item]
-    end
-  end
-end
-
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { adds_to_x? unsorted_array,integer_x }
-
-end
-       user     system      total        real
-       0.590000   0.000000   0.590000 (  0.601332)
-       0.370000   0.010000   0.380000 (  0.367863)
-       0.300000   0.000000   0.300000 (  0.297452)
-</code></pre>
-
-<p>We will look into just how efficient each of these algorithms are soon enough.</p>
+<p>It looks like I went down the wrong worm hole&#8230; All my newest results are much slower and are simply two variations of more inefficient solutions.  I&#8217;ll need to come back to this&#8230;</p>
 </div>
   
   
@@ -829,45 +866,6 @@ Also asked as : what is the difference between include and extend?</p></li>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/16/awesome/">Awesome</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-16T14:16:00-08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Just testing out how this octopress framework works.  Interesting use of rake tasks.</p>
-
-<pre><code>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -883,7 +881,11 @@ Also asked as : what is the difference between include and extend?</p></li>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/02/14/algoirthm-analysis/">algoirthm analysis</a>
+        <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/algorithm-analysis/">algoirthm analysis</a>
       </li>
     
       <li class="post">
@@ -896,10 +898,6 @@ Also asked as : what is the difference between include and extend?</p></li>
     
       <li class="post">
         <a href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">given unsorted array and integer x part 2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">The difference between n^2 and 2n algorithm example</a>
       </li>
     
   </ul>
