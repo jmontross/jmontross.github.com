@@ -9,7 +9,8 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="After sending over my results from part 2 of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and &hellip;">
+  <meta name="description" content="
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +71,42 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/02/14/joshs-software-test/">Joshs Software Test</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-14T16:52:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">Given Unsorted Array and Integer X Part 3</a></h1>
     
     
@@ -95,7 +132,7 @@
 
   <div class="entry-content"><p> After sending over my results from <a href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"> part 2 </a> of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
 
-<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
+<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time (I think) and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
 
 <pre><code>def adds_to_x?(array,integer_x)
   answers = []
@@ -793,79 +830,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/">Hot Topics for Job Interviews in Ruby</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-19T15:44:00-08:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Been looking for jobs as a web developer / rails developer / ruby developer / software engineer?  So have I for about 3 montsh now.  I&#8217;ve worked previously for a few years using ruby as well as rails from time to time.  You&#8217;d think that ruby and rails were the same thing from all the hype. Here&#8217;s my list of things to know for a ruby tinted interview&#8230;.</p>
-
-<ol>
-<li><p>Know about the iterators: each, inject, map
-[1,2].inject(2){|k,v| v + k}
-=> 5
-[1,2].map{|k,v|  k**2 }
-=> [1,4]</p></li>
-<li><p>What are the four types of closures in ruby?
-This one gets asked differently&#8230; AKA - what is the difference between proc, lamda, and a method?  they are all closures.  The fourth closure is a block.</p></li>
-<li><p>What is method missing?</p>
-
-<p> class Foo</p>
-
-<p> def method_missing(method,*args)
-   puts &#8220;you tried to call #{method} but it doesnt exist&#8221;
-   puts &#8220;Why not define a new method called #{method} that accepts #{args}&#8221;
- end</p>
-
-<p> end</p>
-
-<p> Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
- =>
- you tried to call missing_method but it doesnt exist
- Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p></li>
-<li><p>Can you tell me how to do inheritance in basic ruby?
-Also asked as : what is the difference between include and extend?</p></li>
-</ol>
-
-
-<p>  You can include or extend a module to inherit methods.</p>
-
-<ol>
-<li>What are some assumptions active record makes?</li>
-</ol>
-
-
-<p>  It assumes that you have a primary key of one&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -881,6 +845,10 @@ Also asked as : what is the difference between include and extend?</p></li>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/14/joshs-software-test/">joshs software test</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
       </li>
     
@@ -894,10 +862,6 @@ Also asked as : what is the difference between include and extend?</p></li>
     
       <li class="post">
         <a href="/blog/2013/02/07/how-to-make-inject-method/">how to make inject method</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">given unsorted array and integer x part 2</a>
       </li>
     
   </ul>

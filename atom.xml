@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-14T02:16:36-08:00</updated>
+  <updated>2013-02-14T16:58:13-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -14,13 +14,22 @@
 
   
   <entry>
+    <title type="html"><![CDATA[joshs software test]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/"/>
+    <updated>2013-02-14T16:52:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/14/joshs-software-test</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[given unsorted array and integer x part 3]]></title>
     <link href="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/"/>
     <updated>2013-02-14T02:10:00-08:00</updated>
     <id>http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3</id>
     <content type="html"><![CDATA[<p> After sending over my results from <a href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"> part 2 </a> of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
 
-<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
+<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time (I think) and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
 
 <pre><code>def adds_to_x?(array,integer_x)
   answers = []

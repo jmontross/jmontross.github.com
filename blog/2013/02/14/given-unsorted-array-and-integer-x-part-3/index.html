@@ -92,7 +92,7 @@
 
 <div class="entry-content"><p> After sending over my results from <a href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"> part 2 </a> of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
 
-<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
+<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time (I think) and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
 
 <pre><code>def adds_to_x?(array,integer_x)
   answers = []
@@ -167,6 +167,8 @@ end
         <a class="basic-alignment left" href="/blog/2013/02/14/algorithm-analysis/" title="Previous Post: algoirthm analysis">&laquo; algoirthm analysis</a>
       
       
+        <a class="basic-alignment right" href="/blog/2013/02/14/joshs-software-test/" title="Next Post: joshs software test">joshs software test &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -178,6 +180,10 @@ end
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/joshs-software-test/">joshs software test</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
@@ -193,10 +199,6 @@ end
     
       <li class="post">
         <a href="/blog/2013/02/07/how-to-make-inject-method/">how to make inject method</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">given unsorted array and integer x part 2</a>
       </li>
     
   </ul>
