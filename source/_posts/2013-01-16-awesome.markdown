@@ -3,5 +3,8 @@ layout: post
 title: "awesome"
 date: 2013-01-16 14:16
 comments: true
-categories: 
+categories:
 ---
+Just testing out how this octopress framework works.  Interesting use of rake tasks.
+
+    bundle exec rake generate && bundle exec rake gen_deploy

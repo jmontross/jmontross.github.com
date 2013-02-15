@@ -19,19 +19,19 @@ Been looking for jobs as a web developer / rails developer / ruby developer / so
 
 3. What is method missing?
 
-  class Foo
+    class Foo
 
     def method_missing(method,*args)
-        puts "you tried to call #{method} but it doesnt exist"
-        puts "Why not define a new method called #{method} that accepts #{args}"
+      puts "you tried to call #{method} but it doesnt exist"
+      puts "Why not define a new method called #{method} that accepts #{args}"
     end
 
-  end
+    end
 
-  Foo.new.missing_method("some parameter that ", "is missing")
-=>
-  you tried to call missing_method but it doesnt exist
-  Why not define a new method called missing_method that accepts ["some parameter that ", "is missing"]
+    Foo.new.missing_method("some parameter that ", "is missing")
+    =>
+    you tried to call missing_method but it doesnt exist
+    Why not define a new method called missing_method that accepts ["some parameter that ", "is missing"]
 
 
 4.  Can you tell me how to do inheritance in basic ruby?
