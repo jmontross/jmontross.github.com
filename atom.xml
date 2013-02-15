@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-14T17:13:55-08:00</updated>
+  <updated>2013-02-14T17:14:06-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<p>Inspired by Joel on Software I&#8217;d like to make my own little software test&#8230;
 Ten items.  8 or better is acceptable.  Below 8 and reevaluate.</p>
 
-<p>The Josh Test</p>
+<p>The Josh Test (Don&#8217;t josh me)</p>
 
 <p>Do you use source control?
 Can you make a build in one step?
