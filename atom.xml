@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-14T17:03:03-08:00</updated>
+  <updated>2013-02-14T17:05:01-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -18,7 +18,9 @@
     <link href="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/"/>
     <updated>2013-02-14T16:52:00-08:00</updated>
     <id>http://jmontross.github.com/blog/2013/02/14/joshs-software-test</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>Inspired by Joel on Software I&#8217;d like to make my own little software test&#8230;</p>
+
+<p>http://www.joelonsoftware.com/articles/fog0000000043.html</p>
 ]]></content>
   </entry>
   
