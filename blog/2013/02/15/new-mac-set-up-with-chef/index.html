@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="why? Because I&#8217;m kind of a fan boy for TDD, DRY, and rubymine shortcuts. Pivotal did a good thing with this soloist gem. Problem is&#8230;. it &hellip;">
+  <meta name="description" content="why? Because I love TDD, DRY, and rubymine shortcuts. Pivotal did a good thing with this soloist gem, and I enjoy making use of great ideas that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,9 +90,12 @@
   </header>
 
 
-<div class="entry-content"><p>why? Because I&#8217;m kind of a fan boy for TDD, DRY, and rubymine shortcuts.  Pivotal did a good thing with this soloist gem.</p>
+<div class="entry-content"><p>why? Because I love TDD, DRY, and rubymine shortcuts.  Pivotal did a good thing with this soloist gem, and I enjoy making use of great ideas that solve problems I have experienced.  As much fun as it is to set up my new laptop with memcached, mysql, redis, mongo, and insert_dependency_here I&#8217;ve done it enough times to realize it is not really a valuable learning experience one need repeat.</p>
 
-<p>Problem is&#8230;. it broke?  This is what my little script I use looks like. I  run it with bash.  I made it using http://www.solowizard.com/ and the code at https://github.com/pivotal/pivotal_workstation</p>
+<p>Problem is&#8230;. it broke?  Why?  I added some of my own custom recipes and the newest mac has issues with gcc and ruby when I wanted to use 1.8.7 as a rvm version for an older project.  Either way, This is what my little script I use looks like. I run it with bash.  I made it using http://www.solowizard.com/ and the code at https://github.com/pivotal/pivotal_workstation</p>
+
+<p>To get chef-solo working these steps were required
+had to clone pivotal_workstation and dmg into ~/cookbooks, get commands line tools from mac (http://stackoverflow.com/questions/9329243/xcode-4-4-command-line-tools), gem install soloist.  Then you are able to just run the command bash setup_my_machine&#8230;. make sure you have the recipes&#8230;. some of the ones in this list below are custom from my cookbooks repo (https://github.com/jmontross/pivotal_workstation)&#8230;</p>
 
 <pre><code>cat ~/cookbooks/setup_my_machine.sh
 #!/bin/bash
@@ -201,6 +204,8 @@ fi
 soloist
 popd
 </code></pre>
+
+<p>I&#8217;m thinking of checking out this new tool from github called boxen, which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
 </div>
 
 
