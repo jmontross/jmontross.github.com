@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>how to make inject method - My Octopress Blog</title>
+  <meta name="author" content="Joshua Montross">
+
+  
+  <meta name="description" content="This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmontross.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Make Inject Method</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-07T18:31:00-08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is 1, I&#8217;m like a 7.</p>
+
+<p>He goes, okay, so what if we didn&#8217;t have the inject method, can you make it?</p>
+
+<p>I&#8217;m thnking, this shouldn&#8217;t be so hard&#8230; I know how inject works.
+It is an enumerable method that can have an initializer and takes a block, and returns a single value.  For instance</p>
+
+<pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
+## first it comes across the item of 1 and ads 1 to it, then the result
+## is 2, which is the initializer that is then added to 2, giving us
+=&gt; 4
+</code></pre>
+
+<p>So now that we know how inject works, let&#8217;s implement it!</p>
+
+<pre><code>def inject(initializer, &amp;block)
+   # I think I'll need to store the initializer
+   response = initializer
+   self.each do |item|
+     ## How do I yield to the block to build the response
+     ## response = use_my_block(response,item)
+   end
+   response
+end
+</code></pre>
+
+<p>I mention to the interviewer that I&#8217;m thining I am probably more like a 6 now&#8230;He chuckles and says many a time he&#8217;s taken a 7 down to a 4.  He asks me if I&#8217;ve heard of the yield method, which fixes my method_missing above</p>
+
+<pre><code>def inject(initializer, &amp;block)
+   response = initializer
+   self.each do |item|
+     response = yield response, item
+   end
+   response
+end
+</code></pre>
+
+<p>And imagine that is inside the Array class&#8230;</p>
+
+<p>To make it a little nicer and refactor a bit.</p>
+
+<pre><code>class Array
+  def inject(initializer, &amp;block)
+   self.each do |item|
+     initializer = yield initializer, item
+   end
+   initializer
+  end
+end
+</code></pre>
+
+<p>Let&#8217;s test it out and see if our new inject works the same as the real implementation that was shown at beginning&#8230;</p>
+
+<pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
+=&gt; 4
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-07T18:31:00-08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/" title="Previous Post: given unsorted array and integer x part 2">&laquo; given unsorted array and integer x part 2</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/02/13/setting-up-something-secret-on-heroku/" title="Next Post: setting up something secret on heroku">setting up something secret on heroku &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/joshs-software-test/">joshs software test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/algorithm-analysis/">algoirthm analysis</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">setting up something secret on heroku</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/07/how-to-make-inject-method/">how to make inject method</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Joshua Montross -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>hot topics for job interviews in ruby - My Octopress Blog</title>
+  <meta name="author" content="Joshua Montross">
+
+  
+  <meta name="description" content="Been looking for jobs as a web developer / rails developer / ruby developer / software engineer? So have I for about 3 montsh now. I&#8217;ve worked &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmontross.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Hot Topics for Job Interviews in Ruby</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-19T15:44:00-08:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Been looking for jobs as a web developer / rails developer / ruby developer / software engineer?  So have I for about 3 montsh now.  I&#8217;ve worked previously for a few years using ruby as well as rails from time to time.  You&#8217;d think that ruby and rails were the same thing from all the hype. Here&#8217;s my list of things to know for a ruby tinted interview&#8230;.</p>
+
+<ol>
+<li><p>Know about the iterators: each, inject, map
+[1,2].inject(2){|k,v| v + k}
+=> 5
+[1,2].map{|k,v|  k**2 }
+=> [1,4]</p></li>
+<li><p>What are the four types of closures in ruby?
+This one gets asked differently&#8230; AKA - what is the difference between proc, lamda, and a method?  they are all closures.  The fourth closure is a block.</p></li>
+<li><p>What is method missing?</p>
+
+<p> class Foo</p>
+
+<p> def method_missing(method,*args)
+   puts &#8220;you tried to call #{method} but it doesnt exist&#8221;
+   puts &#8220;Why not define a new method called #{method} that accepts #{args}&#8221;
+ end</p>
+
+<p> end</p>
+
+<p> Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
+ =>
+ you tried to call missing_method but it doesnt exist
+ Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p></li>
+<li><p>Can you tell me how to do inheritance in basic ruby?
+Also asked as : what is the difference between include and extend?</p></li>
+</ol>
+
+
+<p>  You can include or extend a module to inherit methods.</p>
+
+<ol>
+<li>What are some assumptions active record makes?</li>
+</ol>
+
+
+<p>  It assumes that you have a primary key of one&#8230;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-19T15:44:00-08:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bay-area/'>Bay Area</a>, <a class='category' href='/blog/categories/job-interviews/'>Job Interviews</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/16/awesome/" title="Previous Post: awesome">&laquo; awesome</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/01/21/make-dreams-real-mlk-day-100startups/" title="Next Post: make dreams real - MLK day - 100startups">make dreams real - MLK day - 100startups &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/joshs-software-test/">joshs software test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/14/algorithm-analysis/">algoirthm analysis</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">setting up something secret on heroku</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/07/how-to-make-inject-method/">how to make inject method</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Joshua Montross -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

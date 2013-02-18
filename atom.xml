@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://jmontross.github.com/atom.xml" rel="self"/>
+  <link href="http://jmontross.github.com/"/>
+  <updated>2013-02-14T17:14:21-08:00</updated>
+  <id>http://jmontross.github.com/</id>
+  <author>
+    <name><![CDATA[Joshua Montross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[joshs software test]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/"/>
+    <updated>2013-02-14T16:52:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/14/joshs-software-test</id>
+    <content type="html"><![CDATA[<p>Inspired by Joel on Software I&#8217;d like to make my own little software test&#8230;
+Ten items.  8 or better is acceptable.  Below 8 and reevaluate.</p>
+
+<pre><code>The Josh Test (Don't josh me)
+
+Do you use source control?
+Can you make a build in one step?
+Do you make daily builds?
+Do you have a bug database?
+Do you write tests for bugs before you fix them?
+Are you using a kanban system to do work in the form of tickets?
+Do you write tests for new tickets?
+Do programmers have quiet working conditions?
+Do you use the best tools money can buy?
+Do new candidates write code during their interview?
+</code></pre>
+
+<p>Some additional ones that are more preferential and rightfully punish you for not having the prerequisite version control system&#8230;.</p>
+
+<p>Does your process of using a version control system reference your tickets?
+Can you tie the work for a desired feature to actual commits in a VCS?</p>
+
+<p>Inspired and stolen in part from
+http://www.joelonsoftware.com/articles/fog0000000043.html</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[given unsorted array and integer x part 3]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/"/>
+    <updated>2013-02-14T02:10:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3</id>
+    <content type="html"><![CDATA[<p> After sending over my results from <a href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"> part 2 </a> of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
+
+<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time (I think) and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
+
+<pre><code>def adds_to_x?(array,integer_x)
+  answers = []
+  array.sort
+  array.each do |item|
+    if answers.last == item
+      return [integer_x - item, item]
+    end
+    answers &lt;&lt; (integer_x - item)
+
+    while answers.first &amp;&amp; answers.first &lt; item
+      answers.shift
+    end
+    if answers.first == item
+      return [integer_x - item, item]
+    end
+  end
+end
+
+Benchmark.bmbm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+   x.report { adds_to_x? unsorted_array,integer_x }
+
+end
+       user     system      total        real
+       0.590000   0.000000   0.590000 (  0.601332)
+       0.370000   0.010000   0.380000 (  0.367863)
+       0.300000   0.000000   0.300000 (  0.297452)
+</code></pre>
+
+<p>We will look into just how efficient each of these algorithms are soon enough.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[algoirthm analysis]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/"/>
+    <updated>2013-02-14T01:37:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/14/algorithm-analysis</id>
+    <content type="html"><![CDATA[<p>&#8220;Algorithms are the most important and durable part of computer science because
+they can be studied in a language- and machine-independent way&#8221;</p>
+
+<p>&#8220;It is traditional for the author to magnanimously accept the blame for whatever
+deﬁciencies remain. I don’t. Any errors, deﬁciencies, or problems in this book are
+somebody else’s fault, but I would appreciate knowing about them so as to determine who is to blame.&#8221;</p>
+
+<p>These quotes come from the Algorithm Design Manual.  I just began reading it at the recommendation of a trusted and wise Sherif of the devbootcamp in San Francisco.  Best, Worst, and Average-Case Complexity => these are the ideas that the book describes nicely using graphs.  I&#8217;d like to get some pretty graphs of my three solutions to the unsorted array and integer x problem, and I need a nice way to make graphs on an X/Y plane in ruby&#8230; I&#8217;m thinking I&#8217;ll just use a js library</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[setting up something secret on heroku]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/13/setting-up-something-secret-on-heroku/"/>
+    <updated>2013-02-13T14:23:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/13/setting-up-something-secret-on-heroku</id>
+    <content type="html"><![CDATA[<p>I was wanting to run stripe on my new site www.karmagrove.com</p>
+
+<p>I put the fake keys into my config file like a bad developer/ops person, which is of course a security problem because it&#8217;s an open source app.</p>
+
+<p>So I add some new yaml file called strip.yaml to my config</p>
+
+<pre><code>api_key: ENV['stripe_api_key']
+public_key: ENV['stripe_public_key']
+</code></pre>
+
+<p>I create a new file called setup_heroku_keys.sh and add it to my git ignore.</p>
+
+<pre><code>touch setup_heroku_keys.sh &amp;&amp; echo "setup_heroku_keys.sh" &gt;&gt; .gitignore
+</code></pre>
+
+<p>Then I add the following lines to my setup_heroku_keys.sh file</p>
+
+<pre><code>heroku config:add STRIPE_API_KEY=sk_live_MY_SECRET
+heroku config:add STRIPE_PUBLIC_KEY=pk_live_MY_PUBLISHABLE_KEY
+
+bash setup_heroku_keys.sh
+
+=&gt;
+Setting config vars and restarting karma-grove... done, v16
+STRIPE_API_KEY: sk_live_HIDDEN
+Setting config vars and restarting karma-grove... done, v17
+STRIPE_PUBLIC_KEY: pk_live_HIDDEN
+</code></pre>
+
+<p>I got this inspiration from the helpful heroku docs&#8230;
+https://devcenter.heroku.com/articles/config-vars</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[how to make inject method]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/"/>
+    <updated>2013-02-07T18:31:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method</id>
+    <content type="html"><![CDATA[<p>This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is 1, I&#8217;m like a 7.</p>
+
+<p>He goes, okay, so what if we didn&#8217;t have the inject method, can you make it?</p>
+
+<p>I&#8217;m thnking, this shouldn&#8217;t be so hard&#8230; I know how inject works.
+It is an enumerable method that can have an initializer and takes a block, and returns a single value.  For instance</p>
+
+<pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
+## first it comes across the item of 1 and ads 1 to it, then the result
+## is 2, which is the initializer that is then added to 2, giving us
+=&gt; 4
+</code></pre>
+
+<p>So now that we know how inject works, let&#8217;s implement it!</p>
+
+<pre><code>def inject(initializer, &amp;block)
+   # I think I'll need to store the initializer
+   response = initializer
+   self.each do |item|
+     ## How do I yield to the block to build the response
+     ## response = use_my_block(response,item)
+   end
+   response
+end
+</code></pre>
+
+<p>I mention to the interviewer that I&#8217;m thining I am probably more like a 6 now&#8230;He chuckles and says many a time he&#8217;s taken a 7 down to a 4.  He asks me if I&#8217;ve heard of the yield method, which fixes my method_missing above</p>
+
+<pre><code>def inject(initializer, &amp;block)
+   response = initializer
+   self.each do |item|
+     response = yield response, item
+   end
+   response
+end
+</code></pre>
+
+<p>And imagine that is inside the Array class&#8230;</p>
+
+<p>To make it a little nicer and refactor a bit.</p>
+
+<pre><code>class Array
+  def inject(initializer, &amp;block)
+   self.each do |item|
+     initializer = yield initializer, item
+   end
+   initializer
+  end
+end
+</code></pre>
+
+<p>Let&#8217;s test it out and see if our new inject works the same as the real implementation that was shown at beginning&#8230;</p>
+
+<pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
+=&gt; 4
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[given unsorted array and integer x part 2]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"/>
+    <updated>2013-01-26T12:27:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2</id>
+    <content type="html"><![CDATA[<pre><code>Given an integer x and an unsorted array of integers,
+describe an algorithm to  determine  whether two of the numbers add up to x.
+</code></pre>
+
+<p>I tell this mysterious hiring manager about my new implementation to the above solution <a href="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/"> here </a> that uses hashes and is faster than n<sup>2</sup> and he says,</p>
+
+<pre><code>"Hashed are good shortcuts. But can you do it without hashes?"
+</code></pre>
+
+<p>I think to myself&#8230;. unsorted array and I&#8217;m looking for sums</p>
+
+<p>I could first sort the array.  Then I could do a binary search?
+I could even optimize it for only positive integers&#8230;.</p>
+
+<p>I&#8217;m a little unsure.  Anyone have any ideas?</p>
+
+<pre><code> def even_more_awesome?(unsorted_array,integer_x)
+   sorted_array = unsorted_array.sort
+   # at this point I could search the array
+     # to see if there is
+     # an upper bound where my integer_x exists
+
+     sorted_array.each_with_index do |item, index|
+         target = integer_x - item
+       ## not sure what to do here?
+         if item &gt; integer_x
+           return false
+         end
+       if sorted_array[index+1,sorted_array.length-1].include?(target)
+           return [item, target]
+         end
+     end
+
+    end
+
+     even_more_awesome? [1,3,5], 8
+ =&gt; [3, 5]
+</code></pre>
+
+<p>it works but it could be better&#8230;</p>
+
+<pre><code>def even_more_awesome?(unsorted_array,integer_x)
+  sorted_array = unsorted_array.sort
+  sorted_array.each_with_index do |item, index|
+    target = integer_x - item
+    if item &gt; integer_x
+      return false
+    end
+
+    for i in sorted_array[index+1,sorted_array.length-1]
+      break if i &gt; target
+      return [item, target] if i == target
+    end
+
+   end
+   return false
+ end
+
+ even_more_awesome? [1,3,5], 8
+ =&gt; [3, 5]
+</code></pre>
+
+<p>Now it works&#8230; I wonder how it compares to my other solutions?  I also wonder if my earlier test was very biased.  I decided to use a larger random data set and to run it twice with bmbm instead of bm.</p>
+
+<pre><code>require 'benchmark'
+
+Benchmark.bmbm do |x|
+   unsorted_array = (1..10000).map { rand(10000) }
+   integer_x = rand(10000)
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+   x.report { even_more_awesome? unsorted_array, integer_x}
+end
+
+
+ user     system      total        real
+0.000000   0.000000   0.000000 (  0.003523)
+0.000000   0.000000   0.000000 (  0.000252)
+0.010000   0.000000   0.010000 (  0.002643)
+
+ user     system      total        real
+0.000000   0.000000   0.000000 (  0.004666)
+0.000000   0.000000   0.000000 (  0.002127)
+0.000000   0.000000   0.000000 (  0.001775)
+</code></pre>
+
+<p>Now I&#8217;m just getting crazy but I want it to be better&#8230;</p>
+
+<pre><code>def faster?(unsorted_array,integer_x)
+  sorted_array = unsorted_array.sort
+  sorted_array.each_with_index do |item, index|
+    target = integer_x - item
+    if item &gt; integer_x
+      return false
+    end
+
+    max = sorted_array.length-1
+    next_index = index+1
+    for i in sorted_array[index+1,max]
+      max = next_index &amp;&amp; break if i &gt; target
+      return [item, target] if i == target
+      next_index +=1
+    end
+
+   end
+   return false
+ end
+</code></pre>
+
+<p>I figured that this should be fastest, and my results from before may be biased because the arrays were too small.  I made them 100 times larger and moved the array declaration and integer_x outside the bmbm block.</p>
+
+<pre><code>require 'benchmark'
+unsorted_array = (1..1000000).map { rand(1000000) }
+integer_x = rand(1000000)
+
+Benchmark.bmbm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+   x.report { even_more_awesome? unsorted_array, integer_x}
+   x.report { faster?  unsorted_array, integer_x }
+end
+
+
+user     system      total        real
+0.620000   0.010000   0.630000 (  0.632894)
+0.270000   0.000000   0.270000 (  0.266455)
+0.340000   0.000000   0.340000 (  0.340122)
+0.340000   0.000000   0.340000 (  0.349022)
+
+
+user     system      total        real
+0.640000   0.010000   0.650000 (  0.644997)
+0.270000   0.000000   0.270000 (  0.269851)
+0.340000   0.000000   0.340000 (  0.348532)
+0.350000   0.000000   0.350000 (  0.354552)
+</code></pre>
+
+<p>It looks like I went down the wrong worm hole&#8230; All my newest results are much slower and are simply two variations of more inefficient solutions.  I&#8217;ll need to come back to this&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The difference between n^2 and 2n algorithm example]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/"/>
+    <updated>2013-01-26T07:34:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example</id>
+    <content type="html"><![CDATA[<p>Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230;  And I&#8217;m linked to this question</p>
+
+<pre><code>Given an integer x and an unsorted array of integers,
+describe an algorithm to  determine  whether two of the numbers add up to x.
+</code></pre>
+
+<p>Type or speak? I write to him as we are on phone and viewing same screen&#8230; he says typing is fine&#8230; so i type out this pseudo code of sorts.</p>
+
+<p>iterate over the unsorted array, and for each number iterate over the rest adding them and checking if it is equal to our given integer.  if it is equal to given integer return the two numbers</p>
+
+<p>he says.. that&#8217;s got an efficiency of n<sup>2</sup> as shown below&#8230;</p>
+
+<p>(n-1) * n  => n<sup>2</sup></p>
+
+<p>That&#8217;s not very efficient says the interviewer from a silicon valley startup that will go unnamed.</p>
+
+<p>In actual ruby code, which I didn&#8217;t write as I attempted to write the faster solution than n<sup>2&#8230;</sup> though I was clueless</p>
+
+<pre><code>def awesome(unsorted_array,integer_x)
+  unsorted_array.each_with_index do |item, first_index|
+     unsorted_array.each_with_index do |other_item, second_index|
+       if (item + other_item == integer_x) &amp;&amp; (first_index != second_index)
+       return [item, other_item]
+       end
+     end
+  end
+ end
+</code></pre>
+
+<p>awesome [1, 2, 5, 6], 7
+ => [1, 6]</p>
+
+<p>How do we make this faster than n<sup>2?</sup></p>
+
+<p>The hint is to use hashes?  Why use a hash?</p>
+
+<pre><code>def more_awesome(unsorted_array,integer_x)
+  desired_addition = {}
+  unsorted_array.each_with_index do |item, first_index|
+    desired_addition[integer_x - item] = first_index
+  end
+
+  unsorted_array.each_with_index do |other_item, second_index|
+    if (desired_addition[other_item]) &amp;&amp; (desired_addition[other_item] != second_index)
+      return [integer_x - other_item, other_item]
+    end
+  end
+
+ end
+</code></pre>
+
+<p>This solution is 2N because we loop over the array twice and no more to find if there is an answer.</p>
+
+<p>Let&#8217;s see if it&#8217;s actually faster&#8230;.</p>
+
+<pre><code>require 'benchmark'
+
+unsorted_array = [1,2,5,6]
+integer_x = 7
+Benchmark.bm do |x|
+  x.report { more_awesome unsorted_array,integer_x }
+  x.report { awesome unsorted_array,integer_x }
+end
+   user     system      total        real
+   0.000000   0.000000   0.000000 (  0.000036)
+   0.000000   0.000000   0.000000 (  0.000018)
+</code></pre>
+
+<p>Why isn&#8217;t it faster?</p>
+
+<p>I think it might be because the sample is too small.  Our sample data set used small list and in this case the less efficient solution executes faster  due to the fact that the answer is a combination of the first and last item, so the result is found after only 3 computations because we first loop over the 1, and then add the 2 to see if it is 7, then we check if 1 + 5 is seven, then we return 1 and 6 because they equal 7.</p>
+
+<p>In the &#8220;more efficient&#8221; solution we are only more efficient in the worst case scenario, which in the case of the above answers would be if we wanted 11.</p>
+
+<pre><code>unsorted_array = [1,2,5,6]
+integer_x = 11
+
+ Benchmark.bm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+ end
+
+     user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.000024)
+ 0.000000   0.000000   0.000000 (  0.000020)
+</code></pre>
+
+<p>Looks really close&#8230;. but still not faster?  Maybe it&#8217;s because the array is just too small and the time it takes to build the hash just doesn&#8217;t cut it.</p>
+
+<pre><code>unsorted_array = [1,1,1,1,1,1,2,5,6]
+integer_x = 11
+## same benchmark
+    user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.000040)
+ 0.000000   0.000000   0.000000 (  0.000054)
+</code></pre>
+
+<p>Nice. We got our more efficient solution to actually run faster.  Now let&#8217;s stop making contrived tests to make our answer seem right and use something a little more fair.</p>
+
+<pre><code>require 'benchmark'
+
+unsorted_array = (1..10000).map { rand(10000) }
+integer_x = rand(10000)
+
+Benchmark.bm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+end
+
+  user     system      total        real
+0.000000   0.000000   0.000000 (  0.007244)
+0.010000   0.000000   0.010000 (  0.011289)
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using heroku for multiple environments]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments/"/>
+    <updated>2013-01-26T07:33:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments</id>
+    <content type="html"><![CDATA[<p>I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would break the prod site because of some difference in my local mac environment and the heroku servers.  Even though we have no users, I&#8217;d rather figure out these speedbumps on a development or staging server.  Let&#8217;s call it development.</p>
+
+<p>First thing is to point my DNS to heroku&#8217;s servers with a CNAME record</p>
+
+<p>With namecheap it was as simple as adding in this reference&#8230;</p>
+
+<p>Login&#8230; click &#8220;all host records&#8221;</p>
+
+<p>add a subdomain setting for dev that points to #{dev-your-heroku-appname-here}.herokuapp.com.</p>
+
+<p>The period at the end counts.  1800 for TTL.</p>
+
+<p>make sure of course that you also do a heroku create dev-your-heroku-appname-here</p>
+
+<p>After this point the guys at stack overflow have already answered it pretty well.</p>
+
+<p>  git remote add staging staging-your-app.heroku.git
+  git push staging staging:master</p>
+
+<p>http://stackoverflow.com/questions/7713042/deploying-2-different-heroku-apps-with-same-git-repository</p>
+
+<p>Now what does the staging:master mean in git push command above and in the answer on SO?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[awesome test]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/23/awesome-test/"/>
+    <updated>2013-01-23T09:14:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/23/awesome-test</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[make dreams real - MLK day - 100startups]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/21/make-dreams-real-mlk-day-100startups/"/>
+    <updated>2013-01-21T19:36:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/21/make-dreams-real-mlk-day-100startups</id>
+    <content type="html"><![CDATA[<p>worked on karmagrove.com today&#8230; want a place to sell things and allow purchaser to have rights to give away profits.  starting off with the granola bars I like to make&#8230; not sure if should put QR code on individual packaging to allow sales offline and donations online at later date &#8230; or just go online first.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[hot topics for job interviews in ruby]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/"/>
+    <updated>2013-01-19T15:44:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby</id>
+    <content type="html"><![CDATA[<p>Been looking for jobs as a web developer / rails developer / ruby developer / software engineer?  So have I for about 3 montsh now.  I&#8217;ve worked previously for a few years using ruby as well as rails from time to time.  You&#8217;d think that ruby and rails were the same thing from all the hype. Here&#8217;s my list of things to know for a ruby tinted interview&#8230;.</p>
+
+<ol>
+<li><p>Know about the iterators: each, inject, map
+[1,2].inject(2){|k,v| v + k}
+=> 5
+[1,2].map{|k,v|  k**2 }
+=> [1,4]</p></li>
+<li><p>What are the four types of closures in ruby?
+This one gets asked differently&#8230; AKA - what is the difference between proc, lamda, and a method?  they are all closures.  The fourth closure is a block.</p></li>
+<li><p>What is method missing?</p>
+
+<p> class Foo</p>
+
+<p> def method_missing(method,*args)
+   puts &#8220;you tried to call #{method} but it doesnt exist&#8221;
+   puts &#8220;Why not define a new method called #{method} that accepts #{args}&#8221;
+ end</p>
+
+<p> end</p>
+
+<p> Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
+ =>
+ you tried to call missing_method but it doesnt exist
+ Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p></li>
+<li><p>Can you tell me how to do inheritance in basic ruby?
+Also asked as : what is the difference between include and extend?</p></li>
+</ol>
+
+
+<p>  You can include or extend a module to inherit methods.</p>
+
+<ol>
+<li>What are some assumptions active record makes?</li>
+</ol>
+
+
+<p>  It assumes that you have a primary key of one&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[awesome]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/16/awesome/"/>
+    <updated>2013-01-16T14:16:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/16/awesome</id>
+    <content type="html"><![CDATA[<p>Just testing out how this octopress framework works.  Interesting use of rake tasks.</p>
+
+<pre><code>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[first post]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/14/first-post/"/>
+    <updated>2013-01-14T19:05:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/14/first-post</id>
+    <content type="html"><![CDATA[<p>First post in Octopress&#8230; interesting.
+bundle exec rake new_post[&#8216;first post&#8217;]</p>
+
+<p>then it makes this markdown file in source/_posts</p>
+
+<p>then I run</p>
+
+<p>bundle exec rake generate</p>
+
+<p>and git add .
+git commit -m &#8216;first post&#8217;
+and git push origin source</p>
+]]></content>
+  </entry>
+  
+</feed>

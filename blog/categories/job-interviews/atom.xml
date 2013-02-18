@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Job Interviews | My Octopress Blog]]></title>
+  <link href="http://jmontross.github.com/blog/categories/job-interviews/atom.xml" rel="self"/>
+  <link href="http://jmontross.github.com/"/>
+  <updated>2013-02-14T17:14:21-08:00</updated>
+  <id>http://jmontross.github.com/</id>
+  <author>
+    <name><![CDATA[Joshua Montross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[hot topics for job interviews in ruby]]></title>
+    <link href="http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/"/>
+    <updated>2013-01-19T15:44:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby</id>
+    <content type="html"><![CDATA[<p>Been looking for jobs as a web developer / rails developer / ruby developer / software engineer?  So have I for about 3 montsh now.  I've worked previously for a few years using ruby as well as rails from time to time.  You'd think that ruby and rails were the same thing from all the hype. Here's my list of things to know for a ruby tinted interview....</p>
+
+<ol>
+<li><p>Know about the iterators: each, inject, map
+[1,2].inject(2){|k,v| v + k}
+=> 5
+[1,2].map{|k,v|  k**2 }
+=> [1,4]</p></li>
+<li><p>What are the four types of closures in ruby?
+This one gets asked differently... AKA - what is the difference between proc, lamda, and a method?  they are all closures.  The fourth closure is a block.</p></li>
+<li><p>What is method missing?</p>
+
+<p> class Foo</p>
+
+<p> def method_missing(method,*args)
+   puts "you tried to call #{method} but it doesnt exist"
+   puts "Why not define a new method called #{method} that accepts #{args}"
+ end</p>
+
+<p> end</p>
+
+<p> Foo.new.missing_method("some parameter that ", "is missing")
+ =>
+ you tried to call missing_method but it doesnt exist
+ Why not define a new method called missing_method that accepts ["some parameter that ", "is missing"]</p></li>
+<li><p>Can you tell me how to do inheritance in basic ruby?
+Also asked as : what is the difference between include and extend?</p></li>
+</ol>
+
+
+<p>  You can include or extend a module to inherit methods.</p>
+
+<ol>
+<li>What are some assumptions active record makes?</li>
+</ol>
+
+
+<p>  It assumes that you have a primary key of one...</p>
+]]></content>
+  </entry>
+  
+</feed>
