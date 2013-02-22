@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="worked on karmagrove.com today&#8230; want a place to sell things and allow purchaser to have rights to give away profits. starting off with the &hellip;">
+  <meta name="description" content="Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230; And I&#8217;m linked to this question &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,247 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">The Difference Between N^2 and 2n Algorithm Example</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T07:34:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230;  And I&#8217;m linked to this question</p>
+
+<pre><code>Given an integer x and an unsorted array of integers,
+describe an algorithm to  determine  whether two of the numbers add up to x.
+</code></pre>
+
+<p>Type or speak? I write to him as we are on phone and viewing same screen&#8230; he says typing is fine&#8230; so i type out this pseudo code of sorts.</p>
+
+<p>iterate over the unsorted array, and for each number iterate over the rest adding them and checking if it is equal to our given integer.  if it is equal to given integer return the two numbers</p>
+
+<p>he says.. that&#8217;s got an efficiency of n<sup>2</sup> as shown below&#8230;</p>
+
+<p>(n-1) * n  => n<sup>2</sup></p>
+
+<p>That&#8217;s not very efficient says the interviewer from a silicon valley startup that will go unnamed.</p>
+
+<p>In actual ruby code, which I didn&#8217;t write as I attempted to write the faster solution than n<sup>2&#8230;</sup> though I was clueless</p>
+
+<pre><code>def awesome(unsorted_array,integer_x)
+  unsorted_array.each_with_index do |item, first_index|
+     unsorted_array.each_with_index do |other_item, second_index|
+       if (item + other_item == integer_x) &amp;&amp; (first_index != second_index)
+       return [item, other_item]
+       end
+     end
+  end
+ end
+</code></pre>
+
+<p>awesome [1, 2, 5, 6], 7
+ => [1, 6]</p>
+
+<p>How do we make this faster than n<sup>2?</sup></p>
+
+<p>The hint is to use hashes?  Why use a hash?</p>
+
+<pre><code>def more_awesome(unsorted_array,integer_x)
+  desired_addition = {}
+  unsorted_array.each_with_index do |item, first_index|
+    desired_addition[integer_x - item] = first_index
+  end
+
+  unsorted_array.each_with_index do |other_item, second_index|
+    if (desired_addition[other_item]) &amp;&amp; (desired_addition[other_item] != second_index)
+      return [integer_x - other_item, other_item]
+    end
+  end
+
+ end
+</code></pre>
+
+<p>This solution is 2N because we loop over the array twice and no more to find if there is an answer.</p>
+
+<p>Let&#8217;s see if it&#8217;s actually faster&#8230;.</p>
+
+<pre><code>require 'benchmark'
+
+unsorted_array = [1,2,5,6]
+integer_x = 7
+Benchmark.bm do |x|
+  x.report { more_awesome unsorted_array,integer_x }
+  x.report { awesome unsorted_array,integer_x }
+end
+   user     system      total        real
+   0.000000   0.000000   0.000000 (  0.000036)
+   0.000000   0.000000   0.000000 (  0.000018)
+</code></pre>
+
+<p>Why isn&#8217;t it faster?</p>
+
+<p>I think it might be because the sample is too small.  Our sample data set used small list and in this case the less efficient solution executes faster  due to the fact that the answer is a combination of the first and last item, so the result is found after only 3 computations because we first loop over the 1, and then add the 2 to see if it is 7, then we check if 1 + 5 is seven, then we return 1 and 6 because they equal 7.</p>
+
+<p>In the &#8220;more efficient&#8221; solution we are only more efficient in the worst case scenario, which in the case of the above answers would be if we wanted 11.</p>
+
+<pre><code>unsorted_array = [1,2,5,6]
+integer_x = 11
+
+ Benchmark.bm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+ end
+
+     user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.000024)
+ 0.000000   0.000000   0.000000 (  0.000020)
+</code></pre>
+
+<p>Looks really close&#8230;. but still not faster?  Maybe it&#8217;s because the array is just too small and the time it takes to build the hash just doesn&#8217;t cut it.</p>
+
+<pre><code>unsorted_array = [1,1,1,1,1,1,2,5,6]
+integer_x = 11
+## same benchmark
+    user     system      total        real
+ 0.000000   0.000000   0.000000 (  0.000040)
+ 0.000000   0.000000   0.000000 (  0.000054)
+</code></pre>
+
+<p>Nice. We got our more efficient solution to actually run faster.  Now let&#8217;s stop making contrived tests to make our answer seem right and use something a little more fair.</p>
+
+<pre><code>require 'benchmark'
+
+unsorted_array = (1..10000).map { rand(10000) }
+integer_x = rand(10000)
+
+Benchmark.bm do |x|
+   x.report { more_awesome unsorted_array,integer_x }
+   x.report { awesome unsorted_array,integer_x }
+end
+
+  user     system      total        real
+0.000000   0.000000   0.000000 (  0.007244)
+0.010000   0.000000   0.010000 (  0.011289)
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/using-heroku-for-multiple-environments/">Using Heroku for Multiple Environments</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T07:33:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would break the prod site because of some difference in my local mac environment and the heroku servers.  Even though we have no users, I&#8217;d rather figure out these speedbumps on a development or staging server.  Let&#8217;s call it development.</p>
+
+<p>First thing is to point my DNS to heroku&#8217;s servers with a CNAME record</p>
+
+<p>With namecheap it was as simple as adding in this reference&#8230;</p>
+
+<p>Login&#8230; click &#8220;all host records&#8221;</p>
+
+<p>add a subdomain setting for dev that points to #{dev-your-heroku-appname-here}.herokuapp.com.</p>
+
+<p>The period at the end counts.  1800 for TTL.</p>
+
+<p>make sure of course that you also do a heroku create dev-your-heroku-appname-here</p>
+
+<p>After this point the guys at stack overflow have already answered it pretty well.</p>
+
+<p>  git remote add staging staging-your-app.heroku.git
+  git push staging staging:master</p>
+
+<p>http://stackoverflow.com/questions/7713042/deploying-2-different-heroku-apps-with-same-git-repository</p>
+
+<p>Now what does the staging:master mean in git push command above and in the answer on SO?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/23/awesome-test/">Awesome Test</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-23T09:14:00-08:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -275,23 +516,23 @@ and git push origin source</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">airpair - remote pairing with strangers for fun and profit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/">pairing with tmux and rspec on aws ec2 instance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/">setting up ubuntu 12.04 LTS using vagrant</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/15/new-mac-set-up-with-chef/">new mac set up with chef</a>
       </li>
     
       <li class="post">
         <a href="/blog/2013/02/14/joshs-software-test/">joshs software test</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/14/algorithm-analysis/">algoirthm analysis</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">setting up something secret on heroku</a>
       </li>
     
   </ul>

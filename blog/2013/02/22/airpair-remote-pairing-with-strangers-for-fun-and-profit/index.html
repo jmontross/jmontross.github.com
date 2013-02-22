@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>joshs software test - My Octopress Blog</title>
+  <title>airpair - remote pairing with strangers for fun and profit - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Inspired by Joel on Software I&#8217;d like to make my own little software test&#8230;
-Ten items. 8 or better is acceptable. Below 8 and reevaluate. &hellip;">
+  <meta name="description" content="Recently I had the pleasure of trying out a new pairing service called airpair.co I sign up for the developer path and list the host of technologies &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Ten items. 8 or better is acceptable. Below 8 and reevaluate. &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -68,7 +67,7 @@ Ten items. 8 or better is acceptable. Below 8 and reevaluate. &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Joshs Software Test</h1>
+      <h1 class="entry-title">Airpair - Remote Pairing With Strangers for Fun and Profit</h1>
     
     
       <p class="meta">
@@ -84,37 +83,32 @@ Ten items. 8 or better is acceptable. Below 8 and reevaluate. &hellip;">
   
 
 
-<time datetime="2013-02-14T16:52:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-22T13:13:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Inspired by Joel on Software I&#8217;d like to make my own little software test&#8230;
-Ten items.  8 or better is acceptable.  Below 8 and reevaluate.</p>
+<div class="entry-content"><p>Recently I had the pleasure of trying out a new pairing service called airpair.co</p>
 
-<pre><code>The Josh Test (Don't josh me)
+<p>I sign up for the developer path and list the host of technologies I feel comfortable philosophizing about over a pseudo-anonymous pairing service.</p>
 
-Do you use source control?
-Can you make a build in one step?
-Do you make daily builds?
-Do you have a bug database?
-Do you write tests for bugs before you fix them?
-Are you using a kanban system to do work in the form of tickets?
-Do you write tests for new tickets?
-Do programmers have quiet working conditions?
-Do you use the best tools money can buy?
-Do new candidates write code during their interview?
-</code></pre>
+<p>A nice chap named Jonathan contacts me and asks if I could comment on the code at this gist below</p>
 
-<p>Some additional ones that are more preferential and rightfully punish you for not having the prerequisite version control system&#8230;.</p>
+<p>https://gist.github.com/anonymous/b04a71724fdf2fa4ae15</p>
 
-<p>Does your process of using a version control system reference your tickets?
-Can you tie the work for a desired feature to actual commits in a VCS?</p>
+<p>I look at it and end up thinking I could add some value there.  There is a fat controller, and I can only imagine what the model and routes are - and because I&#8217;d like to see this model and routes file I suggest I could add some value.</p>
 
-<p>Inspired and stolen in part from
-http://www.joelonsoftware.com/articles/fog0000000043.html</p>
+<p>Somehow I find myself doing a google hangout with two strangers discussing a rails controller and how we may go about refactoring it.  We all agree it is a bit of a mess - just too much going on.  How do we improve it?</p>
+
+<p>One thing we begin to notice is that the methods / controller actions are not always mapped to routes and appear to be doing things to the model.  For instance, https://gist.github.com/anonymous/b04a71724fdf2fa4ae15#file-communications_controller-rb-L230, could easily become a method on the communications model.</p>
+
+<p>Then we thought about the idea of creating a new controller that is subclassed from communications.  This is useful because these actions do seem to be acting on a different type of a communication.  We went through and played around with making the communications a little more restful, and it was a fun experience I&#8217;d love to do again.  Next time I think I&#8217;d like to use some tmux and actually dig into the code together&#8230; similar to how we did earlier <a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/"> here </a></p>
+
+<p>Modified controller => https://gist.github.com/jmontross/4c7c44d6bf2e945e1d51</p>
+
+<p>Modified model => https://gist.github.com/jmontross/e59cb799fe6cfd3a53ad</p>
 </div>
 
 
@@ -137,7 +131,7 @@ http://www.joelonsoftware.com/articles/fog0000000043.html</p>
   
 
 
-<time datetime="2013-02-14T16:52:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-22T13:13:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
       
 
 
@@ -145,7 +139,7 @@ http://www.joelonsoftware.com/articles/fog0000000043.html</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" >Tweet</a>
   
   
   
@@ -154,10 +148,8 @@ http://www.joelonsoftware.com/articles/fog0000000043.html</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" title="Previous Post: given unsorted array and integer x part 3">&laquo; given unsorted array and integer x part 3</a>
+        <a class="basic-alignment left" href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/" title="Previous Post: pairing with tmux and rspec on aws ec2 instance">&laquo; pairing with tmux and rspec on aws ec2 instance</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/02/15/new-mac-set-up-with-chef/" title="Next Post: new mac set up with chef">new mac set up with chef &raquo;</a>
       
     </p>
   </footer>

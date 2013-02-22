@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>joshs software test - My Octopress Blog</title>
+  <title>pairing with tmux and rspec on aws ec2 instance - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Inspired by Joel on Software I&#8217;d like to make my own little software test&#8230;
-Ten items. 8 or better is acceptable. Below 8 and reevaluate. &hellip;">
+  <meta name="description" content="I wanted to pair with my friend who sat down next to me&#8230; each of us on our own laptop, but none of the gear that makes it easy for us to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Ten items. 8 or better is acceptable. Below 8 and reevaluate. &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -68,7 +67,7 @@ Ten items. 8 or better is acceptable. Below 8 and reevaluate. &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Joshs Software Test</h1>
+      <h1 class="entry-title">Pairing With Tmux and Rspec on Aws Ec2 Instance</h1>
     
     
       <p class="meta">
@@ -84,37 +83,94 @@ Ten items. 8 or better is acceptable. Below 8 and reevaluate. &hellip;">
   
 
 
-<time datetime="2013-02-14T16:52:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-21T13:42:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Inspired by Joel on Software I&#8217;d like to make my own little software test&#8230;
-Ten items.  8 or better is acceptable.  Below 8 and reevaluate.</p>
+<div class="entry-content"><p>I wanted to pair with my friend who sat down next to me&#8230; each of us on our own laptop, but none of the gear that makes it easy for us to actually pair in the sense of two keyboards one screen.  I luckily have already burned through my AWS free tier and keep around an ubuntu server for playing/learning.  I ask my friend if he has ever used vim?  He says no.  Is he interested in pair programming on a server using vim and tmux, and he says sure. Thanks Dan for being such a good sport.</p>
 
-<pre><code>The Josh Test (Don't josh me)
+<p>I ssh into my machine</p>
 
-Do you use source control?
-Can you make a build in one step?
-Do you make daily builds?
-Do you have a bug database?
-Do you write tests for bugs before you fix them?
-Are you using a kanban system to do work in the form of tickets?
-Do you write tests for new tickets?
-Do programmers have quiet working conditions?
-Do you use the best tools money can buy?
-Do new candidates write code during their interview?
+<pre><code>useradd dan
+password: secret
+
+sudo vi /etc/ssh/sshd_config
+:s/PasswordAuthentication no/PasswordAuthentication yes/
+:wq
+
+sudo /etc/init.d/sshd reload
 </code></pre>
 
-<p>Some additional ones that are more preferential and rightfully punish you for not having the prerequisite version control system&#8230;.</p>
+<p>sweet.  now dan can login.  I want him to be able to share a vim window where we can view a test suite and the code split panel.  How do I do that I wonder?</p>
 
-<p>Does your process of using a version control system reference your tickets?
-Can you tie the work for a desired feature to actual commits in a VCS?</p>
+<pre><code> ## specify the name of your tmux socket with -S when creating it
+ tmux -S /tmp/pair
+ # chmod to allow other users to access it
+ chmod 777 /tmp/pair
+</code></pre>
 
-<p>Inspired and stolen in part from
-http://www.joelonsoftware.com/articles/fog0000000043.html</p>
+<p>Now I&#8217;ve got my tmux going, dan is in terminal, and I want to share our screen.</p>
+
+<pre><code> # now the other user can connect with
+ tmux -S /tmp/pair attach
+</code></pre>
+
+<p>Awesome.  I cd into ~/home/dan and make a directory where we can do the fizzbuzz problem using tdd.  This next step assumes you&#8217;ve got rubygems on your system and</p>
+
+<pre><code> mkdir fizzbuzz
+ cd fizzuzz
+ mkdir spec
+ touch spec/fizzbuzz_spec.rb
+ touch fizzbuzz.rb
+
+ echo "rspec" &gt;&gt; Gemfile
+ bundle
+ =&gt; installing rspec....
+ rspec
+</code></pre>
+
+<p>0 tests and time to get started&#8230;  Where do we start?</p>
+
+<pre><code> vi .
+ ctrl+wv
+</code></pre>
+
+<p>now we&#8217;ve got two windows each with directory open like so &#8230;</p>
+
+<p>Imagine there&#8217;s an image here&#8230;</p>
+
+<p>I make a test in the fizzbuzz_spec.rb file</p>
+
+<pre><code>require 'rspec'
+require './fizzbuzz'
+
+describe FizzBuzz do
+  it "should instantiate" do
+    FizzBuzz.new.class == FizzBuzz
+  end
+end
+</code></pre>
+
+<p>We need to save it&#8230;</p>
+
+<pre><code>:wq
+</code></pre>
+
+<p>we need to run tests</p>
+
+<pre><code>:! rspec
+</code></pre>
+
+<p>Its a nice workflow&#8230; it works&#8230;.</p>
+
+<p>sources: http://readystate4.com/2011/01/02/sharing-remote-terminal-session-between-two-users-with-tmux/</p>
+
+<p>http://stackoverflow.com/questions/8339912/allowing-users-to-ssh-to-an-ec2-ubuntu-instance</p>
+
+<p>http://pivotallabs.com/how-we-use-tmux-for-remote-pair-programming/</p>
 </div>
 
 
@@ -137,7 +193,7 @@ http://www.joelonsoftware.com/articles/fog0000000043.html</p>
   
 
 
-<time datetime="2013-02-14T16:52:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-21T13:42:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2013</time>
       
 
 
@@ -145,7 +201,7 @@ http://www.joelonsoftware.com/articles/fog0000000043.html</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/" >Tweet</a>
   
   
   
@@ -154,10 +210,10 @@ http://www.joelonsoftware.com/articles/fog0000000043.html</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" title="Previous Post: given unsorted array and integer x part 3">&laquo; given unsorted array and integer x part 3</a>
+        <a class="basic-alignment left" href="/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/" title="Previous Post: setting up ubuntu 12.04 LTS using vagrant">&laquo; setting up ubuntu 12.04 LTS using vagrant</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/02/15/new-mac-set-up-with-chef/" title="Next Post: new mac set up with chef">new mac set up with chef &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" title="Next Post: airpair - remote pairing with strangers for fun and profit">airpair - remote pairing with strangers for fun and profit &raquo;</a>
       
     </p>
   </footer>
