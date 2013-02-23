@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-23T08:44:53-08:00</updated>
+  <updated>2013-02-23T08:56:02-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -55,7 +55,7 @@ bash set_up_my_machine.sh
 
 <p>Got hung up on skype. Rerun.</p>
 
-<p>Works. I pushed the code to my branch at</p>
+<p>Works. I pushed the code to my branch at https://github.com/jmontross/pivotal_workstation</p>
 
 <pre><code>1. installing command line tools for osx (download x-code from app store, open x-code,     preferences -&gt; downloads &gt; command line tools)
 2. mkdir ~/cookbooks; cd ~/cookbooks; git clone https://github.com/opscode-cookbooks/dmg;     git clone git://github.com/jmontross/pivotal_workstation.git
