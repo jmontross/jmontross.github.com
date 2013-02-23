@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ruby - My Octopress Blog</title>
+  <title>deploying with chef on a new mac - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Category: ruby">
+  <meta name="description" content="I really dislike setting up machines more than once. This is my up to date steps on how I set up my new macintosh machines. Whether I should have &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.comblog/categories/ruby/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,35 +63,122 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Ruby</h1>
+    
+      <h1 class="entry-title">Deploying With Chef on a New Mac</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T14:29:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>I really dislike setting up machines more than once.</p>
 
-  
-  <h2>2013</h2>
+<p>This is my up to date steps on how I set up my new macintosh machines.</p>
 
-<article>
-  
-<h1><a href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">given unsorted array and integer x part 2</a></h1>
-<time datetime="2013-01-26T12:27:00-08:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2013</span></time>
+<p>Whether I should have gone for anti-glare or retina display is hard enough&#8230; should I decide to switch the last thing I want to be worrying about is set up time for the new machine.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/algorithms-/'>algorithms,</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
+<p>With the following approach, the biggest bottleneck is bandwidth.</p>
 
+<p>https://gist.github.com/jmontross/5015950</p>
 
-</article>
+<p>If you encounter an error - which I often do - just delete the offending recipe unless you really want it.  I built the file using</p>
 
+<p>http://www.solowizard.com/</p>
+
+<p>Most recently it got hung up on activemq - which i subsequently removed because I don&#8217;t really need that project.  Then it got hung up on Java&#8230; which I was able to just click the package to install, and then</p>
+
+<pre><code> bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it gets hung up on librsvg</p>
+
+<pre><code>vi set_up_my_machine.sh
+/librsvg
+dd
+:ew
+
+bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it got hung up on the use of a password for mysql&#8230; so I ripped out the usage of a password at all.. I prefer my mysql unprotected.  It&#8217;s getting close&#8230;</p>
+
+<p>That didn&#8217;t work.</p>
+
+<p>I removed the steps that were executing commands on mysql.  I dont care about mysql timezones anyways.</p>
+
+<p>Got hung up on skype. Rerun.</p>
+
+<p>Works. I pushed the code to my branch at</p>
+
+<pre><code>1. installing command line tools for osx (download x-code from app store, open x-code,     preferences -&gt; downloads &gt; command line tools)
+2. mkdir ~/cookbooks; cd ~/cookbooks; git clone https://github.com/opscode-cookbooks/dmg;     git clone git://github.com/jmontross/pivotal_workstation.git
+3. gem install soloist
+4. bash set&lt;tab&gt;
+5. wait a while
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T14:29:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" title="Previous Post: airpair - remote pairing with strangers for fun and profit">&laquo; airpair - remote pairing with strangers for fun and profit</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

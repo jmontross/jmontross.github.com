@@ -80,21 +80,29 @@
         <loc>
             http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/
         </loc>
-        <lastmod>2013-02-22T14:25:13-08:00</lastmod>
+        <lastmod>2013-02-22T15:39:10-08:00</lastmod>
     </url>
     <url>
         <loc>
             http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/
         </loc>
-        <lastmod>2013-02-22T14:25:03-08:00</lastmod>
+        <lastmod>2013-02-22T15:38:58-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/</loc>
+        <lastmod>2013-02-23T08:44:12-08:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/archives/</loc>
-        <lastmod>2013-02-22T14:25:13-08:00</lastmod>
+        <lastmod>2013-02-23T08:44:12-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/deploying-with-chef-on-a-new-mac/</loc>
+        <lastmod>2013-02-22T14:29:13-08:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/</loc>
-        <lastmod>2013-02-22T14:25:13-08:00</lastmod>
+        <lastmod>2013-02-23T08:44:12-08:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/robots.txt</loc>

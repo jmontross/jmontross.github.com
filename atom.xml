@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-02-22T14:25:38-08:00</updated>
+  <updated>2013-02-23T08:44:53-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[deploying with chef on a new mac]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/"/>
+    <updated>2013-02-22T14:29:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac</id>
+    <content type="html"><![CDATA[<p>I really dislike setting up machines more than once.</p>
+
+<p>This is my up to date steps on how I set up my new macintosh machines.</p>
+
+<p>Whether I should have gone for anti-glare or retina display is hard enough&#8230; should I decide to switch the last thing I want to be worrying about is set up time for the new machine.</p>
+
+<p>With the following approach, the biggest bottleneck is bandwidth.</p>
+
+<p>https://gist.github.com/jmontross/5015950</p>
+
+<p>If you encounter an error - which I often do - just delete the offending recipe unless you really want it.  I built the file using</p>
+
+<p>http://www.solowizard.com/</p>
+
+<p>Most recently it got hung up on activemq - which i subsequently removed because I don&#8217;t really need that project.  Then it got hung up on Java&#8230; which I was able to just click the package to install, and then</p>
+
+<pre><code> bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it gets hung up on librsvg</p>
+
+<pre><code>vi set_up_my_machine.sh
+/librsvg
+dd
+:ew
+
+bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it got hung up on the use of a password for mysql&#8230; so I ripped out the usage of a password at all.. I prefer my mysql unprotected.  It&#8217;s getting close&#8230;</p>
+
+<p>That didn&#8217;t work.</p>
+
+<p>I removed the steps that were executing commands on mysql.  I dont care about mysql timezones anyways.</p>
+
+<p>Got hung up on skype. Rerun.</p>
+
+<p>Works. I pushed the code to my branch at</p>
+
+<pre><code>1. installing command line tools for osx (download x-code from app store, open x-code,     preferences -&gt; downloads &gt; command line tools)
+2. mkdir ~/cookbooks; cd ~/cookbooks; git clone https://github.com/opscode-cookbooks/dmg;     git clone git://github.com/jmontross/pivotal_workstation.git
+3. gem install soloist
+4. bash set&lt;tab&gt;
+5. wait a while
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[airpair - remote pairing with strangers for fun and profit]]></title>

@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Recently I had the pleasure of trying out a new pairing service called airpair.co I sign up for the developer path and list the host of technologies &hellip;">
+  <meta name="description" content="I really dislike setting up machines more than once. This is my up to date steps on how I set up my new macintosh machines. Whether I should have &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">Deploying With Chef on a New Mac</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T14:29:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I really dislike setting up machines more than once.</p>
+
+<p>This is my up to date steps on how I set up my new macintosh machines.</p>
+
+<p>Whether I should have gone for anti-glare or retina display is hard enough&#8230; should I decide to switch the last thing I want to be worrying about is set up time for the new machine.</p>
+
+<p>With the following approach, the biggest bottleneck is bandwidth.</p>
+
+<p>https://gist.github.com/jmontross/5015950</p>
+
+<p>If you encounter an error - which I often do - just delete the offending recipe unless you really want it.  I built the file using</p>
+
+<p>http://www.solowizard.com/</p>
+
+<p>Most recently it got hung up on activemq - which i subsequently removed because I don&#8217;t really need that project.  Then it got hung up on Java&#8230; which I was able to just click the package to install, and then</p>
+
+<pre><code> bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it gets hung up on librsvg</p>
+
+<pre><code>vi set_up_my_machine.sh
+/librsvg
+dd
+:ew
+
+bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it got hung up on the use of a password for mysql&#8230; so I ripped out the usage of a password at all.. I prefer my mysql unprotected.  It&#8217;s getting close&#8230;</p>
+
+<p>That didn&#8217;t work.</p>
+
+<p>I removed the steps that were executing commands on mysql.  I dont care about mysql timezones anyways.</p>
+
+<p>Got hung up on skype. Rerun.</p>
+
+<p>Works. I pushed the code to my branch at</p>
+
+<pre><code>1. installing command line tools for osx (download x-code from app store, open x-code,     preferences -&gt; downloads &gt; command line tools)
+2. mkdir ~/cookbooks; cd ~/cookbooks; git clone https://github.com/opscode-cookbooks/dmg;     git clone git://github.com/jmontross/pivotal_workstation.git
+3. gem install soloist
+4. bash set&lt;tab&gt;
+5. wait a while
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -889,179 +969,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">Given Unsorted Array and Integer X Part 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-26T12:27:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>Given an integer x and an unsorted array of integers,
-describe an algorithm to  determine  whether two of the numbers add up to x.
-</code></pre>
-
-<p>I tell this mysterious hiring manager about my new implementation to the above solution <a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/"> here </a> that uses hashes and is faster than n<sup>2</sup> and he says,</p>
-
-<pre><code>"Hashed are good shortcuts. But can you do it without hashes?"
-</code></pre>
-
-<p>I think to myself&#8230;. unsorted array and I&#8217;m looking for sums</p>
-
-<p>I could first sort the array.  Then I could do a binary search?
-I could even optimize it for only positive integers&#8230;.</p>
-
-<p>I&#8217;m a little unsure.  Anyone have any ideas?</p>
-
-<pre><code> def even_more_awesome?(unsorted_array,integer_x)
-   sorted_array = unsorted_array.sort
-   # at this point I could search the array
-     # to see if there is
-     # an upper bound where my integer_x exists
-
-     sorted_array.each_with_index do |item, index|
-         target = integer_x - item
-       ## not sure what to do here?
-         if item &gt; integer_x
-           return false
-         end
-       if sorted_array[index+1,sorted_array.length-1].include?(target)
-           return [item, target]
-         end
-     end
-
-    end
-
-     even_more_awesome? [1,3,5], 8
- =&gt; [3, 5]
-</code></pre>
-
-<p>it works but it could be better&#8230;</p>
-
-<pre><code>def even_more_awesome?(unsorted_array,integer_x)
-  sorted_array = unsorted_array.sort
-  sorted_array.each_with_index do |item, index|
-    target = integer_x - item
-    if item &gt; integer_x
-      return false
-    end
-
-    for i in sorted_array[index+1,sorted_array.length-1]
-      break if i &gt; target
-      return [item, target] if i == target
-    end
-
-   end
-   return false
- end
-
- even_more_awesome? [1,3,5], 8
- =&gt; [3, 5]
-</code></pre>
-
-<p>Now it works&#8230; I wonder how it compares to my other solutions?  I also wonder if my earlier test was very biased.  I decided to use a larger random data set and to run it twice with bmbm instead of bm.</p>
-
-<pre><code>require 'benchmark'
-
-Benchmark.bmbm do |x|
-   unsorted_array = (1..10000).map { rand(10000) }
-   integer_x = rand(10000)
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { even_more_awesome? unsorted_array, integer_x}
-end
-
-
- user     system      total        real
-0.000000   0.000000   0.000000 (  0.003523)
-0.000000   0.000000   0.000000 (  0.000252)
-0.010000   0.000000   0.010000 (  0.002643)
-
- user     system      total        real
-0.000000   0.000000   0.000000 (  0.004666)
-0.000000   0.000000   0.000000 (  0.002127)
-0.000000   0.000000   0.000000 (  0.001775)
-</code></pre>
-
-<p>Now I&#8217;m just getting crazy but I want it to be better&#8230;</p>
-
-<pre><code>def faster?(unsorted_array,integer_x)
-  sorted_array = unsorted_array.sort
-  sorted_array.each_with_index do |item, index|
-    target = integer_x - item
-    if item &gt; integer_x
-      return false
-    end
-
-    max = sorted_array.length-1
-    next_index = index+1
-    for i in sorted_array[index+1,max]
-      max = next_index &amp;&amp; break if i &gt; target
-      return [item, target] if i == target
-      next_index +=1
-    end
-
-   end
-   return false
- end
-</code></pre>
-
-<p>I figured that this should be fastest, and my results from before may be biased because the arrays were too small.  I made them 100 times larger and moved the array declaration and integer_x outside the bmbm block.</p>
-
-<pre><code>require 'benchmark'
-unsorted_array = (1..1000000).map { rand(1000000) }
-integer_x = rand(1000000)
-
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { even_more_awesome? unsorted_array, integer_x}
-   x.report { faster?  unsorted_array, integer_x }
-end
-
-
-user     system      total        real
-0.620000   0.010000   0.630000 (  0.632894)
-0.270000   0.000000   0.270000 (  0.266455)
-0.340000   0.000000   0.340000 (  0.340122)
-0.340000   0.000000   0.340000 (  0.349022)
-
-
-user     system      total        real
-0.640000   0.010000   0.650000 (  0.644997)
-0.270000   0.000000   0.270000 (  0.269851)
-0.340000   0.000000   0.340000 (  0.348532)
-0.350000   0.000000   0.350000 (  0.354552)
-</code></pre>
-
-<p>It looks like I went down the wrong worm hole&#8230; All my newest results are much slower and are simply two variations of more inefficient solutions.  I&#8217;ll need to come back to this&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1077,6 +984,10 @@ user     system      total        real
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">deploying with chef on a new mac</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">airpair - remote pairing with strangers for fun and profit</a>
       </li>
     
@@ -1090,10 +1001,6 @@ user     system      total        real
     
       <li class="post">
         <a href="/blog/2013/02/15/new-mac-set-up-with-chef/">new mac set up with chef</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/14/joshs-software-test/">joshs software test</a>
       </li>
     
   </ul>
