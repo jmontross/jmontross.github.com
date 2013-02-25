@@ -42,13 +42,13 @@ I removed the steps that were executing commands on mysql.  I dont care about my
 
 Got hung up on skype. Rerun.
 
-Works. I pushed the code to my branch at
+Works. I pushed the code to my branch at https://github.com/jmontross/pivotal_workstation
 
 
     1. installing command line tools for osx (download x-code from app store, open x-code,     preferences -> downloads > command line tools)
     2. mkdir ~/cookbooks; cd ~/cookbooks; git clone https://github.com/opscode-cookbooks/dmg;     git clone git://github.com/jmontross/pivotal_workstation.git
     3. gem install soloist
-    4. bash set<tab>
+    4. bash pivotal_workstation/set_up_my_machine.sh
     5. wait a while
 
 
