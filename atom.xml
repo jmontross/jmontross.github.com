@@ -5,10 +5,14 @@
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <updated>2013-02-14T17:14:21-08:00</updated>
 =======
   <updated>2013-05-21T19:33:30-07:00</updated>
 >>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
+=======
+  <updated>2013-05-21T19:40:33-07:00</updated>
+>>>>>>> 383970aba4b33a15e12286c1b2d29e979ed081a6
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -19,7 +23,19 @@
   
   <entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+    <title type="html"><![CDATA[general awesome]]></title>
+    <link href="http://jmontross.github.com/blog/2013/05/21/general-awesome/"/>
+    <updated>2013-05-21T19:34:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/05/21/general-awesome</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+>>>>>>> 383970aba4b33a15e12286c1b2d29e979ed081a6
     <title type="html"><![CDATA[deploying with chef on a new mac]]></title>
     <link href="http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/"/>
     <updated>2013-02-22T14:29:00-08:00</updated>
@@ -466,7 +482,7 @@ soloist
 popd
 </code></pre>
 
-<p>I&#8217;m thinking of checking out this new tool from github called boxen (https://github.com/blog/1345-introducing-boxen), which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
+<p>I&#8217;m thinking of checking out this new tool from github called boxen, which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
 ]]></content>
   </entry>
   
