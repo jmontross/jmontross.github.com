@@ -2,64 +2,109 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://jmontross.github.com/blog/2013/01/14/first-post/</loc>
+<<<<<<< HEAD
         <lastmod>2013-01-20T22:32:30-08:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/2013/01/16/awesome/</loc>
         <lastmod>2013-02-14T17:04:53-08:00</lastmod>
+=======
+        <lastmod>2013-02-14T19:53:11-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/01/16/awesome/</loc>
+        <lastmod>2013-02-14T19:53:11-08:00</lastmod>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
     </url>
     <url>
         <loc>
             http://jmontross.github.com/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/
         </loc>
+<<<<<<< HEAD
         <lastmod>2013-02-14T17:04:53-08:00</lastmod>
+=======
+        <lastmod>2013-02-14T19:53:11-08:00</lastmod>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
     </url>
     <url>
         <loc>
             http://jmontross.github.com/blog/2013/01/21/make-dreams-real-mlk-day-100startups/
         </loc>
+<<<<<<< HEAD
         <lastmod>2013-02-14T17:04:53-08:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/2013/01/23/awesome-test/</loc>
         <lastmod>2013-02-14T17:04:53-08:00</lastmod>
+=======
+        <lastmod>2013-02-14T19:53:11-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/01/23/awesome-test/</loc>
+        <lastmod>2013-02-14T19:53:11-08:00</lastmod>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
     </url>
     <url>
         <loc>
             http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments/
         </loc>
+<<<<<<< HEAD
         <lastmod>2013-01-26T07:52:52-08:00</lastmod>
+=======
+        <lastmod>2013-02-17T16:12:26-08:00</lastmod>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
     </url>
     <url>
         <loc>
             http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/
         </loc>
+<<<<<<< HEAD
         <lastmod>2013-02-08T01:21:03-08:00</lastmod>
+=======
+        <lastmod>2013-02-17T16:12:26-08:00</lastmod>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
     </url>
     <url>
         <loc>
             http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/
         </loc>
+<<<<<<< HEAD
         <lastmod>2013-02-14T02:10:32-08:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/</loc>
         <lastmod>2013-02-08T01:09:48-08:00</lastmod>
+=======
+        <lastmod>2013-02-17T16:12:26-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/02/07/how-to-make-inject-method/</loc>
+        <lastmod>2013-02-17T16:12:26-08:00</lastmod>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
     </url>
     <url>
         <loc>
             http://jmontross.github.com/blog/2013/02/13/setting-up-something-secret-on-heroku/
         </loc>
+<<<<<<< HEAD
         <lastmod>2013-02-13T14:49:36-08:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/</loc>
         <lastmod>2013-02-14T02:06:39-08:00</lastmod>
+=======
+        <lastmod>2013-02-17T16:12:26-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/</loc>
+        <lastmod>2013-02-17T16:12:26-08:00</lastmod>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
     </url>
     <url>
         <loc>
             http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/
         </loc>
+<<<<<<< HEAD
         <lastmod>2013-02-14T02:18:29-08:00</lastmod>
     </url>
     <url>
@@ -77,5 +122,54 @@
     <url>
         <loc>http://jmontross.github.com/robots.txt</loc>
         <lastmod>2013-01-14T19:00:26-08:00</lastmod>
+=======
+        <lastmod>2013-02-17T16:12:26-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/02/14/joshs-software-test/</loc>
+        <lastmod>2013-02-17T16:12:26-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/02/15/new-mac-set-up-with-chef/</loc>
+        <lastmod>2013-05-21T19:32:29-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jmontross.github.com/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/
+        </loc>
+        <lastmod>2013-05-21T19:32:31-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/
+        </loc>
+        <lastmod>2013-05-21T19:32:31-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/
+        </loc>
+        <lastmod>2013-05-21T19:32:31-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/</loc>
+        <lastmod>2013-05-21T19:32:31-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/archives/</loc>
+        <lastmod>2013-05-21T19:32:31-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/deploying-with-chef-on-a-new-mac/</loc>
+        <lastmod>2013-05-21T19:32:31-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/</loc>
+        <lastmod>2013-05-21T19:32:31-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/robots.txt</loc>
+        <lastmod>2013-02-14T19:53:11-08:00</lastmod>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
     </url>
 </urlset>

@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>algoirthm analysis - My Octopress Blog</title>
+  <title>pairing with tmux and rspec on aws ec2 instance - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way &hellip;">
+  <meta name="description" content="I wanted to pair with my friend who sat down next to me&#8230; each of us on our own laptop, but none of the gear that makes it easy for us to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ they can be studied in a language- and machine-independent way &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -68,7 +67,7 @@ they can be studied in a language- and machine-independent way &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Algoirthm Analysis</h1>
+      <h1 class="entry-title">Pairing With Tmux and Rspec on Aws Ec2 Instance</h1>
     
     
       <p class="meta">
@@ -84,21 +83,94 @@ they can be studied in a language- and machine-independent way &hellip;">
   
 
 
-<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-21T13:42:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way&#8221;</p>
+<div class="entry-content"><p>I wanted to pair with my friend who sat down next to me&#8230; each of us on our own laptop, but none of the gear that makes it easy for us to actually pair in the sense of two keyboards one screen.  I luckily have already burned through my AWS free tier and keep around an ubuntu server for playing/learning.  I ask my friend if he has ever used vim?  He says no.  Is he interested in pair programming on a server using vim and tmux, and he says sure. Thanks Dan for being such a good sport.</p>
 
-<p>&#8220;It is traditional for the author to magnanimously accept the blame for whatever
-deﬁciencies remain. I don’t. Any errors, deﬁciencies, or problems in this book are
-somebody else’s fault, but I would appreciate knowing about them so as to determine who is to blame.&#8221;</p>
+<p>I ssh into my machine</p>
 
-<p>These quotes come from the Algorithm Design Manual.  I just began reading it at the recommendation of a trusted and wise Sherif of the devbootcamp in San Francisco.  Best, Worst, and Average-Case Complexity => these are the ideas that the book describes nicely using graphs.  I&#8217;d like to get some pretty graphs of my three solutions to the unsorted array and integer x problem, and I need a nice way to make graphs on an X/Y plane in ruby&#8230; I&#8217;m thinking I&#8217;ll just use a js library</p>
+<pre><code>useradd dan
+password: secret
+
+sudo vi /etc/ssh/sshd_config
+:s/PasswordAuthentication no/PasswordAuthentication yes/
+:wq
+
+sudo /etc/init.d/sshd reload
+</code></pre>
+
+<p>sweet.  now dan can login.  I want him to be able to share a vim window where we can view a test suite and the code split panel.  How do I do that I wonder?</p>
+
+<pre><code> ## specify the name of your tmux socket with -S when creating it
+ tmux -S /tmp/pair
+ # chmod to allow other users to access it
+ chmod 777 /tmp/pair
+</code></pre>
+
+<p>Now I&#8217;ve got my tmux going, dan is in terminal, and I want to share our screen.</p>
+
+<pre><code> # now the other user can connect with
+ tmux -S /tmp/pair attach
+</code></pre>
+
+<p>Awesome.  I cd into ~/home/dan and make a directory where we can do the fizzbuzz problem using tdd.  This next step assumes you&#8217;ve got rubygems on your system and</p>
+
+<pre><code> mkdir fizzbuzz
+ cd fizzuzz
+ mkdir spec
+ touch spec/fizzbuzz_spec.rb
+ touch fizzbuzz.rb
+
+ echo "rspec" &gt;&gt; Gemfile
+ bundle
+ =&gt; installing rspec....
+ rspec
+</code></pre>
+
+<p>0 tests and time to get started&#8230;  Where do we start?</p>
+
+<pre><code> vi .
+ ctrl+wv
+</code></pre>
+
+<p>now we&#8217;ve got two windows each with directory open like so &#8230;</p>
+
+<p>Imagine there&#8217;s an image here&#8230;</p>
+
+<p>I make a test in the fizzbuzz_spec.rb file</p>
+
+<pre><code>require 'rspec'
+require './fizzbuzz'
+
+describe FizzBuzz do
+  it "should instantiate" do
+    FizzBuzz.new.class == FizzBuzz
+  end
+end
+</code></pre>
+
+<p>We need to save it&#8230;</p>
+
+<pre><code>:wq
+</code></pre>
+
+<p>we need to run tests</p>
+
+<pre><code>:! rspec
+</code></pre>
+
+<p>Its a nice workflow&#8230; it works&#8230;.</p>
+
+<p>sources: http://readystate4.com/2011/01/02/sharing-remote-terminal-session-between-two-users-with-tmux/</p>
+
+<p>http://stackoverflow.com/questions/8339912/allowing-users-to-ssh-to-an-ec2-ubuntu-instance</p>
+
+<p>http://pivotallabs.com/how-we-use-tmux-for-remote-pair-programming/</p>
 </div>
 
 
@@ -121,7 +193,7 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
   
 
 
-<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-21T13:42:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2013</time>
       
 
 
@@ -129,7 +201,7 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/" >Tweet</a>
   
   
   
@@ -138,10 +210,10 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/13/setting-up-something-secret-on-heroku/" title="Previous Post: setting up something secret on heroku">&laquo; setting up something secret on heroku</a>
+        <a class="basic-alignment left" href="/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/" title="Previous Post: setting up ubuntu 12.04 LTS using vagrant">&laquo; setting up ubuntu 12.04 LTS using vagrant</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" title="Next Post: given unsorted array and integer x part 3">given unsorted array and integer x part 3 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" title="Next Post: airpair - remote pairing with strangers for fun and profit">airpair - remote pairing with strangers for fun and profit &raquo;</a>
       
     </p>
   </footer>
@@ -156,25 +228,6 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
   <ul id="recent_posts">
     
       <li class="post">
-<<<<<<< HEAD
-        <a href="/blog/2013/02/14/joshs-software-test/">joshs software test</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/14/algorithm-analysis/">algoirthm analysis</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">setting up something secret on heroku</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/07/how-to-make-inject-method/">how to make inject method</a>
-=======
         <a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">deploying with chef on a new mac</a>
       </li>
     
@@ -192,7 +245,6 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
       <li class="post">
         <a href="/blog/2013/02/15/new-mac-set-up-with-chef/">new mac set up with chef</a>
->>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
       </li>
     
   </ul>

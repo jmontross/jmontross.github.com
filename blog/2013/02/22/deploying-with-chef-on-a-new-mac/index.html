@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>algoirthm analysis - My Octopress Blog</title>
+  <title>deploying with chef on a new mac - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way &hellip;">
+  <meta name="description" content="I really dislike setting up machines more than once. This is my up to date steps on how I set up my new macintosh machines. Whether I should have &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ they can be studied in a language- and machine-independent way &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -68,7 +67,7 @@ they can be studied in a language- and machine-independent way &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Algoirthm Analysis</h1>
+      <h1 class="entry-title">Deploying With Chef on a New Mac</h1>
     
     
       <p class="meta">
@@ -84,21 +83,58 @@ they can be studied in a language- and machine-independent way &hellip;">
   
 
 
-<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-22T14:29:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way&#8221;</p>
+<div class="entry-content"><p>I really dislike setting up machines more than once.</p>
 
-<p>&#8220;It is traditional for the author to magnanimously accept the blame for whatever
-deﬁciencies remain. I don’t. Any errors, deﬁciencies, or problems in this book are
-somebody else’s fault, but I would appreciate knowing about them so as to determine who is to blame.&#8221;</p>
+<p>This is my up to date steps on how I set up my new macintosh machines.</p>
 
-<p>These quotes come from the Algorithm Design Manual.  I just began reading it at the recommendation of a trusted and wise Sherif of the devbootcamp in San Francisco.  Best, Worst, and Average-Case Complexity => these are the ideas that the book describes nicely using graphs.  I&#8217;d like to get some pretty graphs of my three solutions to the unsorted array and integer x problem, and I need a nice way to make graphs on an X/Y plane in ruby&#8230; I&#8217;m thinking I&#8217;ll just use a js library</p>
+<p>Whether I should have gone for anti-glare or retina display is hard enough&#8230; should I decide to switch the last thing I want to be worrying about is set up time for the new machine.</p>
+
+<p>With the following approach, the biggest bottleneck is bandwidth.</p>
+
+<p>https://gist.github.com/jmontross/5015950</p>
+
+<p>If you encounter an error - which I often do - just delete the offending recipe unless you really want it.  I built the file using</p>
+
+<p>http://www.solowizard.com/</p>
+
+<p>Most recently it got hung up on activemq - which i subsequently removed because I don&#8217;t really need that project.  Then it got hung up on Java&#8230; which I was able to just click the package to install, and then</p>
+
+<pre><code> bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it gets hung up on librsvg</p>
+
+<pre><code>vi set_up_my_machine.sh
+/librsvg
+dd
+:ew
+
+bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it got hung up on the use of a password for mysql&#8230; so I ripped out the usage of a password at all.. I prefer my mysql unprotected.  It&#8217;s getting close&#8230;</p>
+
+<p>That didn&#8217;t work.</p>
+
+<p>I removed the steps that were executing commands on mysql.  I dont care about mysql timezones anyways.</p>
+
+<p>Got hung up on skype. Rerun.</p>
+
+<p>Works. I pushed the code to my branch at https://github.com/jmontross/pivotal_workstation</p>
+
+<pre><code>1. installing command line tools for osx (download x-code from app store, open x-code,     preferences -&gt; downloads &gt; command line tools)
+2. mkdir ~/cookbooks; cd ~/cookbooks; git clone https://github.com/opscode-cookbooks/dmg;     git clone git://github.com/jmontross/pivotal_workstation.git
+3. gem install soloist
+4. bash pivotal_workstation/set_up_my_machine.sh
+5. wait a while
+</code></pre>
 </div>
 
 
@@ -121,7 +157,7 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
   
 
 
-<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-22T14:29:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
       
 
 
@@ -129,7 +165,7 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/" >Tweet</a>
   
   
   
@@ -138,10 +174,8 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/13/setting-up-something-secret-on-heroku/" title="Previous Post: setting up something secret on heroku">&laquo; setting up something secret on heroku</a>
+        <a class="basic-alignment left" href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" title="Previous Post: airpair - remote pairing with strangers for fun and profit">&laquo; airpair - remote pairing with strangers for fun and profit</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" title="Next Post: given unsorted array and integer x part 3">given unsorted array and integer x part 3 &raquo;</a>
       
     </p>
   </footer>
@@ -156,25 +190,6 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
   <ul id="recent_posts">
     
       <li class="post">
-<<<<<<< HEAD
-        <a href="/blog/2013/02/14/joshs-software-test/">joshs software test</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/14/algorithm-analysis/">algoirthm analysis</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">setting up something secret on heroku</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/07/how-to-make-inject-method/">how to make inject method</a>
-=======
         <a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">deploying with chef on a new mac</a>
       </li>
     
@@ -192,7 +207,6 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
       <li class="post">
         <a href="/blog/2013/02/15/new-mac-set-up-with-chef/">new mac set up with chef</a>
->>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
       </li>
     
   </ul>

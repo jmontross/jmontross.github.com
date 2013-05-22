@@ -4,7 +4,11 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
+<<<<<<< HEAD
   <updated>2013-02-14T17:14:21-08:00</updated>
+=======
+  <updated>2013-05-21T19:33:30-07:00</updated>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -14,6 +18,460 @@
 
   
   <entry>
+<<<<<<< HEAD
+=======
+    <title type="html"><![CDATA[deploying with chef on a new mac]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac/"/>
+    <updated>2013-02-22T14:29:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/22/deploying-with-chef-on-a-new-mac</id>
+    <content type="html"><![CDATA[<p>I really dislike setting up machines more than once.</p>
+
+<p>This is my up to date steps on how I set up my new macintosh machines.</p>
+
+<p>Whether I should have gone for anti-glare or retina display is hard enough&#8230; should I decide to switch the last thing I want to be worrying about is set up time for the new machine.</p>
+
+<p>With the following approach, the biggest bottleneck is bandwidth.</p>
+
+<p>https://gist.github.com/jmontross/5015950</p>
+
+<p>If you encounter an error - which I often do - just delete the offending recipe unless you really want it.  I built the file using</p>
+
+<p>http://www.solowizard.com/</p>
+
+<p>Most recently it got hung up on activemq - which i subsequently removed because I don&#8217;t really need that project.  Then it got hung up on Java&#8230; which I was able to just click the package to install, and then</p>
+
+<pre><code> bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it gets hung up on librsvg</p>
+
+<pre><code>vi set_up_my_machine.sh
+/librsvg
+dd
+:ew
+
+bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it got hung up on the use of a password for mysql&#8230; so I ripped out the usage of a password at all.. I prefer my mysql unprotected.  It&#8217;s getting close&#8230;</p>
+
+<p>That didn&#8217;t work.</p>
+
+<p>I removed the steps that were executing commands on mysql.  I dont care about mysql timezones anyways.</p>
+
+<p>Got hung up on skype. Rerun.</p>
+
+<p>Works. I pushed the code to my branch at https://github.com/jmontross/pivotal_workstation</p>
+
+<pre><code>1. installing command line tools for osx (download x-code from app store, open x-code,     preferences -&gt; downloads &gt; command line tools)
+2. mkdir ~/cookbooks; cd ~/cookbooks; git clone https://github.com/opscode-cookbooks/dmg;     git clone git://github.com/jmontross/pivotal_workstation.git
+3. gem install soloist
+4. bash pivotal_workstation/set_up_my_machine.sh
+5. wait a while
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[airpair - remote pairing with strangers for fun and profit]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/"/>
+    <updated>2013-02-22T13:13:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit</id>
+    <content type="html"><![CDATA[<p>Recently I had the pleasure of trying out a new pairing service called airpair.co</p>
+
+<p>I sign up for the developer path and list the host of technologies I feel comfortable philosophizing about over a pseudo-anonymous pairing service.</p>
+
+<p>A nice chap named Jonathan contacts me and asks if I could comment on the code at this gist below</p>
+
+<p>https://gist.github.com/anonymous/d9cb557b84a16088c64e</p>
+
+<p>I look at it and end up thinking I could add some value there.  There is a fat controller, and I can only imagine what the model and routes are - and because I&#8217;d like to see this model and routes file I suggest I could add some value.</p>
+
+<p>Somehow I find myself doing a google hangout with two strangers discussing a rails controller and how we may go about refactoring it.  We all agree it is a bit of a mess - just too much going on.  How do we improve it?</p>
+
+<p>One thing we begin to notice is that the methods / controller actions are not always mapped to routes and appear to be doing things to the model.  For instance, there is a controller method like so</p>
+
+<pre><code>def event_list
+    @events = current_company.events
+    @communication = if params[:communication_id].to_i &gt; 0
+      current_company.communications.find(params[:communication_id])
+    else
+      Communication.new
+    end
+    render layout: false
+end
+</code></pre>
+
+<p>The above could easily become a method on the communications model.</p>
+
+<p>Then we thought about the idea of creating a new controller that is subclassed from communications.  This is useful because these actions do seem to be acting on a different type of a communication.  We went through and played around with making the communications a little more restful, and it was a fun experience I&#8217;d love to do again.  Next time I think I&#8217;d like to use some tmux and actually dig into the code together&#8230; similar to how we did earlier <a href="http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/"> here </a></p>
+
+<p>Modified controller => https://gist.github.com/anonymous/ce917ac4867b7de57bc9</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[pairing with tmux and rspec on aws ec2 instance]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/"/>
+    <updated>2013-02-21T13:42:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance</id>
+    <content type="html"><![CDATA[<p>I wanted to pair with my friend who sat down next to me&#8230; each of us on our own laptop, but none of the gear that makes it easy for us to actually pair in the sense of two keyboards one screen.  I luckily have already burned through my AWS free tier and keep around an ubuntu server for playing/learning.  I ask my friend if he has ever used vim?  He says no.  Is he interested in pair programming on a server using vim and tmux, and he says sure. Thanks Dan for being such a good sport.</p>
+
+<p>I ssh into my machine</p>
+
+<pre><code>useradd dan
+password: secret
+
+sudo vi /etc/ssh/sshd_config
+:s/PasswordAuthentication no/PasswordAuthentication yes/
+:wq
+
+sudo /etc/init.d/sshd reload
+</code></pre>
+
+<p>sweet.  now dan can login.  I want him to be able to share a vim window where we can view a test suite and the code split panel.  How do I do that I wonder?</p>
+
+<pre><code> ## specify the name of your tmux socket with -S when creating it
+ tmux -S /tmp/pair
+ # chmod to allow other users to access it
+ chmod 777 /tmp/pair
+</code></pre>
+
+<p>Now I&#8217;ve got my tmux going, dan is in terminal, and I want to share our screen.</p>
+
+<pre><code> # now the other user can connect with
+ tmux -S /tmp/pair attach
+</code></pre>
+
+<p>Awesome.  I cd into ~/home/dan and make a directory where we can do the fizzbuzz problem using tdd.  This next step assumes you&#8217;ve got rubygems on your system and</p>
+
+<pre><code> mkdir fizzbuzz
+ cd fizzuzz
+ mkdir spec
+ touch spec/fizzbuzz_spec.rb
+ touch fizzbuzz.rb
+
+ echo "rspec" &gt;&gt; Gemfile
+ bundle
+ =&gt; installing rspec....
+ rspec
+</code></pre>
+
+<p>0 tests and time to get started&#8230;  Where do we start?</p>
+
+<pre><code> vi .
+ ctrl+wv
+</code></pre>
+
+<p>now we&#8217;ve got two windows each with directory open like so &#8230;</p>
+
+<p>Imagine there&#8217;s an image here&#8230;</p>
+
+<p>I make a test in the fizzbuzz_spec.rb file</p>
+
+<pre><code>require 'rspec'
+require './fizzbuzz'
+
+describe FizzBuzz do
+  it "should instantiate" do
+    FizzBuzz.new.class == FizzBuzz
+  end
+end
+</code></pre>
+
+<p>We need to save it&#8230;</p>
+
+<pre><code>:wq
+</code></pre>
+
+<p>we need to run tests</p>
+
+<pre><code>:! rspec
+</code></pre>
+
+<p>Its a nice workflow&#8230; it works&#8230;.</p>
+
+<p>sources: http://readystate4.com/2011/01/02/sharing-remote-terminal-session-between-two-users-with-tmux/</p>
+
+<p>http://stackoverflow.com/questions/8339912/allowing-users-to-ssh-to-an-ec2-ubuntu-instance</p>
+
+<p>http://pivotallabs.com/how-we-use-tmux-for-remote-pair-programming/</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[setting up ubuntu 12.04 LTS using vagrant]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/"/>
+    <updated>2013-02-19T11:06:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant</id>
+    <content type="html"><![CDATA[<p>So I have some code that runs nginx and node, but I&#8217;d like to do this in a vm because my mac doesnt quite run the exact same as the production ubuntu.  Since development is production I&#8217;d like replicable steps to make a VM on a local machine and run our nginx/node app.  There are two ways to go about this once we decide to use vagrant.</p>
+
+<ol>
+<li>Use standard boxes already built from isos and publicly avaiable in .box format</li>
+<li>Make our own .box with custom settings from an iso at official http://www.ubuntu.com/download/server</li>
+</ol>
+
+
+<p>We can use use an out of the box available VM from http://www.vagrantbox.es/
+Let&#8217;s go down this route and save the custom ubuntu precise for another day.</p>
+
+<pre><code> vagrant box add ubuntu-12-04-daily http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-i386-disk1.box
+</code></pre>
+
+<p>You&#8217;ll have to wait 10 to 20 minutes if you&#8217;ve got reasonably fast internet
+vagrant init
+modify vagrant file to have</p>
+
+<pre><code>config.vm.box = "ubuntu-12-04-daily"
+config.vm.forward_port 443, 6666
+config.vm.forward_port 80, 8080
+</code></pre>
+
+<p>Now save and close that vagrant file
+If you are interested in the port forwarding read http://docs.vagrantup.com/v1/docs/config/vm/forward_port.html
+Otherwise, back to the command line to get inside this new VM.</p>
+
+<pre><code>vagrant up
+vagrant ssh
+</code></pre>
+
+<p>now you are inside the virtual machine and should see vagrant@vagrant-ubuntu-precise-32</p>
+
+<pre><code>sudo apt-get install nginx
+sudo ngnix
+</code></pre>
+
+<p>Then browse to http://0.0.0.0:8080/ and we see Welcome to Nginx!</p>
+
+<p>Now I want to have node and mongo&#8230;  I use this code</p>
+
+<pre><code>wget https://raw.github.com/punkave/stagecoach/master/sc-proxy/install-node-and-mongo-on-ubuntu.bash
+sudo bash install-node-and-mongo-on-ubuntu.bash
+</code></pre>
+
+<p>So I did this because I wouldnt mind having the latest&#8230; but I&#8217;d also like to build from the trustworthy source.  http://www.ubuntu.com/download/server</p>
+
+<p>I got a file called ubuntu-12.04.2-server-amd64.iso</p>
+
+<pre><code>mv -f ~/Downloads/ubuntu-12.04.2-server-amd64.iso ~/code/vms
+</code></pre>
+
+<p>Then I add a new vm using virtualbox and configure it to use this iso as a cd drive.  I created a vm called ubuntu12.04, and this is the same name I gave it on the network.  I gave it a user called vagrant and a password called password&#8230; When I boot up it works!</p>
+
+<p>I follow some steps from here http://pyfunc.blogspot.com/2011/11/creating-base-box-from-scratch-for.html</p>
+
+<pre><code>sudo apt-get install build-essential
+sudo apt-get install ruby1.8
+curl -L https://get.rvm.io | bash -s stable --ruby
+source /hom/vagrant/.rvm/scripts/rvm
+
+
+got a key from here ... https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
+</code></pre>
+
+<p>I realize this file is bad&#8230; this is the good one . 4 keys -</p>
+
+<pre><code>http://docs.vagrantup.com/v1/docs/base_boxes.html
+
+1 VirtualBox Guest Additions for shared folders, port forwarding, etc.
+2 SSH with key-based auth support for the vagrant user
+3 Ruby &amp; RubyGems to install Chef and Puppet
+4 Chef and Puppet for provisioning support
+</code></pre>
+
+<p>ADDED /opt/company-name/</p>
+
+<p>symlinked code to there</p>
+
+<p>created shared folder to this area.  vbox, settngs, shared folders</p>
+
+<p>Wow - got ahead of myself. need item 1.  items 2-4 are not so hard.</p>
+
+<pre><code>1. Run your Ubuntu Server Virtual Machine
+
+2. From the Devices menu select Install Guest Additions.
+
+3. Now you are supposed to have the guest additions .iso image in your virtual     machine’s CD.
+
+4. Now you might find a problem that is the cdrom is not automatically mounted, so you need to     do one more step before starting the installation:
+
+    $ sudo mount /dev/cdrom /media/cdrom
+    block device /dev/sr0 is write-protected, mounting read-only
+
+That will do the trick.
+
+5. Move to the cdrom directory
+
+    $ cd /media/cdrom/
+6. When listing the contents you should see something like this:
+
+    $ ls -la
+    total 37429
+    dr-xr-xr-x 4 root root     2048 2011-06-24 15:45 .
+    drwxr-xr-x 3 root root     4096 2011-07-17 16:20 ..
+    dr-xr-xr-x 3 root root     2048 2011-06-24 15:45 32Bit
+    dr-xr-xr-x 2 root root     2048 2011-06-24 15:45 64Bit
+    -r-xr-xr-x 1 root root      647 2011-01-19 14:42 AUTORUN.INF
+    -r-xr-xr-x 1 root root     6966 2011-06-24 15:40 autorun.sh
+    -r-xr-xr-x 1 root root     5523 2011-06-24 15:40 runasroot.sh
+    -r-xr-xr-x 1 root root  7863758 2011-06-24 15:43 VBoxLinuxAdditions.run
+    -r-xr-xr-x 1 root root 14665216 2011-06-24 16:44 VBoxSolarisAdditions.pkg
+    -r-xr-xr-x 1 root root  9294616 2011-06-24 15:31 VBoxWindowsAdditions-amd64.exe
+    -r-xr-xr-x 1 root root   278832 2011-06-24 15:24 VBoxWindowsAdditions.exe
+    -r-xr-xr-x 1 root root  6199880 2011-06-24 15:25 VBoxWindowsAdditions-x86.exe
+7. Now it is time to run the installation
+
+    $ sudo ./VBoxLinuxAdditions.run
+</code></pre>
+
+<p>http://tadabborat.tumblr.com/post/7881270430/virtualbox-shared-folders-on-ubuntu-server-64bit</p>
+
+<p>K - on to second item&#8230;</p>
+
+<pre><code>sudo apt-get install ssh
+
+rm -r "$(gem env gemdir)"/doc/*.
+</code></pre>
+
+<p>sources
+http://pyfunc.blogspot.com/2011/11/creating-base-box-from-scratch-for.html
+http://seletz.github.com/blog/2012/01/17/creating-vagrant-base-boxes-with-veewee/
+http://chrisyallop.com/2012/04/customising-a-vagrant-box-with-veewee/
+https://github.com/jedi4ever/veewee/commit/31133bd14b3562aa4e9479c6b964450562838602
+https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-ubuntu-12-04-lts-precise-pangolin-with-rvm
+http://docs.rubygems.org/read/chapter/3</p>
+
+<p>taking this a step further one day &#8230;
+https://github.com/opscode/bento</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[new mac set up with chef]]></title>
+    <link href="http://jmontross.github.com/blog/2013/02/15/new-mac-set-up-with-chef/"/>
+    <updated>2013-02-15T18:31:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/02/15/new-mac-set-up-with-chef</id>
+    <content type="html"><![CDATA[<p>why? Because I love TDD, DRY, and rubymine shortcuts.  Pivotal did a good thing with this soloist gem, and I enjoy making use of great ideas that solve problems I have experienced.  As much fun as it is to set up my new laptop with memcached, mysql, redis, mongo, and insert_dependency_here I&#8217;ve done it enough times to realize it is not really a valuable learning experience one need repeat.</p>
+
+<p>Problem is&#8230;. it broke?  Why?  I added some of my own custom recipes and the newest mac has issues with gcc and ruby when I wanted to use 1.8.7 as a rvm version for an older project.  Either way, This is what my little script I use looks like. I run it with bash.  I made it using http://www.solowizard.com/ and the code at https://github.com/pivotal/pivotal_workstation</p>
+
+<p>To get chef-solo working these steps were required
+had to clone pivotal_workstation and dmg into ~/cookbooks, get commands line tools from mac (http://stackoverflow.com/questions/9329243/xcode-4-4-command-line-tools), gem install soloist.  Then you are able to just run the command bash setup_my_machine&#8230;. make sure you have the recipes&#8230;. some of the ones in this list below are custom from my cookbooks repo (https://github.com/jmontross/pivotal_workstation)&#8230;</p>
+
+<pre><code>cat ~/cookbooks/setup_my_machine.sh
+#!/bin/bash
+# This shell script was created at solowizard.com
+#
+# Usage:
+#   Running the script remotely:
+#     bash &lt; &lt;(curl -s http://www.solowizard.com/soloist_scripts/frsp9k.sh )
+#   Running the script if you have downloaded it:
+#     ./frsp9k.sh
+#
+# http://github.com/tommyh/solo_wizard
+# (c) 2012, Tom Hallett
+# This script may be freely distributed under the MIT license.
+
+pushd `pwd`
+if rvm --version 2&gt;/dev/null; then
+  gem install soloist
+else
+  sudo gem install soloist
+fi
+
+mkdir -p ~/cookbooks; cd ~/cookbooks
+cat &gt; soloistrc &lt;&lt;EOF
+cookbook_paths:
+- $PWD
+recipes:
+- pivotal_workstation::ack
+- pivotal_workstation::activemq
+- pivotal_workstation::add_ops_user
+- pivotal_workstation::ccmenu
+- pivotal_workstation::chrome
+- pivotal_workstation::create_var_chef_cache
+- pivotal_workstation::defaults_fast_key_repeat_rate
+- pivotal_workstation::default_editor
+- pivotal_workstation::dropbox
+- pivotal_workstation::enable_assistive_devices
+- pivotal_workstation::erlang
+- pivotal_workstation::firefox
+- pivotal_workstation::flycut
+- pivotal_workstation::function_keys
+- pivotal_workstation::git
+- pivotal_workstation::github_for_mac
+- pivotal_workstation::gitx
+- pivotal_workstation::git_config_global_defaults
+- pivotal_workstation::git_scripts
+- pivotal_workstation::ghostscript
+- pivotal_workstation::global_environment_variables
+- pivotal_workstation::homebrew
+- pivotal_workstation::heroku_toolbelt
+- pivotal_workstation::imagemagick
+- pivotal_workstation::increase_shared_memory
+- pivotal_workstation::inputrc
+- pivotal_workstation::iterm2
+- pivotal_workstation::java
+- pivotal_workstation::keyboard_preferences
+- pivotal_workstation::keycastr
+- pivotal_workstation::librsvg
+- pivotal_workstation::locate_on
+- pivotal_workstation::memcached
+- pivotal_workstation::menubar_preferences
+- pivotal_workstation::menumeters
+- pivotal_workstation::mongodb
+- pivotal_workstation::mouse_locator
+- pivotal_workstation::mysql
+- pivotal_workstation::nginx
+- pivotal_workstation::node_js
+- pivotal_workstation::pango
+- pivotal_workstation::postgres
+- pivotal_workstation::prince_xml
+- pivotal_workstation::qt
+- pivotal_workstation::rabbitmq
+- pivotal_workstation::redis
+- pivotal_workstation::rubymine
+- pivotal_workstation::rubymine_preferences_pivotal
+- pivotal_workstation::rvm
+- pivotal_workstation::screen_sharing_app
+- pivotal_workstation::sizeup
+- pivotal_workstation::skype
+- pivotal_workstation::sshd_on
+- pivotal_workstation::ssl_certificate
+- pivotal_workstation::sublime_text
+- pivotal_workstation::textmate
+- pivotal_workstation::textmate_bundles
+- pivotal_workstation::textmate_preferences
+- pivotal_workstation::tmux
+- pivotal_workstation::unix_essentials
+- pivotal_workstation::user_owns_usr_local
+- pivotal_workstation::vagrant
+- pivotal_workstation::vim
+- pivotal_workstation::virtualbox
+- pivotal_workstation::workspace_directory
+- pivotal_workstation::xquartz
+- pivotal_workstation::z
+EOF
+if [[ -d pivotal_workstation ]]; then
+  cd pivotal_workstation &amp;&amp; git pull &amp;&amp; cd ..
+else
+  git clone https://github.com/pivotal/pivotal_workstation.git
+fi
+if [[ -d dmg ]]; then
+  cd dmg &amp;&amp; git pull &amp;&amp; cd ..
+else
+  git clone https://github.com/opscode-cookbooks/dmg.git
+fi
+soloist
+popd
+</code></pre>
+
+<p>I&#8217;m thinking of checking out this new tool from github called boxen (https://github.com/blog/1345-introducing-boxen), which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+>>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
     <title type="html"><![CDATA[joshs software test]]></title>
     <link href="http://jmontross.github.com/blog/2013/02/14/joshs-software-test/"/>
     <updated>2013-02-14T16:52:00-08:00</updated>

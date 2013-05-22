@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>new mac set up with chef - My Octopress Blog</title>
+  <meta name="author" content="Joshua Montross">
+
+  
+  <meta name="description" content="why? Because I love TDD, DRY, and rubymine shortcuts. Pivotal did a good thing with this soloist gem, and I enjoy making use of great ideas that &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/15/new-mac-set-up-with-chef/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmontross.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">New Mac Set Up With Chef</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-15T18:31:00-08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>why? Because I love TDD, DRY, and rubymine shortcuts.  Pivotal did a good thing with this soloist gem, and I enjoy making use of great ideas that solve problems I have experienced.  As much fun as it is to set up my new laptop with memcached, mysql, redis, mongo, and insert_dependency_here I&#8217;ve done it enough times to realize it is not really a valuable learning experience one need repeat.</p>
+
+<p>Problem is&#8230;. it broke?  Why?  I added some of my own custom recipes and the newest mac has issues with gcc and ruby when I wanted to use 1.8.7 as a rvm version for an older project.  Either way, This is what my little script I use looks like. I run it with bash.  I made it using http://www.solowizard.com/ and the code at https://github.com/pivotal/pivotal_workstation</p>
+
+<p>To get chef-solo working these steps were required
+had to clone pivotal_workstation and dmg into ~/cookbooks, get commands line tools from mac (http://stackoverflow.com/questions/9329243/xcode-4-4-command-line-tools), gem install soloist.  Then you are able to just run the command bash setup_my_machine&#8230;. make sure you have the recipes&#8230;. some of the ones in this list below are custom from my cookbooks repo (https://github.com/jmontross/pivotal_workstation)&#8230;</p>
+
+<pre><code>cat ~/cookbooks/setup_my_machine.sh
+#!/bin/bash
+# This shell script was created at solowizard.com
+#
+# Usage:
+#   Running the script remotely:
+#     bash &lt; &lt;(curl -s http://www.solowizard.com/soloist_scripts/frsp9k.sh )
+#   Running the script if you have downloaded it:
+#     ./frsp9k.sh
+#
+# http://github.com/tommyh/solo_wizard
+# (c) 2012, Tom Hallett
+# This script may be freely distributed under the MIT license.
+
+pushd `pwd`
+if rvm --version 2&gt;/dev/null; then
+  gem install soloist
+else
+  sudo gem install soloist
+fi
+
+mkdir -p ~/cookbooks; cd ~/cookbooks
+cat &gt; soloistrc &lt;&lt;EOF
+cookbook_paths:
+- $PWD
+recipes:
+- pivotal_workstation::ack
+- pivotal_workstation::activemq
+- pivotal_workstation::add_ops_user
+- pivotal_workstation::ccmenu
+- pivotal_workstation::chrome
+- pivotal_workstation::create_var_chef_cache
+- pivotal_workstation::defaults_fast_key_repeat_rate
+- pivotal_workstation::default_editor
+- pivotal_workstation::dropbox
+- pivotal_workstation::enable_assistive_devices
+- pivotal_workstation::erlang
+- pivotal_workstation::firefox
+- pivotal_workstation::flycut
+- pivotal_workstation::function_keys
+- pivotal_workstation::git
+- pivotal_workstation::github_for_mac
+- pivotal_workstation::gitx
+- pivotal_workstation::git_config_global_defaults
+- pivotal_workstation::git_scripts
+- pivotal_workstation::ghostscript
+- pivotal_workstation::global_environment_variables
+- pivotal_workstation::homebrew
+- pivotal_workstation::heroku_toolbelt
+- pivotal_workstation::imagemagick
+- pivotal_workstation::increase_shared_memory
+- pivotal_workstation::inputrc
+- pivotal_workstation::iterm2
+- pivotal_workstation::java
+- pivotal_workstation::keyboard_preferences
+- pivotal_workstation::keycastr
+- pivotal_workstation::librsvg
+- pivotal_workstation::locate_on
+- pivotal_workstation::memcached
+- pivotal_workstation::menubar_preferences
+- pivotal_workstation::menumeters
+- pivotal_workstation::mongodb
+- pivotal_workstation::mouse_locator
+- pivotal_workstation::mysql
+- pivotal_workstation::nginx
+- pivotal_workstation::node_js
+- pivotal_workstation::pango
+- pivotal_workstation::postgres
+- pivotal_workstation::prince_xml
+- pivotal_workstation::qt
+- pivotal_workstation::rabbitmq
+- pivotal_workstation::redis
+- pivotal_workstation::rubymine
+- pivotal_workstation::rubymine_preferences_pivotal
+- pivotal_workstation::rvm
+- pivotal_workstation::screen_sharing_app
+- pivotal_workstation::sizeup
+- pivotal_workstation::skype
+- pivotal_workstation::sshd_on
+- pivotal_workstation::ssl_certificate
+- pivotal_workstation::sublime_text
+- pivotal_workstation::textmate
+- pivotal_workstation::textmate_bundles
+- pivotal_workstation::textmate_preferences
+- pivotal_workstation::tmux
+- pivotal_workstation::unix_essentials
+- pivotal_workstation::user_owns_usr_local
+- pivotal_workstation::vagrant
+- pivotal_workstation::vim
+- pivotal_workstation::virtualbox
+- pivotal_workstation::workspace_directory
+- pivotal_workstation::xquartz
+- pivotal_workstation::z
+EOF
+if [[ -d pivotal_workstation ]]; then
+  cd pivotal_workstation &amp;&amp; git pull &amp;&amp; cd ..
+else
+  git clone https://github.com/pivotal/pivotal_workstation.git
+fi
+if [[ -d dmg ]]; then
+  cd dmg &amp;&amp; git pull &amp;&amp; cd ..
+else
+  git clone https://github.com/opscode-cookbooks/dmg.git
+fi
+soloist
+popd
+</code></pre>
+
+<p>I&#8217;m thinking of checking out this new tool from github called boxen (https://github.com/blog/1345-introducing-boxen), which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-15T18:31:00-08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/15/new-mac-set-up-with-chef/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/15/new-mac-set-up-with-chef/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/14/joshs-software-test/" title="Previous Post: joshs software test">&laquo; joshs software test</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/" title="Next Post: setting up ubuntu 12.04 LTS using vagrant">setting up ubuntu 12.04 LTS using vagrant &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">deploying with chef on a new mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">airpair - remote pairing with strangers for fun and profit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/">pairing with tmux and rspec on aws ec2 instance</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/">setting up ubuntu 12.04 LTS using vagrant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/15/new-mac-set-up-with-chef/">new mac set up with chef</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Joshua Montross -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

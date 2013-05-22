@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>algoirthm analysis - My Octopress Blog</title>
+  <title>airpair - remote pairing with strangers for fun and profit - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way &hellip;">
+  <meta name="description" content="Recently I had the pleasure of trying out a new pairing service called airpair.co I sign up for the developer path and list the host of technologies &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ they can be studied in a language- and machine-independent way &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -68,7 +67,7 @@ they can be studied in a language- and machine-independent way &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Algoirthm Analysis</h1>
+      <h1 class="entry-title">Airpair - Remote Pairing With Strangers for Fun and Profit</h1>
     
     
       <p class="meta">
@@ -84,21 +83,43 @@ they can be studied in a language- and machine-independent way &hellip;">
   
 
 
-<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-22T13:13:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way&#8221;</p>
+<div class="entry-content"><p>Recently I had the pleasure of trying out a new pairing service called airpair.co</p>
 
-<p>&#8220;It is traditional for the author to magnanimously accept the blame for whatever
-deﬁciencies remain. I don’t. Any errors, deﬁciencies, or problems in this book are
-somebody else’s fault, but I would appreciate knowing about them so as to determine who is to blame.&#8221;</p>
+<p>I sign up for the developer path and list the host of technologies I feel comfortable philosophizing about over a pseudo-anonymous pairing service.</p>
 
-<p>These quotes come from the Algorithm Design Manual.  I just began reading it at the recommendation of a trusted and wise Sherif of the devbootcamp in San Francisco.  Best, Worst, and Average-Case Complexity => these are the ideas that the book describes nicely using graphs.  I&#8217;d like to get some pretty graphs of my three solutions to the unsorted array and integer x problem, and I need a nice way to make graphs on an X/Y plane in ruby&#8230; I&#8217;m thinking I&#8217;ll just use a js library</p>
+<p>A nice chap named Jonathan contacts me and asks if I could comment on the code at this gist below</p>
+
+<p>https://gist.github.com/anonymous/d9cb557b84a16088c64e</p>
+
+<p>I look at it and end up thinking I could add some value there.  There is a fat controller, and I can only imagine what the model and routes are - and because I&#8217;d like to see this model and routes file I suggest I could add some value.</p>
+
+<p>Somehow I find myself doing a google hangout with two strangers discussing a rails controller and how we may go about refactoring it.  We all agree it is a bit of a mess - just too much going on.  How do we improve it?</p>
+
+<p>One thing we begin to notice is that the methods / controller actions are not always mapped to routes and appear to be doing things to the model.  For instance, there is a controller method like so</p>
+
+<pre><code>def event_list
+    @events = current_company.events
+    @communication = if params[:communication_id].to_i &gt; 0
+      current_company.communications.find(params[:communication_id])
+    else
+      Communication.new
+    end
+    render layout: false
+end
+</code></pre>
+
+<p>The above could easily become a method on the communications model.</p>
+
+<p>Then we thought about the idea of creating a new controller that is subclassed from communications.  This is useful because these actions do seem to be acting on a different type of a communication.  We went through and played around with making the communications a little more restful, and it was a fun experience I&#8217;d love to do again.  Next time I think I&#8217;d like to use some tmux and actually dig into the code together&#8230; similar to how we did earlier <a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/"> here </a></p>
+
+<p>Modified controller => https://gist.github.com/anonymous/ce917ac4867b7de57bc9</p>
 </div>
 
 
@@ -121,7 +142,7 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
   
 
 
-<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-02-22T13:13:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
       
 
 
@@ -129,7 +150,7 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/algorithm-analysis/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" >Tweet</a>
   
   
   
@@ -138,10 +159,10 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/13/setting-up-something-secret-on-heroku/" title="Previous Post: setting up something secret on heroku">&laquo; setting up something secret on heroku</a>
+        <a class="basic-alignment left" href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/" title="Previous Post: pairing with tmux and rspec on aws ec2 instance">&laquo; pairing with tmux and rspec on aws ec2 instance</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" title="Next Post: given unsorted array and integer x part 3">given unsorted array and integer x part 3 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/" title="Next Post: deploying with chef on a new mac">deploying with chef on a new mac &raquo;</a>
       
     </p>
   </footer>
@@ -156,25 +177,6 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
   <ul id="recent_posts">
     
       <li class="post">
-<<<<<<< HEAD
-        <a href="/blog/2013/02/14/joshs-software-test/">joshs software test</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">given unsorted array and integer x part 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/14/algorithm-analysis/">algoirthm analysis</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">setting up something secret on heroku</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/07/how-to-make-inject-method/">how to make inject method</a>
-=======
         <a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">deploying with chef on a new mac</a>
       </li>
     
@@ -192,7 +194,6 @@ somebody else’s fault, but I would appreciate knowing about them so as to dete
     
       <li class="post">
         <a href="/blog/2013/02/15/new-mac-set-up-with-chef/">new mac set up with chef</a>
->>>>>>> 3c97b6293e95c1a6d237b31e1f935793e4de5573
       </li>
     
   </ul>
