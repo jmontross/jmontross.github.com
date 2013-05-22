@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-05-21T19:40:33-07:00</updated>
+  <updated>2013-05-21T19:56:06-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -18,7 +18,38 @@
     <link href="http://jmontross.github.com/blog/2013/05/21/general-awesome/"/>
     <updated>2013-05-21T19:34:00-07:00</updated>
     <id>http://jmontross.github.com/blog/2013/05/21/general-awesome</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>Lots been going on lately.  Started as dev in residence at general assembly for a friend end class. Very humbling.  I&#8217;m not very great with this responsive design and and awesome css tricks.  Here&#8217;s a few things I&#8217;ve taken note of thus far.</p>
+
+<p>clearfix is a really neat way to get divs to actually contain other divs.  normalize.css is awesome and gives you some clearfix classes you may use to apply to divs. @media allows you to watch the screen size and show different screen sizes. below are the codes used to add your own styles between the { }</p>
+
+<pre><code>If the device supports media queries...
+@media only screen {}
+
+and it is at least 768 px...
+@media only screen and (min-width: 768px) {}
+
+@media only screen and (min-width: 1280px) {}
+
+@media only screen and (min-width: 1440px) {}
+
+@media only screen and (min-width: landscape) {}
+
+@media only screen and (min-width: portrait) {}
+</code></pre>
+
+<p>python is nifty and ive really been enjoying the notebook.  the following command gets it up and running after an easy_install and/or pip_install of the notebook and pylab dependencies.</p>
+
+<p>   ipython &#8211;pylab notebook</p>
+
+<p>I&#8217;ve been using nodejs a bit lately, and all the things I dislike about it seem to be alleviated in this nice language invented by these fellows at google.  I&#8217;m thinking go is a better bet for a scalable system that is maintainable.  The argument that context switching is annoying doesnt hold water when weighed against performance issues.  Maybe I need some citations?  Maybe not.</p>
+
+<p>foundation.css is awesome. the 12 column layout concept is really novel.</p>
+
+<p>Some cool sites ive read lately and found awesome for various reasons.
+  http://mediaqueri.es/
+  http://worrydream.com/#
+  http://harperreed.com/
+  http://blogs.hbr.org/haque/2012/10/how_to_let_your_purpose_find_y.html</p>
 ]]></content>
   </entry>
   
