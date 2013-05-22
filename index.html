@@ -179,30 +179,19 @@ bash set_up_my_machine.sh
 
 <p>A nice chap named Jonathan contacts me and asks if I could comment on the code at this gist below</p>
 
-<p>https://gist.github.com/anonymous/d9cb557b84a16088c64e</p>
+<p>https://gist.github.com/anonymous/b04a71724fdf2fa4ae15</p>
 
 <p>I look at it and end up thinking I could add some value there.  There is a fat controller, and I can only imagine what the model and routes are - and because I&#8217;d like to see this model and routes file I suggest I could add some value.</p>
 
 <p>Somehow I find myself doing a google hangout with two strangers discussing a rails controller and how we may go about refactoring it.  We all agree it is a bit of a mess - just too much going on.  How do we improve it?</p>
 
-<p>One thing we begin to notice is that the methods / controller actions are not always mapped to routes and appear to be doing things to the model.  For instance, there is a controller method like so</p>
-
-<pre><code>def event_list
-    @events = current_company.events
-    @communication = if params[:communication_id].to_i &gt; 0
-      current_company.communications.find(params[:communication_id])
-    else
-      Communication.new
-    end
-    render layout: false
-end
-</code></pre>
-
-<p>The above could easily become a method on the communications model.</p>
+<p>One thing we begin to notice is that the methods / controller actions are not always mapped to routes and appear to be doing things to the model.  For instance, https://gist.github.com/anonymous/b04a71724fdf2fa4ae15#file-communications_controller-rb-L230, could easily become a method on the communications model.</p>
 
 <p>Then we thought about the idea of creating a new controller that is subclassed from communications.  This is useful because these actions do seem to be acting on a different type of a communication.  We went through and played around with making the communications a little more restful, and it was a fun experience I&#8217;d love to do again.  Next time I think I&#8217;d like to use some tmux and actually dig into the code together&#8230; similar to how we did earlier <a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/"> here </a></p>
 
-<p>Modified controller => https://gist.github.com/anonymous/ce917ac4867b7de57bc9</p>
+<p>Modified controller => https://gist.github.com/jmontross/4c7c44d6bf2e945e1d51</p>
+
+<p>Modified model => https://gist.github.com/jmontross/e59cb799fe6cfd3a53ad</p>
 </div>
   
   
