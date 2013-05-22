@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-05-21T19:34:24-07:00</updated>
+  <updated>2013-05-21T19:36:06-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[general awesome]]></title>
+    <link href="http://jmontross.github.com/blog/2013/05/21/general-awesome/"/>
+    <updated>2013-05-21T19:34:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/05/21/general-awesome</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[deploying with chef on a new mac]]></title>

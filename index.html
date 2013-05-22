@@ -9,7 +9,8 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="I really dislike setting up machines more than once. This is my up to date steps on how I set up my new macintosh machines. Whether I should have &hellip;">
+  <meta name="description" content="
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +65,42 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/21/general-awesome/">General Awesome</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-21T19:34:00-07:00" pubdate data-updated="true">May 21<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -889,97 +926,6 @@ https://devcenter.heroku.com/articles/config-vars</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/07/how-to-make-inject-method/">How to Make Inject Method</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-07T18:31:00-08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is 1, I&#8217;m like a 7.</p>
-
-<p>He goes, okay, so what if we didn&#8217;t have the inject method, can you make it?</p>
-
-<p>I&#8217;m thnking, this shouldn&#8217;t be so hard&#8230; I know how inject works.
-It is an enumerable method that can have an initializer and takes a block, and returns a single value.  For instance</p>
-
-<pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
-## first it comes across the item of 1 and ads 1 to it, then the result
-## is 2, which is the initializer that is then added to 2, giving us
-=&gt; 4
-</code></pre>
-
-<p>So now that we know how inject works, let&#8217;s implement it!</p>
-
-<pre><code>def inject(initializer, &amp;block)
-   # I think I'll need to store the initializer
-   response = initializer
-   self.each do |item|
-     ## How do I yield to the block to build the response
-     ## response = use_my_block(response,item)
-   end
-   response
-end
-</code></pre>
-
-<p>I mention to the interviewer that I&#8217;m thining I am probably more like a 6 now&#8230;He chuckles and says many a time he&#8217;s taken a 7 down to a 4.  He asks me if I&#8217;ve heard of the yield method, which fixes my method_missing above</p>
-
-<pre><code>def inject(initializer, &amp;block)
-   response = initializer
-   self.each do |item|
-     response = yield response, item
-   end
-   response
-end
-</code></pre>
-
-<p>And imagine that is inside the Array class&#8230;</p>
-
-<p>To make it a little nicer and refactor a bit.</p>
-
-<pre><code>class Array
-  def inject(initializer, &amp;block)
-   self.each do |item|
-     initializer = yield initializer, item
-   end
-   initializer
-  end
-end
-</code></pre>
-
-<p>Let&#8217;s test it out and see if our new inject works the same as the real implementation that was shown at beginning&#8230;</p>
-
-<pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
-=&gt; 4
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -995,6 +941,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/21/general-awesome/">general awesome</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">deploying with chef on a new mac</a>
       </li>
     
@@ -1008,10 +958,6 @@ end
     
       <li class="post">
         <a href="/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/">setting up ubuntu 12.04 LTS using vagrant</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/15/new-mac-set-up-with-chef/">new mac set up with chef</a>
       </li>
     
   </ul>
