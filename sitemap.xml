@@ -157,11 +157,19 @@
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/2013/05/21/general-awesome/</loc>
+<<<<<<< HEAD
         <lastmod>2013-05-21T19:36:27-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/archives/</loc>
         <lastmod>2013-05-21T19:40:17-07:00</lastmod>
+=======
+        <lastmod>2013-05-21T19:55:45-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/archives/</loc>
+        <lastmod>2013-05-21T19:55:45-07:00</lastmod>
+>>>>>>> 4008f0c86b3bb23a0016f69a5fc75413bc45089e
     </url>
     <url>
         <loc>http://jmontross.github.com/deploying-with-chef-on-a-new-mac/</loc>
@@ -169,7 +177,11 @@
     </url>
     <url>
         <loc>http://jmontross.github.com/</loc>
+<<<<<<< HEAD
         <lastmod>2013-05-21T19:40:17-07:00</lastmod>
+=======
+        <lastmod>2013-05-21T19:55:45-07:00</lastmod>
+>>>>>>> 4008f0c86b3bb23a0016f69a5fc75413bc45089e
     </url>
     <url>
         <loc>http://jmontross.github.com/robots.txt</loc>

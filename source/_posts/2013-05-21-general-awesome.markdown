@@ -6,7 +6,7 @@ comments: true
 categories:
 ---
 
-Lots been going on lately.  Started as dev in residence at general assembly for a friend end class. Very humbling.  I'm not very great with this responsive design and and awesome css tricks.  Here's a few things I've taken note of thus far.
+Lots been going on lately.  Started as dev in residence at general assembly for a front end class. Very humbling.  I'm not very great with this responsive design and and awesome css tricks.  Here's a few things I've taken note of thus far.
 
 clearfix is a really neat way to get divs to actually contain other divs.  normalize.css is awesome and gives you some clearfix classes you may use to apply to divs. @media allows you to watch the screen size and show different screen sizes. below are the codes used to add your own styles between the { }
 
