@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Lots been going on lately. Started as dev in residence at general assembly for a friend end class. Very humbling. I&#8217;m not very great with this &hellip;">
+  <meta name="description" content="Taught a course on git /github and use of github pages on a Tuesday followed by css transitions and transformations. First off we got everyone to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +70,126 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-04T18:13:00-07:00" pubdate data-updated="true">Jun 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Taught a course on git /github and use of github pages on a Tuesday followed by css transitions and transformations.</p>
+
+<p>First off we got everyone to install git.. everyone with mac osx 10.7 that is.</p>
+
+<p>Some problems I experienced right away with git was the assumption that everyone knew how to open the application called terminal.  I slowly realized that teaching git commands on the command line was not working very well and moved towards the UI.</p>
+
+<p>   http://cdpn.io/xJmsc</p>
+
+<p>Forgot to cover: .gitignore, fork (in the github ui), and clone.</p>
+
+<p>I dismissed a question on how these boxes were sliding into the screen because I was not confident in ability to solve the problem in front of class.</p>
+
+<p>for the example with the four boxes in this code snippet, the student wanted to make the boxes slide from the right and eliminate the ugly animation from the fixed starting position.</p>
+
+<p>Also, the difference in transition and animation could more accurately be described. transitions use pseudo-selectors, and animation sequences use keyframes.  transitions are used with hover and focus.</p>
+
+<p>cmd+option+t gets special characters in sublime text 2.</p>
+
+<p>When doing live coding coming from a cheat sheet - use the projection screen as a separate monitor.</p>
+
+<p>color f00 -> all red, no green, no blue.</p>
+
+<p>CSS transformations.  Wish I&#8217;d used animate library.
+   http://daneden.me/animate/</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/28/using-css-to-make-circles-within-circles/">Using CSS to Make Circles Within Circles</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-28T09:26:00-07:00" pubdate data-updated="true">May 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The challenge Jeremiah receives from the prospective employer is to make the following image in html/css.</p>
+
+<p><img class="center" src="/images/circles_challenge.png" width="350" height="350" title="image" alt="images"></p>
+
+<p>He is allowed to ask questions of course.  How to begin?</p>
+
+<pre><code>&lt;div class="bigcircle"&gt;
+
+  &lt;div class="circle circle1"&gt; 1 &lt;/div&gt;
+
+  &lt;div class="circle circle2"&gt; 2 &lt;/div&gt;
+
+  &lt;div class="circle circle3"&gt; 3 &lt;/div&gt;
+
+  &lt;div class="circle circle4"&gt; 4 &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>After creating the html above we are going to need to make some styles.  The outer div is for our big circle and we have four other divs within for each of our colored circles.</p>
+
+<p>What sort of css would we need to get the outer div to be a big circle?</p>
+
+<p>The final result is here.</p>
+
+<p>http://cdpn.io/xJmsc</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/05/21/general-awesome/">General Awesome</a></h1>
     
     
@@ -93,7 +213,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Lots been going on lately.  Started as dev in residence at general assembly for a friend end class. Very humbling.  I&#8217;m not very great with this responsive design and and awesome css tricks.  Here&#8217;s a few things I&#8217;ve taken note of thus far.</p>
+  <div class="entry-content"><p>Lots been going on lately.  Started as dev in residence at general assembly for a front end class. Very humbling.  I&#8217;m not very great with this responsive design and and awesome css tricks.  Here&#8217;s a few things I&#8217;ve taken note of thus far.</p>
 
 <p>clearfix is a really neat way to get divs to actually contain other divs.  normalize.css is awesome and gives you some clearfix classes you may use to apply to divs. @media allows you to watch the screen size and show different screen sizes. below are the codes used to add your own styles between the { }</p>
 
@@ -847,115 +967,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/14/algorithm-analysis/">Algoirthm Analysis</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>&#8220;Algorithms are the most important and durable part of computer science because
-they can be studied in a language- and machine-independent way&#8221;</p>
-
-<p>&#8220;It is traditional for the author to magnanimously accept the blame for whatever
-deﬁciencies remain. I don’t. Any errors, deﬁciencies, or problems in this book are
-somebody else’s fault, but I would appreciate knowing about them so as to determine who is to blame.&#8221;</p>
-
-<p>These quotes come from the Algorithm Design Manual.  I just began reading it at the recommendation of a trusted and wise Sherif of the devbootcamp in San Francisco.  Best, Worst, and Average-Case Complexity => these are the ideas that the book describes nicely using graphs.  I&#8217;d like to get some pretty graphs of my three solutions to the unsorted array and integer x problem, and I need a nice way to make graphs on an X/Y plane in ruby&#8230; I&#8217;m thinking I&#8217;ll just use a js library</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">Setting Up Something Secret on Heroku</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-13T14:23:00-08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I was wanting to run stripe on my new site www.karmagrove.com</p>
-
-<p>I put the fake keys into my config file like a bad developer/ops person, which is of course a security problem because it&#8217;s an open source app.</p>
-
-<p>So I add some new yaml file called strip.yaml to my config</p>
-
-<pre><code>api_key: ENV['stripe_api_key']
-public_key: ENV['stripe_public_key']
-</code></pre>
-
-<p>I create a new file called setup_heroku_keys.sh and add it to my git ignore.</p>
-
-<pre><code>touch setup_heroku_keys.sh &amp;&amp; echo "setup_heroku_keys.sh" &gt;&gt; .gitignore
-</code></pre>
-
-<p>Then I add the following lines to my setup_heroku_keys.sh file</p>
-
-<pre><code>heroku config:add STRIPE_API_KEY=sk_live_MY_SECRET
-heroku config:add STRIPE_PUBLIC_KEY=pk_live_MY_PUBLISHABLE_KEY
-
-bash setup_heroku_keys.sh
-
-=&gt;
-Setting config vars and restarting karma-grove... done, v16
-STRIPE_API_KEY: sk_live_HIDDEN
-Setting config vars and restarting karma-grove... done, v17
-STRIPE_PUBLIC_KEY: pk_live_HIDDEN
-</code></pre>
-
-<p>I got this inspiration from the helpful heroku docs&#8230;
-https://devcenter.heroku.com/articles/config-vars</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -971,6 +982,14 @@ https://devcenter.heroku.com/articles/config-vars</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/28/using-css-to-make-circles-within-circles/">Using CSS to make circles within circles</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/21/general-awesome/">general awesome</a>
       </li>
     
@@ -980,14 +999,6 @@ https://devcenter.heroku.com/articles/config-vars</p>
     
       <li class="post">
         <a href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">airpair - remote pairing with strangers for fun and profit</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/">pairing with tmux and rspec on aws ec2 instance</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/">setting up ubuntu 12.04 LTS using vagrant</a>
       </li>
     
   </ul>

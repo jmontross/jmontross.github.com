@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>given unsorted array and integer x part 3 - My Octopress Blog</title>
+  <title>Using CSS to make circles within circles - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="After sending over my results from part 2 of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and &hellip;">
+  <meta name="description" content="The challenge Jeremiah receives from the prospective employer is to make the following image in html/css. He is allowed to ask questions of course. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/05/28/using-css-to-make-circles-within-circles/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +67,7 @@
   
   <header>
     
-      <h1 class="entry-title">Given Unsorted Array and Integer X Part 3</h1>
+      <h1 class="entry-title">Using CSS to Make Circles Within Circles</h1>
     
     
       <p class="meta">
@@ -83,48 +83,39 @@
   
 
 
-<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-05-28T09:26:00-07:00" pubdate data-updated="true">May 28<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p> After sending over my results from <a href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"> part 2 </a> of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
+<div class="entry-content"><p>The challenge Jeremiah receives from the prospective employer is to make the following image in html/css.</p>
 
-<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time (I think) and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
+<p><img class="center" src="/images/circles_challenge.png" width="350" height="350" title="image" alt="images"></p>
 
-<pre><code>def adds_to_x?(array,integer_x)
-  answers = []
-  array.sort
-  array.each do |item|
-    if answers.last == item
-      return [integer_x - item, item]
-    end
-    answers &lt;&lt; (integer_x - item)
+<p>He is allowed to ask questions of course.  How to begin?</p>
 
-    while answers.first &amp;&amp; answers.first &lt; item
-      answers.shift
-    end
-    if answers.first == item
-      return [integer_x - item, item]
-    end
-  end
-end
+<pre><code>&lt;div class="bigcircle"&gt;
 
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { adds_to_x? unsorted_array,integer_x }
+  &lt;div class="circle circle1"&gt; 1 &lt;/div&gt;
 
-end
-       user     system      total        real
-       0.590000   0.000000   0.590000 (  0.601332)
-       0.370000   0.010000   0.380000 (  0.367863)
-       0.300000   0.000000   0.300000 (  0.297452)
+  &lt;div class="circle circle2"&gt; 2 &lt;/div&gt;
+
+  &lt;div class="circle circle3"&gt; 3 &lt;/div&gt;
+
+  &lt;div class="circle circle4"&gt; 4 &lt;/div&gt;
+
+&lt;/div&gt;
 </code></pre>
 
-<p>We will look into just how efficient each of these algorithms are soon enough.</p>
+<p>After creating the html above we are going to need to make some styles.  The outer div is for our big circle and we have four other divs within for each of our colored circles.</p>
+
+<p>What sort of css would we need to get the outer div to be a big circle?</p>
+
+<p>The final result is here.</p>
+
+<p>http://cdpn.io/xJmsc</p>
 </div>
 
 
@@ -147,7 +138,7 @@ end
   
 
 
-<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-05-28T09:26:00-07:00" pubdate data-updated="true">May 28<span>th</span>, 2013</time>
       
 
 
@@ -155,7 +146,7 @@ end
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/05/28/using-css-to-make-circles-within-circles/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/05/28/using-css-to-make-circles-within-circles/" >Tweet</a>
   
   
   
@@ -164,10 +155,10 @@ end
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/14/algorithm-analysis/" title="Previous Post: algoirthm analysis">&laquo; algoirthm analysis</a>
+        <a class="basic-alignment left" href="/blog/2013/05/21/general-awesome/" title="Previous Post: general awesome">&laquo; general awesome</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/02/14/joshs-software-test/" title="Next Post: joshs software test">joshs software test &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/06/04/teaching-lessons-learned-at-ga/" title="Next Post: Teaching Lessons Learned at GA">Teaching Lessons Learned at GA &raquo;</a>
       
     </p>
   </footer>

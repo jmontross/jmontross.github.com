@@ -9,7 +9,8 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="This interviewer is like, what is your ruby skill on 1 to 10 and I&#8217;m like&#8230; I guess if Matz is 10 and newbie who just heard about ruby is &hellip;">
+  <meta name="description" content="&#8220;Algorithms are the most important and durable part of computer science because
+they can be studied in a language- and machine-independent way &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +65,115 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/14/algorithm-analysis/">Algoirthm Analysis</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-14T01:37:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>&#8220;Algorithms are the most important and durable part of computer science because
+they can be studied in a language- and machine-independent way&#8221;</p>
+
+<p>&#8220;It is traditional for the author to magnanimously accept the blame for whatever
+deﬁciencies remain. I don’t. Any errors, deﬁciencies, or problems in this book are
+somebody else’s fault, but I would appreciate knowing about them so as to determine who is to blame.&#8221;</p>
+
+<p>These quotes come from the Algorithm Design Manual.  I just began reading it at the recommendation of a trusted and wise Sherif of the devbootcamp in San Francisco.  Best, Worst, and Average-Case Complexity => these are the ideas that the book describes nicely using graphs.  I&#8217;d like to get some pretty graphs of my three solutions to the unsorted array and integer x problem, and I need a nice way to make graphs on an X/Y plane in ruby&#8230; I&#8217;m thinking I&#8217;ll just use a js library</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/13/setting-up-something-secret-on-heroku/">Setting Up Something Secret on Heroku</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-13T14:23:00-08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was wanting to run stripe on my new site www.karmagrove.com</p>
+
+<p>I put the fake keys into my config file like a bad developer/ops person, which is of course a security problem because it&#8217;s an open source app.</p>
+
+<p>So I add some new yaml file called strip.yaml to my config</p>
+
+<pre><code>api_key: ENV['stripe_api_key']
+public_key: ENV['stripe_public_key']
+</code></pre>
+
+<p>I create a new file called setup_heroku_keys.sh and add it to my git ignore.</p>
+
+<pre><code>touch setup_heroku_keys.sh &amp;&amp; echo "setup_heroku_keys.sh" &gt;&gt; .gitignore
+</code></pre>
+
+<p>Then I add the following lines to my setup_heroku_keys.sh file</p>
+
+<pre><code>heroku config:add STRIPE_API_KEY=sk_live_MY_SECRET
+heroku config:add STRIPE_PUBLIC_KEY=pk_live_MY_PUBLISHABLE_KEY
+
+bash setup_heroku_keys.sh
+
+=&gt;
+Setting config vars and restarting karma-grove... done, v16
+STRIPE_API_KEY: sk_live_HIDDEN
+Setting config vars and restarting karma-grove... done, v17
+STRIPE_PUBLIC_KEY: pk_live_HIDDEN
+</code></pre>
+
+<p>I got this inspiration from the helpful heroku docs&#8230;
+https://devcenter.heroku.com/articles/config-vars</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -718,54 +828,9 @@ Also asked as : what is the difference between include and extend?</p></li>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/14/first-post/">First Post</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-14T19:05:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First post in Octopress&#8230; interesting.
-bundle exec rake new_post[&#8216;first post&#8217;]</p>
-
-<p>then it makes this markdown file in source/_posts</p>
-
-<p>then I run</p>
-
-<p>bundle exec rake generate</p>
-
-<p>and git add .
-git commit -m &#8216;first post&#8217;
-and git push origin source</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -780,6 +845,14 @@ and git push origin source</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/28/using-css-to-make-circles-within-circles/">Using CSS to make circles within circles</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/21/general-awesome/">general awesome</a>
       </li>
     
@@ -789,14 +862,6 @@ and git push origin source</p>
     
       <li class="post">
         <a href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">airpair - remote pairing with strangers for fun and profit</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/">pairing with tmux and rspec on aws ec2 instance</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/">setting up ubuntu 12.04 LTS using vagrant</a>
       </li>
     
   </ul>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>given unsorted array and integer x part 3 - My Octopress Blog</title>
+  <title>Category: css - My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="After sending over my results from part 2 of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and &hellip;">
+  <meta name="description" content="Category: css">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">
+  <link rel="canonical" href="http://jmontross.github.comblog/categories/css/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,114 +63,35 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Given Unsorted Array and Integer X Part 3</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
-        
-      </p>
+    <h1 class="entry-title">Category: Css</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p> After sending over my results from <a href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"> part 2 </a> of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
 
-<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time (I think) and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
+  
+  <h2>2013</h2>
 
-<pre><code>def adds_to_x?(array,integer_x)
-  answers = []
-  array.sort
-  array.each do |item|
-    if answers.last == item
-      return [integer_x - item, item]
-    end
-    answers &lt;&lt; (integer_x - item)
+<article>
+  
+<h1><a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a></h1>
+<time datetime="2013-06-04T18:13:00-07:00" pubdate><span class='month'>Jun</span> <span class='day'>04</span> <span class='year'>2013</span></time>
 
-    while answers.first &amp;&amp; answers.first &lt; item
-      answers.shift
-    end
-    if answers.first == item
-      return [integer_x - item, item]
-    end
-  end
-end
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/css/'>css</a>, <a class='category' href='/blog/categories/git-/'>git,</a>, <a class='category' href='/blog/categories/teaching-/'>teaching,</a></span>
+</footer>
 
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { adds_to_x? unsorted_array,integer_x }
 
-end
-       user     system      total        real
-       0.590000   0.000000   0.590000 (  0.601332)
-       0.370000   0.010000   0.380000 (  0.367863)
-       0.300000   0.000000   0.300000 (  0.297452)
-</code></pre>
+</article>
 
-<p>We will look into just how efficient each of these algorithms are soon enough.</p>
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
-      
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/02/14/algorithm-analysis/" title="Previous Post: algoirthm analysis">&laquo; algoirthm analysis</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/02/14/joshs-software-test/" title="Next Post: joshs software test">joshs software test &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 </div>

@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>given unsorted array and integer x part 3 - My Octopress Blog</title>
+  <title>My Octopress Blog</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="After sending over my results from part 2 of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and &hellip;">
+  <meta name="description" content="First post in Octopress&#8230; interesting.
+bundle exec rake new_post[&#8216;first post&#8217;] then it makes this markdown file in source/_posts &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/page/3/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -62,12 +63,15 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
     
-      <h1 class="entry-title">Given Unsorted Array and Integer X Part 3</h1>
+      <h1 class="entry-title"><a href="/blog/2013/01/14/first-post/">First Post</a></h1>
     
     
       <p class="meta">
@@ -83,98 +87,40 @@
   
 
 
-<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
+<time datetime="2013-01-14T19:05:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p> After sending over my results from <a href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"> part 2 </a> of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
+  <div class="entry-content"><p>First post in Octopress&#8230; interesting.
+bundle exec rake new_post[&#8216;first post&#8217;]</p>
 
-<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time (I think) and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
+<p>then it makes this markdown file in source/_posts</p>
 
-<pre><code>def adds_to_x?(array,integer_x)
-  answers = []
-  array.sort
-  array.each do |item|
-    if answers.last == item
-      return [integer_x - item, item]
-    end
-    answers &lt;&lt; (integer_x - item)
+<p>then I run</p>
 
-    while answers.first &amp;&amp; answers.first &lt; item
-      answers.shift
-    end
-    if answers.first == item
-      return [integer_x - item, item]
-    end
-  end
-end
+<p>bundle exec rake generate</p>
 
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { adds_to_x? unsorted_array,integer_x }
-
-end
-       user     system      total        real
-       0.590000   0.000000   0.590000 (  0.601332)
-       0.370000   0.010000   0.380000 (  0.367863)
-       0.300000   0.000000   0.300000 (  0.297452)
-</code></pre>
-
-<p>We will look into just how efficient each of these algorithms are soon enough.</p>
+<p>and git add .
+git commit -m &#8216;first post&#8217;
+and git push origin source</p>
 </div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
-
-      
-
-
-
-
-
-
-
-
   
 
 
-<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
-      
-
-
-    </p>
+    </article>
+  
+  <div class="pagination">
     
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/" >Tweet</a>
-  
-  
-  
-</div>
-
+    <a href="/blog/archives">Blog Archives</a>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/02/14/algorithm-analysis/" title="Previous Post: algoirthm analysis">&laquo; algoirthm analysis</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/02/14/joshs-software-test/" title="Next Post: joshs software test">joshs software test &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
 </div>
-
 <aside class="sidebar">
   
     <section>
@@ -211,7 +157,6 @@ end
 
   
 </aside>
-
 
     </div>
   </div>

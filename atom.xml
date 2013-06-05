@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-05-21T19:56:06-07:00</updated>
+  <updated>2013-06-04T20:39:35-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -14,11 +14,77 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Teaching Lessons Learned at GA]]></title>
+    <link href="http://jmontross.github.com/blog/2013/06/04/teaching-lessons-learned-at-ga/"/>
+    <updated>2013-06-04T18:13:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/06/04/teaching-lessons-learned-at-ga</id>
+    <content type="html"><![CDATA[<p>Taught a course on git /github and use of github pages on a Tuesday followed by css transitions and transformations.</p>
+
+<p>First off we got everyone to install git.. everyone with mac osx 10.7 that is.</p>
+
+<p>Some problems I experienced right away with git was the assumption that everyone knew how to open the application called terminal.  I slowly realized that teaching git commands on the command line was not working very well and moved towards the UI.</p>
+
+<p>   http://cdpn.io/xJmsc</p>
+
+<p>Forgot to cover: .gitignore, fork (in the github ui), and clone.</p>
+
+<p>I dismissed a question on how these boxes were sliding into the screen because I was not confident in ability to solve the problem in front of class.</p>
+
+<p>for the example with the four boxes in this code snippet, the student wanted to make the boxes slide from the right and eliminate the ugly animation from the fixed starting position.</p>
+
+<p>Also, the difference in transition and animation could more accurately be described. transitions use pseudo-selectors, and animation sequences use keyframes.  transitions are used with hover and focus.</p>
+
+<p>cmd+option+t gets special characters in sublime text 2.</p>
+
+<p>When doing live coding coming from a cheat sheet - use the projection screen as a separate monitor.</p>
+
+<p>color f00 -> all red, no green, no blue.</p>
+
+<p>CSS transformations.  Wish I&#8217;d used animate library.
+   http://daneden.me/animate/</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using CSS to make circles within circles]]></title>
+    <link href="http://jmontross.github.com/blog/2013/05/28/using-css-to-make-circles-within-circles/"/>
+    <updated>2013-05-28T09:26:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/05/28/using-css-to-make-circles-within-circles</id>
+    <content type="html"><![CDATA[<p>The challenge Jeremiah receives from the prospective employer is to make the following image in html/css.</p>
+
+<p><img class="center" src="http://jmontross.github.com/images/circles_challenge.png" width="350" height="350" title="image" alt="images"></p>
+
+<p>He is allowed to ask questions of course.  How to begin?</p>
+
+<pre><code>&lt;div class="bigcircle"&gt;
+
+  &lt;div class="circle circle1"&gt; 1 &lt;/div&gt;
+
+  &lt;div class="circle circle2"&gt; 2 &lt;/div&gt;
+
+  &lt;div class="circle circle3"&gt; 3 &lt;/div&gt;
+
+  &lt;div class="circle circle4"&gt; 4 &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>After creating the html above we are going to need to make some styles.  The outer div is for our big circle and we have four other divs within for each of our colored circles.</p>
+
+<p>What sort of css would we need to get the outer div to be a big circle?</p>
+
+<p>The final result is here.</p>
+
+<p>http://cdpn.io/xJmsc</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[general awesome]]></title>
     <link href="http://jmontross.github.com/blog/2013/05/21/general-awesome/"/>
     <updated>2013-05-21T19:34:00-07:00</updated>
     <id>http://jmontross.github.com/blog/2013/05/21/general-awesome</id>
-    <content type="html"><![CDATA[<p>Lots been going on lately.  Started as dev in residence at general assembly for a friend end class. Very humbling.  I&#8217;m not very great with this responsive design and and awesome css tricks.  Here&#8217;s a few things I&#8217;ve taken note of thus far.</p>
+    <content type="html"><![CDATA[<p>Lots been going on lately.  Started as dev in residence at general assembly for a front end class. Very humbling.  I&#8217;m not very great with this responsive design and and awesome css tricks.  Here&#8217;s a few things I&#8217;ve taken note of thus far.</p>
 
 <p>clearfix is a really neat way to get divs to actually contain other divs.  normalize.css is awesome and gives you some clearfix classes you may use to apply to divs. @media allows you to watch the screen size and show different screen sizes. below are the codes used to add your own styles between the { }</p>
 
@@ -1068,26 +1134,6 @@ Also asked as : what is the difference between include and extend?</p></li>
 
 <pre><code>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[first post]]></title>
-    <link href="http://jmontross.github.com/blog/2013/01/14/first-post/"/>
-    <updated>2013-01-14T19:05:00-08:00</updated>
-    <id>http://jmontross.github.com/blog/2013/01/14/first-post</id>
-    <content type="html"><![CDATA[<p>First post in Octopress&#8230; interesting.
-bundle exec rake new_post[&#8216;first post&#8217;]</p>
-
-<p>then it makes this markdown file in source/_posts</p>
-
-<p>then I run</p>
-
-<p>bundle exec rake generate</p>
-
-<p>and git add .
-git commit -m &#8216;first post&#8217;
-and git push origin source</p>
 ]]></content>
   </entry>
   

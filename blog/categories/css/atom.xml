@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: css | My Octopress Blog]]></title>
+  <link href="http://jmontross.github.com/blog/categories/css/atom.xml" rel="self"/>
+  <link href="http://jmontross.github.com/"/>
+  <updated>2013-06-04T20:39:35-07:00</updated>
+  <id>http://jmontross.github.com/</id>
+  <author>
+    <name><![CDATA[Joshua Montross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Teaching Lessons Learned at GA]]></title>
+    <link href="http://jmontross.github.com/blog/2013/06/04/teaching-lessons-learned-at-ga/"/>
+    <updated>2013-06-04T18:13:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/06/04/teaching-lessons-learned-at-ga</id>
+    <content type="html"><![CDATA[<p>Taught a course on git /github and use of github pages on a Tuesday followed by css transitions and transformations.</p>
+
+<p>First off we got everyone to install git.. everyone with mac osx 10.7 that is.</p>
+
+<p>Some problems I experienced right away with git was the assumption that everyone knew how to open the application called terminal.  I slowly realized that teaching git commands on the command line was not working very well and moved towards the UI.</p>
+
+<p>   http://cdpn.io/xJmsc</p>
+
+<p>Forgot to cover: .gitignore, fork (in the github ui), and clone.</p>
+
+<p>I dismissed a question on how these boxes were sliding into the screen because I was not confident in ability to solve the problem in front of class.</p>
+
+<p>for the example with the four boxes in this code snippet, the student wanted to make the boxes slide from the right and eliminate the ugly animation from the fixed starting position.</p>
+
+<p>Also, the difference in transition and animation could more accurately be described. transitions use pseudo-selectors, and animation sequences use keyframes.  transitions are used with hover and focus.</p>
+
+<p>cmd+option+t gets special characters in sublime text 2.</p>
+
+<p>When doing live coding coming from a cheat sheet - use the projection screen as a separate monitor.</p>
+
+<p>color f00 -> all red, no green, no blue.</p>
+
+<p>CSS transformations.  Wish I'd used animate library.
+   http://daneden.me/animate/</p>
+]]></content>
+  </entry>
+  
+</feed>
