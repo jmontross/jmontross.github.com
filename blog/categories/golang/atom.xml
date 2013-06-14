@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: golang | A hacker's attempt to document the journey]]></title>
+  <link href="http://jmontross.github.com/blog/categories/golang/atom.xml" rel="self"/>
+  <link href="http://jmontross.github.com/"/>
+  <updated>2013-06-13T17:21:03-07:00</updated>
+  <id>http://jmontross.github.com/</id>
+  <author>
+    <name><![CDATA[Joshua Montross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[go vs node vs other hotness]]></title>
+    <link href="http://jmontross.github.com/blog/2013/06/04/go-vs-node-vs-other-hotness/"/>
+    <updated>2013-06-04T20:42:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/06/04/go-vs-node-vs-other-hotness</id>
+    <content type="html"><![CDATA[<p>I think go is going to be an interesting language that will grow beyond its current usage</p>
+
+<p>http://jobstractor.com/monthly-stats</p>
+
+<p>http://www.langpop.com/</p>
+]]></content>
+  </entry>
+  
+</feed>

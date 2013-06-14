@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
+  <title>A hacker's attempt to document the journey</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Taught a course on git /github and use of github pages on a Tuesday followed by css transitions and transformations. First off we got everyone to &hellip;">
+  <meta name="description" content="I think go is going to be an interesting language that will grow beyond its current usage http://jobstractor.com/monthly-stats http://www.langpop.com &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +24,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="A hacker's attempt to document the journey" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,9 +35,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">A hacker's attempt to document the journey</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>teaching/learning on ruby, javascript, software and more.</h2>
   
 </hgroup>
 
@@ -64,6 +64,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/04/go-vs-node-vs-other-hotness/">Go vs Node vs Other Hotness</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-04T20:42:00-07:00" pubdate data-updated="true">Jun 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I think go is going to be an interesting language that will grow beyond its current usage</p>
+
+<p>http://jobstractor.com/monthly-stats</p>
+
+<p>http://www.langpop.com/</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -117,6 +157,10 @@
 
 <p>CSS transformations.  Wish I&#8217;d used animate library.
    http://daneden.me/animate/</p>
+
+<p>css3 was invented by apple for iphone!</p>
+
+<p>break into rows then columns.</p>
 </div>
   
   
@@ -830,7 +874,7 @@ soloist
 popd
 </code></pre>
 
-<p>I&#8217;m thinking of checking out this new tool from github called boxen, which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
+<p>I&#8217;m thinking of checking out this new tool from github called boxen (https://github.com/blog/1345-introducing-boxen), which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
 </div>
   
   
@@ -897,76 +941,6 @@ http://www.joelonsoftware.com/articles/fog0000000043.html</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/14/given-unsorted-array-and-integer-x-part-3/">Given Unsorted Array and Integer X Part 3</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-14T02:10:00-08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p> After sending over my results from <a href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"> part 2 </a> of the unsorted array and integer x problem, I got no response from this mysterious interviewer&#8230; and I imagined it&#8217;s because my solution without hashes was terribly inefficient.  It must be possible to solve this problem without hashes elegantly and more efficiently.</p>
-
-<p> I&#8217;ve decided to go with a new solution where we sort the array from the start then build a list of the target answers, similarly to the building up of the hash, except we do this in constant time (I think) and keep our list tidy with only the minimal possible answers remaining in our sorted array of integers.</p>
-
-<pre><code>def adds_to_x?(array,integer_x)
-  answers = []
-  array.sort
-  array.each do |item|
-    if answers.last == item
-      return [integer_x - item, item]
-    end
-    answers &lt;&lt; (integer_x - item)
-
-    while answers.first &amp;&amp; answers.first &lt; item
-      answers.shift
-    end
-    if answers.first == item
-      return [integer_x - item, item]
-    end
-  end
-end
-
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { adds_to_x? unsorted_array,integer_x }
-
-end
-       user     system      total        real
-       0.590000   0.000000   0.590000 (  0.601332)
-       0.370000   0.010000   0.380000 (  0.367863)
-       0.300000   0.000000   0.300000 (  0.297452)
-</code></pre>
-
-<p>We will look into just how efficient each of these algorithms are soon enough.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -982,6 +956,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/04/go-vs-node-vs-other-hotness/">go vs node vs other hotness</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
       </li>
     
@@ -995,10 +973,6 @@ end
     
       <li class="post">
         <a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">deploying with chef on a new mac</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">airpair - remote pairing with strangers for fun and profit</a>
       </li>
     
   </ul>

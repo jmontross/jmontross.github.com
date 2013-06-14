@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: teaching, | My Octopress Blog]]></title>
+  <title><![CDATA[Category: teaching, | A hacker's attempt to document the journey]]></title>
   <link href="http://jmontross.github.com/blog/categories/teaching-/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-06-04T20:39:35-07:00</updated>
+  <updated>2013-06-13T17:21:03-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -42,6 +42,10 @@
 
 <p>CSS transformations.  Wish I'd used animate library.
    http://daneden.me/animate/</p>
+
+<p>css3 was invented by apple for iphone!</p>
+
+<p>break into rows then columns.</p>
 ]]></content>
   </entry>
   

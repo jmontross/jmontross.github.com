@@ -68,7 +68,7 @@
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/2013/02/15/new-mac-set-up-with-chef/</loc>
-        <lastmod>2013-05-21T19:40:17-07:00</lastmod>
+        <lastmod>2013-06-13T17:16:07-07:00</lastmod>
     </url>
     <url>
         <loc>
@@ -104,11 +104,15 @@
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/2013/06/04/teaching-lessons-learned-at-ga/</loc>
-        <lastmod>2013-06-04T19:44:27-07:00</lastmod>
+        <lastmod>2013-06-04T20:55:13-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jmontross.github.com/blog/2013/06/04/go-vs-node-vs-other-hotness/</loc>
+        <lastmod>2013-06-04T20:52:34-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/archives/</loc>
-        <lastmod>2013-06-04T20:10:42-07:00</lastmod>
+        <lastmod>2013-06-13T17:16:07-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/deploying-with-chef-on-a-new-mac/</loc>
@@ -116,7 +120,7 @@
     </url>
     <url>
         <loc>http://jmontross.github.com/</loc>
-        <lastmod>2013-06-04T20:10:42-07:00</lastmod>
+        <lastmod>2013-06-13T17:16:07-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/robots.txt</loc>

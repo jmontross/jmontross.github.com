@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[A hacker's attempt to document the journey]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-06-04T20:39:35-07:00</updated>
+  <updated>2013-06-13T17:21:03-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[go vs node vs other hotness]]></title>
+    <link href="http://jmontross.github.com/blog/2013/06/04/go-vs-node-vs-other-hotness/"/>
+    <updated>2013-06-04T20:42:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/06/04/go-vs-node-vs-other-hotness</id>
+    <content type="html"><![CDATA[<p>I think go is going to be an interesting language that will grow beyond its current usage</p>
+
+<p>http://jobstractor.com/monthly-stats</p>
+
+<p>http://www.langpop.com/</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Teaching Lessons Learned at GA]]></title>
@@ -42,6 +55,10 @@
 
 <p>CSS transformations.  Wish I&#8217;d used animate library.
    http://daneden.me/animate/</p>
+
+<p>css3 was invented by apple for iphone!</p>
+
+<p>break into rows then columns.</p>
 ]]></content>
   </entry>
   
@@ -566,7 +583,7 @@ soloist
 popd
 </code></pre>
 
-<p>I&#8217;m thinking of checking out this new tool from github called boxen, which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
+<p>I&#8217;m thinking of checking out this new tool from github called boxen (https://github.com/blog/1345-introducing-boxen), which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
 ]]></content>
   </entry>
   
@@ -1122,18 +1139,6 @@ Also asked as : what is the difference between include and extend?</p></li>
 
 
 <p>  It assumes that you have a primary key of one&#8230;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[awesome]]></title>
-    <link href="http://jmontross.github.com/blog/2013/01/16/awesome/"/>
-    <updated>2013-01-16T14:16:00-08:00</updated>
-    <id>http://jmontross.github.com/blog/2013/01/16/awesome</id>
-    <content type="html"><![CDATA[<p>Just testing out how this octopress framework works.  Interesting use of rake tasks.</p>
-
-<pre><code>bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy
-</code></pre>
 ]]></content>
   </entry>
   
