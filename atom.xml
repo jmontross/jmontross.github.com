@@ -4,7 +4,7 @@
   <title><![CDATA[A hacker's attempt to document the journey]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-06-13T17:21:03-07:00</updated>
+  <updated>2013-06-13T17:37:20-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -55,10 +55,6 @@
 
 <p>CSS transformations.  Wish I&#8217;d used animate library.
    http://daneden.me/animate/</p>
-
-<p>css3 was invented by apple for iphone!</p>
-
-<p>break into rows then columns.</p>
 ]]></content>
   </entry>
   
@@ -583,7 +579,7 @@ soloist
 popd
 </code></pre>
 
-<p>I&#8217;m thinking of checking out this new tool from github called boxen (https://github.com/blog/1345-introducing-boxen), which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
+<p>I&#8217;m thinking of checking out this new tool from github called boxen, which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
 ]]></content>
   </entry>
   
