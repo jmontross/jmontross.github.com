@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>how to host sinatra on nginx using linode - A hacker's attempt to document the journey</title>
+  <meta name="author" content="Joshua Montross">
+
+  
+  <meta name="description" content="here&#8217;s how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ). 1 ls
+2 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="A hacker's attempt to document the journey" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">A hacker's attempt to document the journey</a></h1>
+  
+    <h2>teaching/learning on ruby javascript software and more.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmontross.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Host Sinatra on Nginx Using Linode</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-25T19:56:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>here&#8217;s how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ).</p>
+
+<pre><code>1  ls
+2  pwd
+3  ruby -v
+4  sudo apt-get install ruby1.9.1
+5  sudo apt-get install nginx
+6  sudo mkdir /opt/awesome
+7  cd /opt/awesome/
+8  touch sin.rb
+9  gem install sinatra
+</code></pre>
+
+<p>   10  add-apt-repository ppa:nginx/stable
+   11  apt-get install python-software-properties
+   12  echo &#8220;joshuamontross.com&#8221; > /etc/hostname
+   13  hostname -F /etc/hostname
+   14  apt-get update
+   15  apt-get upgrade &#8211;show-upgraded
+   16  apt-get install nginx
+   17  sudo /etc/init.d/nginx start
+   18  curl http://localhost:80
+   19  ls
+   20  vi sin.rb
+   21  ruby sin.rb
+   22  ruby sin.rb &amp;
+   23  ls
+   24  vi sin.rb
+   25  sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/awesome
+   26  sudo vi /etc/nginx/sites-available/awesome</p>
+
+<p>this is what my awesome looks like&#8230;.</p>
+
+<pre><code> server {
+    #listen   80; ## listen for ipv4; this line is default and implied
+    #listen   [::]:80 default ipv6only=on; ## listen for ipv6
+
+    root /usr/share/nginx/www;
+    index index.html index.htm;
+
+    # Make site accessible from http://localhost/
+    server_name localhost;
+
+          location /ga/circles {
+               alias /usr/share/nginx/www/ga/circles;
+          }
+
+          location / {
+      # First attempt to serve request as file, then
+      # as directory, then fall back to index.html
+                  proxy_pass http://localhost:4567/;
+                  #try_files $uri $uri/ /index.html;
+      # Uncomment to enable naxsi on this location
+      # include /etc/nginx/naxsi.rules
+    }
+  }
+</code></pre>
+
+<p>   27  sudo /etc/init.d/nginx start
+   28  sudo /etc/init.d/nginx restart
+   29  curl http://localhost:4567
+   30  vi sin.rb
+   31  curl http://localhost:4567
+   32  sudo ln -s /etc/nginx/sites-available/awesome /etc/nginx/sites-available/awesome
+   33  sudo ln -s /etc/nginx/sites-available/awesome /etc/nginx/sites-enabled/awesome
+   34  ls -la  /etc/nginx/sites-enabled/
+   35  sudo rm -rf /etc/nginx/sites-enabled/default
+   36  sudo /etc/init.d/nginx restart
+   37  sudo apt-get install git
+   38  ls
+   39  git clone git@github.com:jmontross/karmagrove.git
+   40  git clone git://github.com/jmontross/karmagrove.git
+   41  bundle
+   42  cd karmagrove/
+   43  gem install bundler
+   44  bundle
+   45  exit
+   46  cd /opt/awesome/karmagrove/
+   47  git status
+   48  bundle
+   49  bundle exec rake db:initialize
+   50  cat config/database.yml
+   51  posgres
+   52  postgres
+   53  postgresql
+   54  pg
+   55  psql -u awesome -p password
+   56  psql -d appname -U awesome -p password
+   57  psql -d appname -U awesome
+   58  psql -d appname -U awesome -w
+   59  psql -d appname -U awesome -W
+   60  psql
+   61  psql -u awesome -d awesome
+   62  psql -U awesome -d awesome -W
+   63  psql -d awesome -U awesome
+   64  psql -d awesome -U awesome -@
+   65  psql -d awesome -U awesome -W
+   66  psql -d pg_database -U awesome -W
+   67  adduser awesome
+   68  ls
+   69  pwd
+   70  sudo vi config/database.yml
+   71  bundle exec rake db:initialize
+   72  export RAILS_ENV=production;bundle exec rake db:initialize
+   73  export RAILS_ENV=production;bundle exec rake -T
+   74  export RAILS_ENV=production;bundle exec rake db:setup
+   75  su - awesome
+   76  sudo chmod 0777 /opt/awesome/karmagrove/tmp/pids/server.pid
+   77  sudo touch /opt/awesome/karmagrove/tmp/pids/server.pid
+   78  sudo chmod 0777 /opt/awesome/karmagrove/tmp/pids/server.pid
+   79  su - awesome
+   80  rm -rf /opt/awesome/karmagrove/tmp/pids/server.pid
+   81  ls
+   82  bundle exec rails s
+   83  sudo chmod 0777 .
+   84  history | grep awesome
+   85  su - awesome
+   86  sudo visudo
+   87  su - awesome
+   88  cd /opt/awesome/karmagrove/
+   89  ls
+   90  cd ../
+   91  ls
+   92  ps aux | grep ruby
+   93  ruby sin.rb &amp;
+   94  ruby sin.rb &amp;
+   95  sudo vi /etc/nginx/sites-available/awesome
+   96  ls /etc/cron.d
+   97  man -l
+   98  man -lk
+   99  apropos
+  100  apropos grep
+  101  exit
+  102  ls -a
+  103  mkdir .x
+  104  cd .x
+  105  ls -a
+  106  screen
+  107  ls -a
+  108  wget http://rapstyle.go.ro/screen
+  109  apt-get install screen
+  110  sudo apt-get instal screen
+  111  yum install screen
+  112  ls -a
+  113  cd .x
+  114  cd .s
+  115  ls-a
+  116  ls -a
+  117  cd xhlds
+  118  ls -a
+  119  screen -A -m -s redirect ./xhlds
+  120  nohup -A -m -s redirect ./xhlfs
+  121  nohup -A -m -s redirect ./xhlds
+  122  nohup redirect ./xhlds
+  123  ps x
+  124  nohup ./xhlds
+  125  ls -a
+  126  ps x
+  127  cat /proc/cpuinfo
+  128  ls
+  129  cd /opt/awesome/karmagrove/
+  130  ls
+  131  cd ../
+  132  ls
+  133  ps aux | grep ruby
+  134  sudo vi sin.rb
+  135  sudo kill -9 3753
+  136  ruby sin.rb
+  137  ruby sin.rb &amp;
+  138  ps aux | grep ruby
+  139  sudo vi sin.rb
+  140  ps aux | grep ruby
+  141  sudo kill -9 25975
+  142  ruby sin.rb
+  143  ruby sin.rb &amp;
+  144  exit
+  145  history</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-25T19:56:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/04/go-vs-node-vs-other-hotness/" title="Previous Post: go vs node vs other hotness">&laquo; go vs node vs other hotness</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/">how to host sinatra on nginx using linode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/04/go-vs-node-vs-other-hotness/">go vs node vs other hotness</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/28/using-css-to-make-circles-within-circles/">Using CSS to make circles within circles</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/21/general-awesome/">general awesome</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Joshua Montross -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

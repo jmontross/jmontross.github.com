@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Just testing out how this octopress framework works. Interesting use of rake tasks. bundle exec rake generate &amp;&amp; bundle exec rake gen_deploy ">
+  <meta name="description" content="Been looking for jobs as a web developer / rails developer / ruby developer / software engineer? So have I for about 3 montsh now. I&#8217;ve worked &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,79 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/19/hot-topics-for-job-interviews-in-ruby/">Hot Topics for Job Interviews in Ruby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-19T15:44:00-08:00" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Been looking for jobs as a web developer / rails developer / ruby developer / software engineer?  So have I for about 3 montsh now.  I&#8217;ve worked previously for a few years using ruby as well as rails from time to time.  You&#8217;d think that ruby and rails were the same thing from all the hype. Here&#8217;s my list of things to know for a ruby tinted interview&#8230;.</p>
+
+<ol>
+<li><p>Know about the iterators: each, inject, map
+[1,2].inject(2){|k,v| v + k}
+=> 5
+[1,2].map{|k,v|  k**2 }
+=> [1,4]</p></li>
+<li><p>What are the four types of closures in ruby?
+This one gets asked differently&#8230; AKA - what is the difference between proc, lamda, and a method?  they are all closures.  The fourth closure is a block.</p></li>
+<li><p>What is method missing?</p>
+
+<p> class Foo</p>
+
+<p> def method_missing(method,*args)
+   puts &#8220;you tried to call #{method} but it doesnt exist&#8221;
+   puts &#8220;Why not define a new method called #{method} that accepts #{args}&#8221;
+ end</p>
+
+<p> end</p>
+
+<p> Foo.new.missing_method(&#8220;some parameter that &#8220;, &#8220;is missing&#8221;)
+ =>
+ you tried to call missing_method but it doesnt exist
+ Why not define a new method called missing_method that accepts [&#8220;some parameter that &#8220;, &#8220;is missing&#8221;]</p></li>
+<li><p>Can you tell me how to do inheritance in basic ruby?
+Also asked as : what is the difference between include and extend?</p></li>
+</ol>
+
+
+<p>  You can include or extend a module to inherit methods.</p>
+
+<ol>
+<li>What are some assumptions active record makes?</li>
+</ol>
+
+
+<p>  It assumes that you have a primary key of one&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -166,6 +239,10 @@ and git push origin source</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/">how to host sinatra on nginx using linode</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/04/go-vs-node-vs-other-hotness/">go vs node vs other hotness</a>
       </li>
     
@@ -179,10 +256,6 @@ and git push origin source</p>
     
       <li class="post">
         <a href="/blog/2013/05/21/general-awesome/">general awesome</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">deploying with chef on a new mac</a>
       </li>
     
   </ul>

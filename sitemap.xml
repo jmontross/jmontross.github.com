@@ -111,8 +111,14 @@
         <lastmod>2013-06-13T17:24:01-07:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/
+        </loc>
+        <lastmod>2013-07-25T20:00:04-07:00</lastmod>
+    </url>
+    <url>
         <loc>http://jmontross.github.com/blog/archives/</loc>
-        <lastmod>2013-06-13T17:36:16-07:00</lastmod>
+        <lastmod>2013-07-25T20:00:04-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/deploying-with-chef-on-a-new-mac/</loc>
@@ -120,7 +126,7 @@
     </url>
     <url>
         <loc>http://jmontross.github.com/</loc>
-        <lastmod>2013-06-13T17:36:16-07:00</lastmod>
+        <lastmod>2013-07-25T20:00:04-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/robots.txt</loc>
