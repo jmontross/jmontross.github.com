@@ -3,11 +3,11 @@
 # ----------------------- #
 
 url: http://jmontross.github.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
+title: A hacker's attempt to document the journey
+subtitle: teaching/learning on ruby javascript software and more.
 author: Joshua Montross
 simple_search: http://google.com/search
-description: For blogging hacking related things.  I tend to develop in ruby and javascript
+description: For blogging hacking related things.  I tend to develop in ruby and javascript. Always tinkering/juggling.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
