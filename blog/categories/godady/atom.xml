@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: godady | A hacker's attempt to document the journey]]></title>
+  <link href="http://jmontross.github.com/blog/categories/godady/atom.xml" rel="self"/>
+  <link href="http://jmontross.github.com/"/>
+  <updated>2013-08-10T16:03:42-07:00</updated>
+  <id>http://jmontross.github.com/</id>
+  <author>
+    <name><![CDATA[Joshua Montross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[how to host sinatra on nginx using linode]]></title>
+    <link href="http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/"/>
+    <updated>2013-07-25T19:56:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode</id>
+    <content type="html"><![CDATA[<p>here's how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I got my linode until I had sinatra serving some files with the help of nginx.</p>
+
+<pre><code>1  ls
+2  pwd
+3  ruby -v
+4  sudo apt-get install ruby1.9.1
+5  sudo apt-get install nginx
+6  sudo mkdir /opt/awesome
+7  cd /opt/awesome/
+8  touch sin.rb
+9  gem install sinatra
+10  add-apt-repository ppa:nginx/stable
+11  apt-get install python-software-properties
+12  echo "joshuamontross.com" &gt; /etc/hostname
+13  hostname -F /etc/hostname
+</code></pre>
+
+<p>Now update apt-get and install nginx</p>
+
+<pre><code>14  apt-get update
+15  apt-get upgrade --show-upgraded
+16  apt-get install nginx
+17  sudo /etc/init.d/nginx start
+18  curl http://localhost:80
+19  ls
+20  vi sin.rb
+21  ruby sin.rb
+22  ruby sin.rb &amp;
+23  ls
+24  vi sin.rb
+25  sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/awesome
+26  sudo vi /etc/nginx/sites-available/awesome
+</code></pre>
+
+<p>this is what my awesome looks like....</p>
+
+<pre><code> server {
+    #listen   80; ## listen for ipv4; this line is default and implied
+    #listen   [::]:80 default ipv6only=on; ## listen for ipv6
+
+    root /usr/share/nginx/www;
+    index index.html index.htm;
+
+    # Make site accessible from http://localhost/
+    server_name localhost;
+
+          location /ga/circles {
+               alias /usr/share/nginx/www/ga/circles;
+          }
+
+          location / {
+      # First attempt to serve request as file, then
+      # as directory, then fall back to index.html
+                  proxy_pass http://localhost:4567/;
+                  #try_files $uri $uri/ /index.html;
+      # Uncomment to enable naxsi on this location
+      # include /etc/nginx/naxsi.rules
+    }
+  }
+</code></pre>
+
+<p>Now restart nginx.</p>
+
+<pre><code>28  sudo /etc/init.d/nginx restart
+</code></pre>
+
+<p>Site should be up at our port directly hitting sinatra and via hitting nginx at localhost</p>
+
+<pre><code>29  curl http://localhost:4567
+=&gt; oooooh yeah &lt;br /&gt; ... maybe you want my "portfolio" site at &lt;a href="http://www.pointmanj.com"&gt; pointmanj.com &lt;/a&gt;
+
+curl http://localhost
+=&gt; oooooh yeah &lt;br /&gt; ... maybe you want my "portfolio" site at &lt;a href="http://www.pointmanj.com"&gt; pointmanj.com &lt;/a&gt;
+</code></pre>
+
+<p>symlink the available site to sites-enabled.</p>
+
+<pre><code>33  sudo ln -s /etc/nginx/sites-available/awesome /etc/nginx/sites-enabled/awesome
+34 ls -la  /etc/nginx/sites-enabled/
+
+lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-available/awesome
+</code></pre>
+
+<p>Remove default nginx file.</p>
+
+<pre><code>35  sudo rm -rf /etc/nginx/sites-enabled/default
+36  sudo /etc/init.d/nginx restart
+</code></pre>
+
+<p>Make sure to log into godaddy or whatever and point the @record to the ip of your linode webserver.</p>
+
+<p><img class="center" src="/images/godaddy_linode.png" width="1000" height="1000" title="image" alt="images"></p>
+
+<p>This may take a little bit to propogate through the interwebs.... but eventually</p>
+
+<p>Now the site is being served at /, which is joshuamontross.com</p>
+
+<p>I'd like to get a rails site up, but first I'll need git.</p>
+
+<pre><code>37  sudo apt-get install git
+</code></pre>
+
+<p>Now to get my rails app.</p>
+
+<pre><code>39  git clone git@github.com:jmontross/karmagrove.git
+</code></pre>
+
+<p>This will have to be another post... Hope setting up nginx, sinatra, and</p>
+]]></content>
+  </entry>
+  
+</feed>

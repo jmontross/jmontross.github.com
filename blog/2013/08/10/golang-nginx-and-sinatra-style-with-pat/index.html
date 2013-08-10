@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>golang nginx and sinatra style with pat - A hacker's attempt to document the journey</title>
+  <meta name="author" content="Joshua Montross">
+
+  
+  <meta name="description" content="Go looks to be a promising language for writing fast code. Why? It was designed from ground up to handle the big problems like concurrency, race &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="A hacker's attempt to document the journey" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">A hacker's attempt to document the journey</a></h1>
+  
+    <h2>teaching/learning on ruby javascript software and more.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmontross.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Golang Nginx and Sinatra Style With Pat</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T15:18:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Go looks to be a promising language for writing fast code.  Why?  It was designed from ground up to handle the big problems like concurrency, race conditions, and fast compilation.  It&#8217;s almost like an interpretted language but it&#8217;s much closer to the metal.  Enough rambling.</p>
+
+<p>Will set up a really simple web server with golang on ubuntu server running nginx.  Assumes you&#8217;ve got nginx setup which is covered in a previous post for running sinatra and nginx.</p>
+
+<p>first ssh into server</p>
+
+<pre><code>apt-get install golang-go
+</code></pre>
+
+<p>make sure you click yes and get the language installed</p>
+
+<pre><code>cd /opt/awesome/go
+go get github.com/bmizerany/pat
+</code></pre>
+
+<p>There is some example code on https://github.com/bmizerany/pat that I&#8217;ve copied below</p>
+
+<pre><code>package main
+
+import (
+    "io"
+    "net/http"
+    "github.com/bmizerany/pat"
+    "log"
+)
+
+// hello world, the web server
+func HelloServer(w http.ResponseWriter, req *http.Request) {
+    io.WriteString(w, "hello, "+req.URL.Query().Get(":name")+"!\n")
+}
+
+func main() {
+    m := pat.New()
+    m.Get("/hello/:name", http.HandlerFunc(HelloServer))
+
+    // Register this pat with the default serve mux so that other packages
+    // may also be exported. (i.e. /debug/pprof/*)
+    http.Handle("/", m)
+    err := http.ListenAndServe(":12345", nil)
+    if err != nil {
+        log.Fatal("ListenAndServe: ", err)
+    }
+}
+</code></pre>
+
+<p>Basically the above code is running a webserver on port 12345 of the localhost and will respond to http get requests at /hello</p>
+
+<p>To run this code we can touch a file called go.go and copy the above into said file and save it.
+Now run the file in the background.</p>
+
+<pre><code> go run go.go &amp;
+</code></pre>
+
+<p>Test that it works.</p>
+
+<pre><code> curl -X GET localhost:12345/hello/foo
+ hello, foo!
+</code></pre>
+
+<p>Cool, it works.    Maybe see if it responds to posts.</p>
+
+<pre><code> root@joshuamontross:/opt/awesome/go# curl -X POST localhost:12345/hello/foo
+ Method Not Allowed
+</code></pre>
+
+<p>That&#8217;s nice.  Error handling works.  Now let&#8217;s make nginx serve this page by modifying the awesome config file.</p>
+
+<p>All needs to be added to the location block is the following proxy pass to localhost on the port specified in our program.</p>
+
+<pre><code>open up the nginx file in sites available.
+
+sudo vi /etc/nginx/sites-available/awesome
+
+add in the new /hello route.
+
+server {
+    #listen   80; ## listen for ipv4; this line is default and implied
+    #listen   [::]:80 default ipv6only=on; ## listen for ipv6
+
+    # Make site accessible from http://localhost/
+    server_name localhost;
+    ## make it so we can do curl -X GET localhost/hello/foo
+
+    location /ga/circles {
+      alias /usr/share/nginx/www/ga/circles;
+    }
+
+    location /hello {
+      proxy_pass http://localhost:12345/hello;
+    }
+
+    location / {
+      proxy_pass http://localhost:4567/;
+    }
+}
+</code></pre>
+
+<p>Save and exit&#8230; &#8220;:wq&#8221; in vim.  And restart nginx</p>
+
+<pre><code>sudo service nginx restart
+</code></pre>
+
+<p>Now the site should work from straight localhost without a port being specified since nginx will serve on localhost and proxy pass to our site&#8230;.</p>
+
+<pre><code>curl -X GET localhost/hello/foobar
+hello, foobar!
+</code></pre>
+
+<p>That worked nicely.  visiting joshuamontross.com/hello/whatever</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T15:18:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/golang-/'>golang,</a>, <a class='category' href='/blog/categories/nginx/'>nginx</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/" title="Previous Post: how to host sinatra on nginx using linode">&laquo; how to host sinatra on nginx using linode</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/">golang nginx and sinatra style with pat</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/">how to host sinatra on nginx using linode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/04/go-vs-node-vs-other-hotness/">go vs node vs other hotness</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/28/using-css-to-make-circles-within-circles/">Using CSS to make circles within circles</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Joshua Montross -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

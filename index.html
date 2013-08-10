@@ -9,8 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="here&#8217;s how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ). 1 ls
-2 &hellip;">
+  <meta name="description" content="Go looks to be a promising language for writing fast code. Why? It was designed from ground up to handle the big problems like concurrency, race &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,6 +70,150 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/">Golang Nginx and Sinatra Style With Pat</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T15:18:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Go looks to be a promising language for writing fast code.  Why?  It was designed from ground up to handle the big problems like concurrency, race conditions, and fast compilation.  It&#8217;s almost like an interpretted language but it&#8217;s much closer to the metal.  Enough rambling.</p>
+
+<p>Will set up a really simple web server with golang on ubuntu server running nginx.  Assumes you&#8217;ve got nginx setup which is covered in a previous post for running sinatra and nginx.</p>
+
+<p>first ssh into server</p>
+
+<pre><code>apt-get install golang-go
+</code></pre>
+
+<p>make sure you click yes and get the language installed</p>
+
+<pre><code>cd /opt/awesome/go
+go get github.com/bmizerany/pat
+</code></pre>
+
+<p>There is some example code on https://github.com/bmizerany/pat that I&#8217;ve copied below</p>
+
+<pre><code>package main
+
+import (
+    "io"
+    "net/http"
+    "github.com/bmizerany/pat"
+    "log"
+)
+
+// hello world, the web server
+func HelloServer(w http.ResponseWriter, req *http.Request) {
+    io.WriteString(w, "hello, "+req.URL.Query().Get(":name")+"!\n")
+}
+
+func main() {
+    m := pat.New()
+    m.Get("/hello/:name", http.HandlerFunc(HelloServer))
+
+    // Register this pat with the default serve mux so that other packages
+    // may also be exported. (i.e. /debug/pprof/*)
+    http.Handle("/", m)
+    err := http.ListenAndServe(":12345", nil)
+    if err != nil {
+        log.Fatal("ListenAndServe: ", err)
+    }
+}
+</code></pre>
+
+<p>Basically the above code is running a webserver on port 12345 of the localhost and will respond to http get requests at /hello</p>
+
+<p>To run this code we can touch a file called go.go and copy the above into said file and save it.
+Now run the file in the background.</p>
+
+<pre><code> go run go.go &amp;
+</code></pre>
+
+<p>Test that it works.</p>
+
+<pre><code> curl -X GET localhost:12345/hello/foo
+ hello, foo!
+</code></pre>
+
+<p>Cool, it works.    Maybe see if it responds to posts.</p>
+
+<pre><code> root@joshuamontross:/opt/awesome/go# curl -X POST localhost:12345/hello/foo
+ Method Not Allowed
+</code></pre>
+
+<p>That&#8217;s nice.  Error handling works.  Now let&#8217;s make nginx serve this page by modifying the awesome config file.</p>
+
+<p>All needs to be added to the location block is the following proxy pass to localhost on the port specified in our program.</p>
+
+<pre><code>open up the nginx file in sites available.
+
+sudo vi /etc/nginx/sites-available/awesome
+
+add in the new /hello route.
+
+server {
+    #listen   80; ## listen for ipv4; this line is default and implied
+    #listen   [::]:80 default ipv6only=on; ## listen for ipv6
+
+    # Make site accessible from http://localhost/
+    server_name localhost;
+    ## make it so we can do curl -X GET localhost/hello/foo
+
+    location /ga/circles {
+      alias /usr/share/nginx/www/ga/circles;
+    }
+
+    location /hello {
+      proxy_pass http://localhost:12345/hello;
+    }
+
+    location / {
+      proxy_pass http://localhost:4567/;
+    }
+}
+</code></pre>
+
+<p>Save and exit&#8230; &#8220;:wq&#8221; in vim.  And restart nginx</p>
+
+<pre><code>sudo service nginx restart
+</code></pre>
+
+<p>Now the site should work from straight localhost without a port being specified since nginx will serve on localhost and proxy pass to our site&#8230;.</p>
+
+<pre><code>curl -X GET localhost/hello/foobar
+hello, foobar!
+</code></pre>
+
+<p>That worked nicely.  visiting joshuamontross.com/hello/whatever</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/">How to Host Sinatra on Nginx Using Linode</a></h1>
     
     
@@ -94,7 +237,7 @@
   </header>
 
 
-  <div class="entry-content"><p>here&#8217;s how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ).</p>
+  <div class="entry-content"><p>here&#8217;s how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I got my linode until I had sinatra serving some files with the help of nginx.</p>
 
 <pre><code>1  ls
 2  pwd
@@ -105,25 +248,28 @@
 7  cd /opt/awesome/
 8  touch sin.rb
 9  gem install sinatra
+10  add-apt-repository ppa:nginx/stable
+11  apt-get install python-software-properties
+12  echo "joshuamontross.com" &gt; /etc/hostname
+13  hostname -F /etc/hostname
 </code></pre>
 
-<p>   10  add-apt-repository ppa:nginx/stable
-   11  apt-get install python-software-properties
-   12  echo &#8220;joshuamontross.com&#8221; > /etc/hostname
-   13  hostname -F /etc/hostname
-   14  apt-get update
-   15  apt-get upgrade &#8211;show-upgraded
-   16  apt-get install nginx
-   17  sudo /etc/init.d/nginx start
-   18  curl http://localhost:80
-   19  ls
-   20  vi sin.rb
-   21  ruby sin.rb
-   22  ruby sin.rb &amp;
-   23  ls
-   24  vi sin.rb
-   25  sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/awesome
-   26  sudo vi /etc/nginx/sites-available/awesome</p>
+<p>Now update apt-get and install nginx</p>
+
+<pre><code>14  apt-get update
+15  apt-get upgrade --show-upgraded
+16  apt-get install nginx
+17  sudo /etc/init.d/nginx start
+18  curl http://localhost:80
+19  ls
+20  vi sin.rb
+21  ruby sin.rb
+22  ruby sin.rb &amp;
+23  ls
+24  vi sin.rb
+25  sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/awesome
+26  sudo vi /etc/nginx/sites-available/awesome
+</code></pre>
 
 <p>this is what my awesome looks like&#8230;.</p>
 
@@ -152,125 +298,53 @@
   }
 </code></pre>
 
-<p>   27  sudo /etc/init.d/nginx start
-   28  sudo /etc/init.d/nginx restart
-   29  curl http://localhost:4567
-   30  vi sin.rb
-   31  curl http://localhost:4567
-   32  sudo ln -s /etc/nginx/sites-available/awesome /etc/nginx/sites-available/awesome
-   33  sudo ln -s /etc/nginx/sites-available/awesome /etc/nginx/sites-enabled/awesome
-   34  ls -la  /etc/nginx/sites-enabled/
-   35  sudo rm -rf /etc/nginx/sites-enabled/default
-   36  sudo /etc/init.d/nginx restart
-   37  sudo apt-get install git
-   38  ls
-   39  git clone git@github.com:jmontross/karmagrove.git
-   40  git clone git://github.com/jmontross/karmagrove.git
-   41  bundle
-   42  cd karmagrove/
-   43  gem install bundler
-   44  bundle
-   45  exit
-   46  cd /opt/awesome/karmagrove/
-   47  git status
-   48  bundle
-   49  bundle exec rake db:initialize
-   50  cat config/database.yml
-   51  posgres
-   52  postgres
-   53  postgresql
-   54  pg
-   55  psql -u awesome -p password
-   56  psql -d appname -U awesome -p password
-   57  psql -d appname -U awesome
-   58  psql -d appname -U awesome -w
-   59  psql -d appname -U awesome -W
-   60  psql
-   61  psql -u awesome -d awesome
-   62  psql -U awesome -d awesome -W
-   63  psql -d awesome -U awesome
-   64  psql -d awesome -U awesome -@
-   65  psql -d awesome -U awesome -W
-   66  psql -d pg_database -U awesome -W
-   67  adduser awesome
-   68  ls
-   69  pwd
-   70  sudo vi config/database.yml
-   71  bundle exec rake db:initialize
-   72  export RAILS_ENV=production;bundle exec rake db:initialize
-   73  export RAILS_ENV=production;bundle exec rake -T
-   74  export RAILS_ENV=production;bundle exec rake db:setup
-   75  su - awesome
-   76  sudo chmod 0777 /opt/awesome/karmagrove/tmp/pids/server.pid
-   77  sudo touch /opt/awesome/karmagrove/tmp/pids/server.pid
-   78  sudo chmod 0777 /opt/awesome/karmagrove/tmp/pids/server.pid
-   79  su - awesome
-   80  rm -rf /opt/awesome/karmagrove/tmp/pids/server.pid
-   81  ls
-   82  bundle exec rails s
-   83  sudo chmod 0777 .
-   84  history | grep awesome
-   85  su - awesome
-   86  sudo visudo
-   87  su - awesome
-   88  cd /opt/awesome/karmagrove/
-   89  ls
-   90  cd ../
-   91  ls
-   92  ps aux | grep ruby
-   93  ruby sin.rb &amp;
-   94  ruby sin.rb &amp;
-   95  sudo vi /etc/nginx/sites-available/awesome
-   96  ls /etc/cron.d
-   97  man -l
-   98  man -lk
-   99  apropos
-  100  apropos grep
-  101  exit
-  102  ls -a
-  103  mkdir .x
-  104  cd .x
-  105  ls -a
-  106  screen
-  107  ls -a
-  108  wget http://rapstyle.go.ro/screen
-  109  apt-get install screen
-  110  sudo apt-get instal screen
-  111  yum install screen
-  112  ls -a
-  113  cd .x
-  114  cd .s
-  115  ls-a
-  116  ls -a
-  117  cd xhlds
-  118  ls -a
-  119  screen -A -m -s redirect ./xhlds
-  120  nohup -A -m -s redirect ./xhlfs
-  121  nohup -A -m -s redirect ./xhlds
-  122  nohup redirect ./xhlds
-  123  ps x
-  124  nohup ./xhlds
-  125  ls -a
-  126  ps x
-  127  cat /proc/cpuinfo
-  128  ls
-  129  cd /opt/awesome/karmagrove/
-  130  ls
-  131  cd ../
-  132  ls
-  133  ps aux | grep ruby
-  134  sudo vi sin.rb
-  135  sudo kill -9 3753
-  136  ruby sin.rb
-  137  ruby sin.rb &amp;
-  138  ps aux | grep ruby
-  139  sudo vi sin.rb
-  140  ps aux | grep ruby
-  141  sudo kill -9 25975
-  142  ruby sin.rb
-  143  ruby sin.rb &amp;
-  144  exit
-  145  history</p>
+<p>Now restart nginx.</p>
+
+<pre><code>28  sudo /etc/init.d/nginx restart
+</code></pre>
+
+<p>Site should be up at our port directly hitting sinatra and via hitting nginx at localhost</p>
+
+<pre><code>29  curl http://localhost:4567
+=&gt; oooooh yeah &lt;br /&gt; ... maybe you want my "portfolio" site at &lt;a href="http://www.pointmanj.com"&gt; pointmanj.com &lt;/a&gt;
+
+curl http://localhost
+=&gt; oooooh yeah &lt;br /&gt; ... maybe you want my "portfolio" site at &lt;a href="http://www.pointmanj.com"&gt; pointmanj.com &lt;/a&gt;
+</code></pre>
+
+<p>symlink the available site to sites-enabled.</p>
+
+<pre><code>33  sudo ln -s /etc/nginx/sites-available/awesome /etc/nginx/sites-enabled/awesome
+34 ls -la  /etc/nginx/sites-enabled/
+
+lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-available/awesome
+</code></pre>
+
+<p>Remove default nginx file.</p>
+
+<pre><code>35  sudo rm -rf /etc/nginx/sites-enabled/default
+36  sudo /etc/init.d/nginx restart
+</code></pre>
+
+<p>Make sure to log into godaddy or whatever and point the @record to the ip of your linode webserver.</p>
+
+<p><img class="center" src="/images/godaddy_linode.png" width="1000" height="1000" title="image" alt="images"></p>
+
+<p>This may take a little bit to propogate through the interwebs&#8230;. but eventually</p>
+
+<p>Now the site is being served at /, which is joshuamontross.com</p>
+
+<p>I&#8217;d like to get a rails site up, but first I&#8217;ll need git.</p>
+
+<pre><code>37  sudo apt-get install git
+</code></pre>
+
+<p>Now to get my rails app.</p>
+
+<pre><code>39  git clone git@github.com:jmontross/karmagrove.git
+</code></pre>
+
+<p>This will have to be another post&#8230; Hope setting up nginx, sinatra, and</p>
 </div>
   
   
@@ -940,157 +1014,6 @@ https://github.com/opscode/bento</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/15/new-mac-set-up-with-chef/">New Mac Set Up With Chef</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-15T18:31:00-08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>why? Because I love TDD, DRY, and rubymine shortcuts.  Pivotal did a good thing with this soloist gem, and I enjoy making use of great ideas that solve problems I have experienced.  As much fun as it is to set up my new laptop with memcached, mysql, redis, mongo, and insert_dependency_here I&#8217;ve done it enough times to realize it is not really a valuable learning experience one need repeat.</p>
-
-<p>Problem is&#8230;. it broke?  Why?  I added some of my own custom recipes and the newest mac has issues with gcc and ruby when I wanted to use 1.8.7 as a rvm version for an older project.  Either way, This is what my little script I use looks like. I run it with bash.  I made it using http://www.solowizard.com/ and the code at https://github.com/pivotal/pivotal_workstation</p>
-
-<p>To get chef-solo working these steps were required
-had to clone pivotal_workstation and dmg into ~/cookbooks, get commands line tools from mac (http://stackoverflow.com/questions/9329243/xcode-4-4-command-line-tools), gem install soloist.  Then you are able to just run the command bash setup_my_machine&#8230;. make sure you have the recipes&#8230;. some of the ones in this list below are custom from my cookbooks repo (https://github.com/jmontross/pivotal_workstation)&#8230;</p>
-
-<pre><code>cat ~/cookbooks/setup_my_machine.sh
-#!/bin/bash
-# This shell script was created at solowizard.com
-#
-# Usage:
-#   Running the script remotely:
-#     bash &lt; &lt;(curl -s http://www.solowizard.com/soloist_scripts/frsp9k.sh )
-#   Running the script if you have downloaded it:
-#     ./frsp9k.sh
-#
-# http://github.com/tommyh/solo_wizard
-# (c) 2012, Tom Hallett
-# This script may be freely distributed under the MIT license.
-
-pushd `pwd`
-if rvm --version 2&gt;/dev/null; then
-  gem install soloist
-else
-  sudo gem install soloist
-fi
-
-mkdir -p ~/cookbooks; cd ~/cookbooks
-cat &gt; soloistrc &lt;&lt;EOF
-cookbook_paths:
-- $PWD
-recipes:
-- pivotal_workstation::ack
-- pivotal_workstation::activemq
-- pivotal_workstation::add_ops_user
-- pivotal_workstation::ccmenu
-- pivotal_workstation::chrome
-- pivotal_workstation::create_var_chef_cache
-- pivotal_workstation::defaults_fast_key_repeat_rate
-- pivotal_workstation::default_editor
-- pivotal_workstation::dropbox
-- pivotal_workstation::enable_assistive_devices
-- pivotal_workstation::erlang
-- pivotal_workstation::firefox
-- pivotal_workstation::flycut
-- pivotal_workstation::function_keys
-- pivotal_workstation::git
-- pivotal_workstation::github_for_mac
-- pivotal_workstation::gitx
-- pivotal_workstation::git_config_global_defaults
-- pivotal_workstation::git_scripts
-- pivotal_workstation::ghostscript
-- pivotal_workstation::global_environment_variables
-- pivotal_workstation::homebrew
-- pivotal_workstation::heroku_toolbelt
-- pivotal_workstation::imagemagick
-- pivotal_workstation::increase_shared_memory
-- pivotal_workstation::inputrc
-- pivotal_workstation::iterm2
-- pivotal_workstation::java
-- pivotal_workstation::keyboard_preferences
-- pivotal_workstation::keycastr
-- pivotal_workstation::librsvg
-- pivotal_workstation::locate_on
-- pivotal_workstation::memcached
-- pivotal_workstation::menubar_preferences
-- pivotal_workstation::menumeters
-- pivotal_workstation::mongodb
-- pivotal_workstation::mouse_locator
-- pivotal_workstation::mysql
-- pivotal_workstation::nginx
-- pivotal_workstation::node_js
-- pivotal_workstation::pango
-- pivotal_workstation::postgres
-- pivotal_workstation::prince_xml
-- pivotal_workstation::qt
-- pivotal_workstation::rabbitmq
-- pivotal_workstation::redis
-- pivotal_workstation::rubymine
-- pivotal_workstation::rubymine_preferences_pivotal
-- pivotal_workstation::rvm
-- pivotal_workstation::screen_sharing_app
-- pivotal_workstation::sizeup
-- pivotal_workstation::skype
-- pivotal_workstation::sshd_on
-- pivotal_workstation::ssl_certificate
-- pivotal_workstation::sublime_text
-- pivotal_workstation::textmate
-- pivotal_workstation::textmate_bundles
-- pivotal_workstation::textmate_preferences
-- pivotal_workstation::tmux
-- pivotal_workstation::unix_essentials
-- pivotal_workstation::user_owns_usr_local
-- pivotal_workstation::vagrant
-- pivotal_workstation::vim
-- pivotal_workstation::virtualbox
-- pivotal_workstation::workspace_directory
-- pivotal_workstation::xquartz
-- pivotal_workstation::z
-EOF
-if [[ -d pivotal_workstation ]]; then
-  cd pivotal_workstation &amp;&amp; git pull &amp;&amp; cd ..
-else
-  git clone https://github.com/pivotal/pivotal_workstation.git
-fi
-if [[ -d dmg ]]; then
-  cd dmg &amp;&amp; git pull &amp;&amp; cd ..
-else
-  git clone https://github.com/opscode-cookbooks/dmg.git
-fi
-soloist
-popd
-</code></pre>
-
-<p>I&#8217;m thinking of checking out this new tool from github called boxen, which uses puppet, and has similar end goal as soloist.  Though I imagine both of them will have the occasionally problem keeping up with bleeding edge of mac os releases.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1106,6 +1029,10 @@ popd
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/">golang nginx and sinatra style with pat</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/">how to host sinatra on nginx using linode</a>
       </li>
     
@@ -1119,10 +1046,6 @@ popd
     
       <li class="post">
         <a href="/blog/2013/05/28/using-css-to-make-circles-within-circles/">Using CSS to make circles within circles</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/21/general-awesome/">general awesome</a>
       </li>
     
   </ul>

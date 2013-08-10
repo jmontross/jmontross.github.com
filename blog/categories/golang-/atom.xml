@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: golang, | A hacker's attempt to document the journey]]></title>
+  <link href="http://jmontross.github.com/blog/categories/golang-/atom.xml" rel="self"/>
+  <link href="http://jmontross.github.com/"/>
+  <updated>2013-08-10T16:03:42-07:00</updated>
+  <id>http://jmontross.github.com/</id>
+  <author>
+    <name><![CDATA[Joshua Montross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[golang nginx and sinatra style with pat]]></title>
+    <link href="http://jmontross.github.com/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/"/>
+    <updated>2013-08-10T15:18:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat</id>
+    <content type="html"><![CDATA[<p>Go looks to be a promising language for writing fast code.  Why?  It was designed from ground up to handle the big problems like concurrency, race conditions, and fast compilation.  It's almost like an interpretted language but it's much closer to the metal.  Enough rambling.</p>
+
+<p>Will set up a really simple web server with golang on ubuntu server running nginx.  Assumes you've got nginx setup which is covered in a previous post for running sinatra and nginx.</p>
+
+<p>first ssh into server</p>
+
+<pre><code>apt-get install golang-go
+</code></pre>
+
+<p>make sure you click yes and get the language installed</p>
+
+<pre><code>cd /opt/awesome/go
+go get github.com/bmizerany/pat
+</code></pre>
+
+<p>There is some example code on https://github.com/bmizerany/pat that I've copied below</p>
+
+<pre><code>package main
+
+import (
+    "io"
+    "net/http"
+    "github.com/bmizerany/pat"
+    "log"
+)
+
+// hello world, the web server
+func HelloServer(w http.ResponseWriter, req *http.Request) {
+    io.WriteString(w, "hello, "+req.URL.Query().Get(":name")+"!\n")
+}
+
+func main() {
+    m := pat.New()
+    m.Get("/hello/:name", http.HandlerFunc(HelloServer))
+
+    // Register this pat with the default serve mux so that other packages
+    // may also be exported. (i.e. /debug/pprof/*)
+    http.Handle("/", m)
+    err := http.ListenAndServe(":12345", nil)
+    if err != nil {
+        log.Fatal("ListenAndServe: ", err)
+    }
+}
+</code></pre>
+
+<p>Basically the above code is running a webserver on port 12345 of the localhost and will respond to http get requests at /hello</p>
+
+<p>To run this code we can touch a file called go.go and copy the above into said file and save it.
+Now run the file in the background.</p>
+
+<pre><code> go run go.go &amp;
+</code></pre>
+
+<p>Test that it works.</p>
+
+<pre><code> curl -X GET localhost:12345/hello/foo
+ hello, foo!
+</code></pre>
+
+<p>Cool, it works.    Maybe see if it responds to posts.</p>
+
+<pre><code> root@joshuamontross:/opt/awesome/go# curl -X POST localhost:12345/hello/foo
+ Method Not Allowed
+</code></pre>
+
+<p>That's nice.  Error handling works.  Now let's make nginx serve this page by modifying the awesome config file.</p>
+
+<p>All needs to be added to the location block is the following proxy pass to localhost on the port specified in our program.</p>
+
+<pre><code>open up the nginx file in sites available.
+
+sudo vi /etc/nginx/sites-available/awesome
+
+add in the new /hello route.
+
+server {
+    #listen   80; ## listen for ipv4; this line is default and implied
+    #listen   [::]:80 default ipv6only=on; ## listen for ipv6
+
+    # Make site accessible from http://localhost/
+    server_name localhost;
+    ## make it so we can do curl -X GET localhost/hello/foo
+
+    location /ga/circles {
+      alias /usr/share/nginx/www/ga/circles;
+    }
+
+    location /hello {
+      proxy_pass http://localhost:12345/hello;
+    }
+
+    location / {
+      proxy_pass http://localhost:4567/;
+    }
+}
+</code></pre>
+
+<p>Save and exit... ":wq" in vim.  And restart nginx</p>
+
+<pre><code>sudo service nginx restart
+</code></pre>
+
+<p>Now the site should work from straight localhost without a port being specified since nginx will serve on localhost and proxy pass to our site....</p>
+
+<pre><code>curl -X GET localhost/hello/foobar
+hello, foobar!
+</code></pre>
+
+<p>That worked nicely.  visiting joshuamontross.com/hello/whatever</p>
+]]></content>
+  </entry>
+  
+</feed>
