@@ -45,6 +45,6 @@ Install php5-mysql:
 
 meh.  I'm bored.  followed these tutorials below mostly.
 
-# https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04
-# https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04
-# https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04
+https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04
+https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04
+https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04
