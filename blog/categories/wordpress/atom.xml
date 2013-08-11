@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wordpress | A hacker's attempt to document the journey]]></title>
   <link href="http://jmontross.github.com/blog/categories/wordpress/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-08-10T18:41:48-07:00</updated>
+  <updated>2013-08-10T18:44:11-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -60,11 +60,9 @@ cp wordpress/wp-config-sample.php wordpress/wp-config.php</p>
 
 <p>meh.  I'm bored.  followed these tutorials below mostly.</p>
 
-<h1>https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04</h1>
-
-<h1>https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04</h1>
-
-<h1>https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04</h1>
+<p>https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04
+https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04
+https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04</p>
 ]]></content>
   </entry>
   
