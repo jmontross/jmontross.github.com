@@ -3,10 +3,10 @@ layout: post
 title: "how to host sinatra on nginx using linode"
 date: 2013-07-25 19:56
 comments: true
-categories: nginx, ruby, linode, godady
+categories: nginx, ruby, linode, godady, ubuntu
 ---
 
-here's how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I got my linode until I had sinatra serving some files with the help of nginx.
+here's how i got a sinatra app up using nginx and an ununtu on linode with godaddy ( apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I purchased my linode until I had sinatra serving some files with the help of nginx.
 
 
     1  ls
@@ -55,7 +55,7 @@ this is what my awesome looks like....
                    alias /usr/share/nginx/www/ga/circles;
               }
 
-              location / {
+              location /sinatra {
           # First attempt to serve request as file, then
           # as directory, then fall back to index.html
                       proxy_pass http://localhost:4567/;
@@ -88,13 +88,13 @@ Remove default nginx file.
     35  sudo rm -rf /etc/nginx/sites-enabled/default
     36  sudo /etc/init.d/nginx restart
 
-Make sure to log into godaddy or whatever and point the @record to the ip of your linode webserver.
+Make sure to log into godaddy, namecheap, or whatever you used to buy your domain and create an @record to the ip of your server.  In godaddy this is under domain management and dns zone file.
 
 {% img center /images/godaddy_linode.png 1000 1000 'image' 'images' %}
 
-This may take a little bit to propogate through the interwebs.... but eventually
+This may take a little bit to propogate through the interwebs....
 
-Now the site is being served at /, which is joshuamontross.com
+Now the site is being served at /sinatra, which is joshuamontross.com/sinatra
 
 I'd like to get a rails site up, but first I'll need git.
     37  sudo apt-get install git
@@ -103,4 +103,4 @@ Now to get my rails app.
 
     39  git clone git@github.com:jmontross/karmagrove.git
 
-This will have to be another post... Hope setting up nginx, sinatra, and
+This will have to be another post...

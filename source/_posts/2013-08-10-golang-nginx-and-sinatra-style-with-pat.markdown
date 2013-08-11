@@ -93,7 +93,7 @@ All needs to be added to the location block is the following proxy pass to local
           proxy_pass http://localhost:12345/hello;
         }
 
-        location / {
+        location /sinatra {
           proxy_pass http://localhost:4567/;
         }
     }
