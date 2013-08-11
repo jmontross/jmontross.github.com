@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: php, | A hacker's attempt to document the journey]]></title>
+  <link href="http://jmontross.github.com/blog/categories/php-/atom.xml" rel="self"/>
+  <link href="http://jmontross.github.com/"/>
+  <updated>2013-08-10T18:39:35-07:00</updated>
+  <id>http://jmontross.github.com/</id>
+  <author>
+    <name><![CDATA[Joshua Montross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[installing wordpress on a linode ubuntu with nginx]]></title>
+    <link href="http://jmontross.github.com/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/"/>
+    <updated>2013-08-10T16:38:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx</id>
+    <content type="html"><![CDATA[<p>I need mysql.</p>
+
+<pre><code>apt-get install mysql-client-core-5.5
+</code></pre>
+
+<p>follow the dialogs.  create a root user and password. remember the password.</p>
+
+<p>Go ahead and log into the MySQL Shell:</p>
+
+<pre><code>mysql -u root -p
+
+CREATE DATABASE wordpress;
+CREATE USER wordpressuser@localhost;
+Query OK, 0 rows affected (0.00 sec)
+# use a different password below....
+SET PASSWORD FOR wordpressuser@localhost= PASSWORD("password");
+=&gt; Query OK, 0 rows affected (0.00 sec)
+# stays as password.  this is the column name password... not your password
+GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost IDENTIFIED BY 'password';
+=&gt; Query OK, 0 rows affected (0.00 sec)
+FLUSH PRIVILEGES;
+</code></pre>
+
+<p>install php</p>
+
+<pre><code>sudo apt-get install php5-fpm
+</code></pre>
+
+<p>Get wordpress</p>
+
+<p>cd ~/
+wget http://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz
+cp wordpress/wp-config-sample.php wordpress/wp-config.php</p>
+
+<p>Install php5-mysql:</p>
+
+<pre><code>sudo apt-get install php5-mysql
+</code></pre>
+
+<p>meh.  I'm bored.  followed these tutorials below mostly.</p>
+
+<h1>https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04</h1>
+
+<h1>https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04</h1>
+
+<h1>https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04</h1>
+]]></content>
+  </entry>
+  
+</feed>

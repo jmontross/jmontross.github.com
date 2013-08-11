@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nginx | A hacker's attempt to document the journey]]></title>
   <link href="http://jmontross.github.com/blog/categories/nginx/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-08-10T16:18:40-07:00</updated>
+  <updated>2013-08-10T18:39:35-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -109,7 +109,7 @@ server {
       proxy_pass http://localhost:12345/hello;
     }
 
-    location / {
+    location /sinatra {
       proxy_pass http://localhost:4567/;
     }
 }

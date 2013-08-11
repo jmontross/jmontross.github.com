@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Go looks to be a promising language for writing fast code. Why? It was designed from ground up to handle the big problems like concurrency, race &hellip;">
+  <meta name="description" content="I need mysql. apt-get install mysql-client-core-5.5 follow the dialogs. create a root user and password. remember the password. Go ahead and log into &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,88 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/">Installing Wordpress on a Linode Ubuntu With Nginx</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T16:38:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I need mysql.</p>
+
+<pre><code>apt-get install mysql-client-core-5.5
+</code></pre>
+
+<p>follow the dialogs.  create a root user and password. remember the password.</p>
+
+<p>Go ahead and log into the MySQL Shell:</p>
+
+<pre><code>mysql -u root -p
+
+CREATE DATABASE wordpress;
+CREATE USER wordpressuser@localhost;
+Query OK, 0 rows affected (0.00 sec)
+# use a different password below....
+SET PASSWORD FOR wordpressuser@localhost= PASSWORD("password");
+=&gt; Query OK, 0 rows affected (0.00 sec)
+# stays as password.  this is the column name password... not your password
+GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost IDENTIFIED BY 'password';
+=&gt; Query OK, 0 rows affected (0.00 sec)
+FLUSH PRIVILEGES;
+</code></pre>
+
+<p>install php</p>
+
+<pre><code>sudo apt-get install php5-fpm
+</code></pre>
+
+<p>Get wordpress</p>
+
+<p>cd ~/
+wget http://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz
+cp wordpress/wp-config-sample.php wordpress/wp-config.php</p>
+
+<p>Install php5-mysql:</p>
+
+<pre><code>sudo apt-get install php5-mysql
+</code></pre>
+
+<p>meh.  I&#8217;m bored.  followed these tutorials below mostly.</p>
+
+<h1>https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04</h1>
+
+<h1>https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04</h1>
+
+<h1>https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04</h1>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -184,7 +266,7 @@ server {
       proxy_pass http://localhost:12345/hello;
     }
 
-    location / {
+    location /sinatra {
       proxy_pass http://localhost:4567/;
     }
 }
@@ -237,7 +319,7 @@ hello, foobar!
   </header>
 
 
-  <div class="entry-content"><p>here&#8217;s how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I got my linode until I had sinatra serving some files with the help of nginx.</p>
+  <div class="entry-content"><p>here&#8217;s how i got a sinatra app up using nginx and an ununtu on linode with godaddy ( apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I purchased my linode until I had sinatra serving some files with the help of nginx.</p>
 
 <pre><code>1  ls
 2  pwd
@@ -287,7 +369,7 @@ hello, foobar!
                alias /usr/share/nginx/www/ga/circles;
           }
 
-          location / {
+          location /sinatra {
       # First attempt to serve request as file, then
       # as directory, then fall back to index.html
                   proxy_pass http://localhost:4567/;
@@ -326,13 +408,13 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
 36  sudo /etc/init.d/nginx restart
 </code></pre>
 
-<p>Make sure to log into godaddy or whatever and point the @record to the ip of your linode webserver.</p>
+<p>Make sure to log into godaddy, namecheap, or whatever you used to buy your domain and create an @record to the ip of your server.  In godaddy this is under domain management and dns zone file.</p>
 
 <p><img class="center" src="/images/godaddy_linode.png" width="1000" height="1000" title="image" alt="images"></p>
 
-<p>This may take a little bit to propogate through the interwebs&#8230;. but eventually</p>
+<p>This may take a little bit to propogate through the interwebs&#8230;.</p>
 
-<p>Now the site is being served at /, which is joshuamontross.com</p>
+<p>Now the site is being served at /sinatra, which is joshuamontross.com/sinatra</p>
 
 <p>I&#8217;d like to get a rails site up, but first I&#8217;ll need git.</p>
 
@@ -344,7 +426,7 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
 <pre><code>39  git clone git@github.com:jmontross/karmagrove.git
 </code></pre>
 
-<p>This will have to be another post&#8230; Hope setting up nginx, sinatra, and</p>
+<p>This will have to be another post&#8230;</p>
 </div>
   
   
@@ -840,180 +922,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/19/setting-up-ubuntu-12-dot-04-lts-using-vagrant/">Setting Up Ubuntu 12.04 LTS Using Vagrant</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-19T11:06:00-08:00" pubdate data-updated="true">Feb 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So I have some code that runs nginx and node, but I&#8217;d like to do this in a vm because my mac doesnt quite run the exact same as the production ubuntu.  Since development is production I&#8217;d like replicable steps to make a VM on a local machine and run our nginx/node app.  There are two ways to go about this once we decide to use vagrant.</p>
-
-<ol>
-<li>Use standard boxes already built from isos and publicly avaiable in .box format</li>
-<li>Make our own .box with custom settings from an iso at official http://www.ubuntu.com/download/server</li>
-</ol>
-
-
-<p>We can use use an out of the box available VM from http://www.vagrantbox.es/
-Let&#8217;s go down this route and save the custom ubuntu precise for another day.</p>
-
-<pre><code> vagrant box add ubuntu-12-04-daily http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-vagrant-i386-disk1.box
-</code></pre>
-
-<p>You&#8217;ll have to wait 10 to 20 minutes if you&#8217;ve got reasonably fast internet
-vagrant init
-modify vagrant file to have</p>
-
-<pre><code>config.vm.box = "ubuntu-12-04-daily"
-config.vm.forward_port 443, 6666
-config.vm.forward_port 80, 8080
-</code></pre>
-
-<p>Now save and close that vagrant file
-If you are interested in the port forwarding read http://docs.vagrantup.com/v1/docs/config/vm/forward_port.html
-Otherwise, back to the command line to get inside this new VM.</p>
-
-<pre><code>vagrant up
-vagrant ssh
-</code></pre>
-
-<p>now you are inside the virtual machine and should see vagrant@vagrant-ubuntu-precise-32</p>
-
-<pre><code>sudo apt-get install nginx
-sudo ngnix
-</code></pre>
-
-<p>Then browse to http://0.0.0.0:8080/ and we see Welcome to Nginx!</p>
-
-<p>Now I want to have node and mongo&#8230;  I use this code</p>
-
-<pre><code>wget https://raw.github.com/punkave/stagecoach/master/sc-proxy/install-node-and-mongo-on-ubuntu.bash
-sudo bash install-node-and-mongo-on-ubuntu.bash
-</code></pre>
-
-<p>So I did this because I wouldnt mind having the latest&#8230; but I&#8217;d also like to build from the trustworthy source.  http://www.ubuntu.com/download/server</p>
-
-<p>I got a file called ubuntu-12.04.2-server-amd64.iso</p>
-
-<pre><code>mv -f ~/Downloads/ubuntu-12.04.2-server-amd64.iso ~/code/vms
-</code></pre>
-
-<p>Then I add a new vm using virtualbox and configure it to use this iso as a cd drive.  I created a vm called ubuntu12.04, and this is the same name I gave it on the network.  I gave it a user called vagrant and a password called password&#8230; When I boot up it works!</p>
-
-<p>I follow some steps from here http://pyfunc.blogspot.com/2011/11/creating-base-box-from-scratch-for.html</p>
-
-<pre><code>sudo apt-get install build-essential
-sudo apt-get install ruby1.8
-curl -L https://get.rvm.io | bash -s stable --ruby
-source /hom/vagrant/.rvm/scripts/rvm
-
-
-got a key from here ... https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
-</code></pre>
-
-<p>I realize this file is bad&#8230; this is the good one . 4 keys -</p>
-
-<pre><code>http://docs.vagrantup.com/v1/docs/base_boxes.html
-
-1 VirtualBox Guest Additions for shared folders, port forwarding, etc.
-2 SSH with key-based auth support for the vagrant user
-3 Ruby &amp; RubyGems to install Chef and Puppet
-4 Chef and Puppet for provisioning support
-</code></pre>
-
-<p>ADDED /opt/company-name/</p>
-
-<p>symlinked code to there</p>
-
-<p>created shared folder to this area.  vbox, settngs, shared folders</p>
-
-<p>Wow - got ahead of myself. need item 1.  items 2-4 are not so hard.</p>
-
-<pre><code>1. Run your Ubuntu Server Virtual Machine
-
-2. From the Devices menu select Install Guest Additions.
-
-3. Now you are supposed to have the guest additions .iso image in your virtual     machine’s CD.
-
-4. Now you might find a problem that is the cdrom is not automatically mounted, so you need to     do one more step before starting the installation:
-
-    $ sudo mount /dev/cdrom /media/cdrom
-    block device /dev/sr0 is write-protected, mounting read-only
-
-That will do the trick.
-
-5. Move to the cdrom directory
-
-    $ cd /media/cdrom/
-6. When listing the contents you should see something like this:
-
-    $ ls -la
-    total 37429
-    dr-xr-xr-x 4 root root     2048 2011-06-24 15:45 .
-    drwxr-xr-x 3 root root     4096 2011-07-17 16:20 ..
-    dr-xr-xr-x 3 root root     2048 2011-06-24 15:45 32Bit
-    dr-xr-xr-x 2 root root     2048 2011-06-24 15:45 64Bit
-    -r-xr-xr-x 1 root root      647 2011-01-19 14:42 AUTORUN.INF
-    -r-xr-xr-x 1 root root     6966 2011-06-24 15:40 autorun.sh
-    -r-xr-xr-x 1 root root     5523 2011-06-24 15:40 runasroot.sh
-    -r-xr-xr-x 1 root root  7863758 2011-06-24 15:43 VBoxLinuxAdditions.run
-    -r-xr-xr-x 1 root root 14665216 2011-06-24 16:44 VBoxSolarisAdditions.pkg
-    -r-xr-xr-x 1 root root  9294616 2011-06-24 15:31 VBoxWindowsAdditions-amd64.exe
-    -r-xr-xr-x 1 root root   278832 2011-06-24 15:24 VBoxWindowsAdditions.exe
-    -r-xr-xr-x 1 root root  6199880 2011-06-24 15:25 VBoxWindowsAdditions-x86.exe
-7. Now it is time to run the installation
-
-    $ sudo ./VBoxLinuxAdditions.run
-</code></pre>
-
-<p>http://tadabborat.tumblr.com/post/7881270430/virtualbox-shared-folders-on-ubuntu-server-64bit</p>
-
-<p>K - on to second item&#8230;</p>
-
-<pre><code>sudo apt-get install ssh
-
-rm -r "$(gem env gemdir)"/doc/*.
-</code></pre>
-
-<p>sources
-http://pyfunc.blogspot.com/2011/11/creating-base-box-from-scratch-for.html
-http://seletz.github.com/blog/2012/01/17/creating-vagrant-base-boxes-with-veewee/
-http://chrisyallop.com/2012/04/customising-a-vagrant-box-with-veewee/
-https://github.com/jedi4ever/veewee/commit/31133bd14b3562aa4e9479c6b964450562838602
-https://www.digitalocean.com/community/articles/how-to-install-ruby-on-rails-on-ubuntu-12-04-lts-precise-pangolin-with-rvm
-http://docs.rubygems.org/read/chapter/3</p>
-
-<p>taking this a step further one day &#8230;
-https://github.com/opscode/bento</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1029,6 +937,10 @@ https://github.com/opscode/bento</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/">installing wordpress on a linode ubuntu with nginx</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/">golang nginx and sinatra style with pat</a>
       </li>
     
@@ -1042,10 +954,6 @@ https://github.com/opscode/bento</p>
     
       <li class="post">
         <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/28/using-css-to-make-circles-within-circles/">Using CSS to make circles within circles</a>
       </li>
     
   </ul>

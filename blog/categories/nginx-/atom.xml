@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nginx, | A hacker's attempt to document the journey]]></title>
   <link href="http://jmontross.github.com/blog/categories/nginx-/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-08-10T16:18:40-07:00</updated>
+  <updated>2013-08-10T18:39:35-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -14,11 +14,66 @@
 
   
   <entry>
+    <title type="html"><![CDATA[installing wordpress on a linode ubuntu with nginx]]></title>
+    <link href="http://jmontross.github.com/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/"/>
+    <updated>2013-08-10T16:38:00-07:00</updated>
+    <id>http://jmontross.github.com/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx</id>
+    <content type="html"><![CDATA[<p>I need mysql.</p>
+
+<pre><code>apt-get install mysql-client-core-5.5
+</code></pre>
+
+<p>follow the dialogs.  create a root user and password. remember the password.</p>
+
+<p>Go ahead and log into the MySQL Shell:</p>
+
+<pre><code>mysql -u root -p
+
+CREATE DATABASE wordpress;
+CREATE USER wordpressuser@localhost;
+Query OK, 0 rows affected (0.00 sec)
+# use a different password below....
+SET PASSWORD FOR wordpressuser@localhost= PASSWORD("password");
+=&gt; Query OK, 0 rows affected (0.00 sec)
+# stays as password.  this is the column name password... not your password
+GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost IDENTIFIED BY 'password';
+=&gt; Query OK, 0 rows affected (0.00 sec)
+FLUSH PRIVILEGES;
+</code></pre>
+
+<p>install php</p>
+
+<pre><code>sudo apt-get install php5-fpm
+</code></pre>
+
+<p>Get wordpress</p>
+
+<p>cd ~/
+wget http://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz
+cp wordpress/wp-config-sample.php wordpress/wp-config.php</p>
+
+<p>Install php5-mysql:</p>
+
+<pre><code>sudo apt-get install php5-mysql
+</code></pre>
+
+<p>meh.  I'm bored.  followed these tutorials below mostly.</p>
+
+<h1>https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04</h1>
+
+<h1>https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04</h1>
+
+<h1>https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04</h1>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[how to host sinatra on nginx using linode]]></title>
     <link href="http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/"/>
     <updated>2013-07-25T19:56:00-07:00</updated>
     <id>http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode</id>
-    <content type="html"><![CDATA[<p>here's how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I got my linode until I had sinatra serving some files with the help of nginx.</p>
+    <content type="html"><![CDATA[<p>here's how i got a sinatra app up using nginx and an ununtu on linode with godaddy ( apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I purchased my linode until I had sinatra serving some files with the help of nginx.</p>
 
 <pre><code>1  ls
 2  pwd
@@ -68,7 +123,7 @@
                alias /usr/share/nginx/www/ga/circles;
           }
 
-          location / {
+          location /sinatra {
       # First attempt to serve request as file, then
       # as directory, then fall back to index.html
                   proxy_pass http://localhost:4567/;
@@ -107,13 +162,13 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
 36  sudo /etc/init.d/nginx restart
 </code></pre>
 
-<p>Make sure to log into godaddy or whatever and point the @record to the ip of your linode webserver.</p>
+<p>Make sure to log into godaddy, namecheap, or whatever you used to buy your domain and create an @record to the ip of your server.  In godaddy this is under domain management and dns zone file.</p>
 
 <p><img class="center" src="/images/godaddy_linode.png" width="1000" height="1000" title="image" alt="images"></p>
 
-<p>This may take a little bit to propogate through the interwebs.... but eventually</p>
+<p>This may take a little bit to propogate through the interwebs....</p>
 
-<p>Now the site is being served at /, which is joshuamontross.com</p>
+<p>Now the site is being served at /sinatra, which is joshuamontross.com/sinatra</p>
 
 <p>I'd like to get a rails site up, but first I'll need git.</p>
 
@@ -125,7 +180,7 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
 <pre><code>39  git clone git@github.com:jmontross/karmagrove.git
 </code></pre>
 
-<p>This will have to be another post... Hope setting up nginx, sinatra, and</p>
+<p>This will have to be another post...</p>
 ]]></content>
   </entry>
   

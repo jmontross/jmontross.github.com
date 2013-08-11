@@ -181,7 +181,7 @@ server {
       proxy_pass http://localhost:12345/hello;
     }
 
-    location / {
+    location /sinatra {
       proxy_pass http://localhost:4567/;
     }
 }
@@ -247,6 +247,8 @@ hello, foobar!
         <a class="basic-alignment left" href="/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/" title="Previous Post: how to host sinatra on nginx using linode">&laquo; how to host sinatra on nginx using linode</a>
       
       
+        <a class="basic-alignment right" href="/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/" title="Next Post: installing wordpress on a linode ubuntu with nginx">installing wordpress on a linode ubuntu with nginx &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -258,6 +260,10 @@ hello, foobar!
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/">installing wordpress on a linode ubuntu with nginx</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/">golang nginx and sinatra style with pat</a>
@@ -273,10 +279,6 @@ hello, foobar!
     
       <li class="post">
         <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/28/using-css-to-make-circles-within-circles/">Using CSS to make circles within circles</a>
       </li>
     
   </ul>

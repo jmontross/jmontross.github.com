@@ -114,17 +114,23 @@
         <loc>
             http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/
         </loc>
-        <lastmod>2013-08-10T15:56:47-07:00</lastmod>
+        <lastmod>2013-08-10T18:39:11-07:00</lastmod>
     </url>
     <url>
         <loc>
             http://jmontross.github.com/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/
         </loc>
-        <lastmod>2013-08-10T15:53:38-07:00</lastmod>
+        <lastmod>2013-08-10T18:38:50-07:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jmontross.github.com/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/
+        </loc>
+        <lastmod>2013-08-10T18:39:23-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/blog/archives/</loc>
-        <lastmod>2013-08-10T15:56:47-07:00</lastmod>
+        <lastmod>2013-08-10T18:39:23-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/deploying-with-chef-on-a-new-mac/</loc>
@@ -132,7 +138,7 @@
     </url>
     <url>
         <loc>http://jmontross.github.com/</loc>
-        <lastmod>2013-08-10T15:56:47-07:00</lastmod>
+        <lastmod>2013-08-10T18:39:23-07:00</lastmod>
     </url>
     <url>
         <loc>http://jmontross.github.com/robots.txt</loc>

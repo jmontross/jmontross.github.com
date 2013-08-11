@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: godady | A hacker's attempt to document the journey]]></title>
-  <link href="http://jmontross.github.com/blog/categories/godady/atom.xml" rel="self"/>
+  <title><![CDATA[Category: godady, | A hacker's attempt to document the journey]]></title>
+  <link href="http://jmontross.github.com/blog/categories/godady-/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-08-10T16:18:40-07:00</updated>
+  <updated>2013-08-10T18:39:35-07:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -18,7 +18,7 @@
     <link href="http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/"/>
     <updated>2013-07-25T19:56:00-07:00</updated>
     <id>http://jmontross.github.com/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode</id>
-    <content type="html"><![CDATA[<p>here's how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I got my linode until I had sinatra serving some files with the help of nginx.</p>
+    <content type="html"><![CDATA[<p>here's how i got a sinatra app up using nginx and an ununtu on linode with godaddy ( apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I purchased my linode until I had sinatra serving some files with the help of nginx.</p>
 
 <pre><code>1  ls
 2  pwd
@@ -68,7 +68,7 @@
                alias /usr/share/nginx/www/ga/circles;
           }
 
-          location / {
+          location /sinatra {
       # First attempt to serve request as file, then
       # as directory, then fall back to index.html
                   proxy_pass http://localhost:4567/;
@@ -107,13 +107,13 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
 36  sudo /etc/init.d/nginx restart
 </code></pre>
 
-<p>Make sure to log into godaddy or whatever and point the @record to the ip of your linode webserver.</p>
+<p>Make sure to log into godaddy, namecheap, or whatever you used to buy your domain and create an @record to the ip of your server.  In godaddy this is under domain management and dns zone file.</p>
 
 <p><img class="center" src="/images/godaddy_linode.png" width="1000" height="1000" title="image" alt="images"></p>
 
-<p>This may take a little bit to propogate through the interwebs.... but eventually</p>
+<p>This may take a little bit to propogate through the interwebs....</p>
 
-<p>Now the site is being served at /, which is joshuamontross.com</p>
+<p>Now the site is being served at /sinatra, which is joshuamontross.com/sinatra</p>
 
 <p>I'd like to get a rails site up, but first I'll need git.</p>
 
@@ -125,7 +125,7 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
 <pre><code>39  git clone git@github.com:jmontross/karmagrove.git
 </code></pre>
 
-<p>This will have to be another post... Hope setting up nginx, sinatra, and</p>
+<p>This will have to be another post...</p>
 ]]></content>
   </entry>
   

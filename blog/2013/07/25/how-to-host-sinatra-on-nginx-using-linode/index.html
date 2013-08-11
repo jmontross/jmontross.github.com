@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="here&#8217;s how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ). What &hellip;">
+  <meta name="description" content="here&#8217;s how i got a sinatra app up using nginx and an ununtu on linode with godaddy ( apologies for indirectly supporting laws that restrict &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,7 +90,7 @@
   </header>
 
 
-<div class="entry-content"><p>here&#8217;s how i got a sinatra app up using nginx and linode with godaddy (apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I got my linode until I had sinatra serving some files with the help of nginx.</p>
+<div class="entry-content"><p>here&#8217;s how i got a sinatra app up using nginx and an ununtu on linode with godaddy ( apologies for indirectly supporting laws that restrict freedom ).  What follows is my command line history from the moment I purchased my linode until I had sinatra serving some files with the help of nginx.</p>
 
 <pre><code>1  ls
 2  pwd
@@ -140,7 +140,7 @@
                alias /usr/share/nginx/www/ga/circles;
           }
 
-          location / {
+          location /sinatra {
       # First attempt to serve request as file, then
       # as directory, then fall back to index.html
                   proxy_pass http://localhost:4567/;
@@ -179,13 +179,13 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
 36  sudo /etc/init.d/nginx restart
 </code></pre>
 
-<p>Make sure to log into godaddy or whatever and point the @record to the ip of your linode webserver.</p>
+<p>Make sure to log into godaddy, namecheap, or whatever you used to buy your domain and create an @record to the ip of your server.  In godaddy this is under domain management and dns zone file.</p>
 
 <p><img class="center" src="/images/godaddy_linode.png" width="1000" height="1000" title="image" alt="images"></p>
 
-<p>This may take a little bit to propogate through the interwebs&#8230;. but eventually</p>
+<p>This may take a little bit to propogate through the interwebs&#8230;.</p>
 
-<p>Now the site is being served at /, which is joshuamontross.com</p>
+<p>Now the site is being served at /sinatra, which is joshuamontross.com/sinatra</p>
 
 <p>I&#8217;d like to get a rails site up, but first I&#8217;ll need git.</p>
 
@@ -197,7 +197,7 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
 <pre><code>39  git clone git@github.com:jmontross/karmagrove.git
 </code></pre>
 
-<p>This will have to be another post&#8230; Hope setting up nginx, sinatra, and</p>
+<p>This will have to be another post&#8230;</p>
 </div>
 
 
@@ -225,7 +225,7 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/godady/'>godady</a>, <a class='category' href='/blog/categories/linode-/'>linode,</a>, <a class='category' href='/blog/categories/nginx-/'>nginx,</a>, <a class='category' href='/blog/categories/ruby-/'>ruby,</a>
+    <a class='category' href='/blog/categories/godady-/'>godady,</a>, <a class='category' href='/blog/categories/linode-/'>linode,</a>, <a class='category' href='/blog/categories/nginx-/'>nginx,</a>, <a class='category' href='/blog/categories/ruby-/'>ruby,</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -261,6 +261,10 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/">installing wordpress on a linode ubuntu with nginx</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/">golang nginx and sinatra style with pat</a>
       </li>
     
@@ -274,10 +278,6 @@ lrwxrwxrwx 1 root root   34 May  9 03:49 awesome -&gt; /etc/nginx/sites-availabl
     
       <li class="post">
         <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/28/using-css-to-make-circles-within-circles/">Using CSS to make circles within circles</a>
       </li>
     
   </ul>

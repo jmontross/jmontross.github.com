@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ruby, - A hacker's attempt to document the journey</title>
+  <title>installing wordpress on a linode ubuntu with nginx - A hacker's attempt to document the journey</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Category: ruby,">
+  <meta name="description" content="I need mysql. apt-get install mysql-client-core-5.5 follow the dialogs. create a root user and password. remember the password. Go ahead and log into &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.comblog/categories/ruby-/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,35 +63,130 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Ruby,</h1>
+    
+      <h1 class="entry-title">Installing Wordpress on a Linode Ubuntu With Nginx</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T16:38:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>I need mysql.</p>
 
-  
-  <h2>2013</h2>
+<pre><code>apt-get install mysql-client-core-5.5
+</code></pre>
 
-<article>
-  
-<h1><a href="/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/">how to host sinatra on nginx using linode</a></h1>
-<time datetime="2013-07-25T19:56:00-07:00" pubdate><span class='month'>Jul</span> <span class='day'>25</span> <span class='year'>2013</span></time>
+<p>follow the dialogs.  create a root user and password. remember the password.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/godady-/'>godady,</a>, <a class='category' href='/blog/categories/linode-/'>linode,</a>, <a class='category' href='/blog/categories/nginx-/'>nginx,</a>, <a class='category' href='/blog/categories/ruby-/'>ruby,</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a></span>
-</footer>
+<p>Go ahead and log into the MySQL Shell:</p>
 
+<pre><code>mysql -u root -p
 
-</article>
+CREATE DATABASE wordpress;
+CREATE USER wordpressuser@localhost;
+Query OK, 0 rows affected (0.00 sec)
+# use a different password below....
+SET PASSWORD FOR wordpressuser@localhost= PASSWORD("password");
+=&gt; Query OK, 0 rows affected (0.00 sec)
+# stays as password.  this is the column name password... not your password
+GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost IDENTIFIED BY 'password';
+=&gt; Query OK, 0 rows affected (0.00 sec)
+FLUSH PRIVILEGES;
+</code></pre>
 
+<p>install php</p>
+
+<pre><code>sudo apt-get install php5-fpm
+</code></pre>
+
+<p>Get wordpress</p>
+
+<p>cd ~/
+wget http://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz
+cp wordpress/wp-config-sample.php wordpress/wp-config.php</p>
+
+<p>Install php5-mysql:</p>
+
+<pre><code>sudo apt-get install php5-mysql
+</code></pre>
+
+<p>meh.  I&#8217;m bored.  followed these tutorials below mostly.</p>
+
+<h1>https://www.digitalocean.com/community/articles/initial-server-setup-with-ubuntu-12-04</h1>
+
+<h1>https://www.digitalocean.com/community/articles/how-to-install-wordpress-with-nginx-on-ubuntu-12-04</h1>
+
+<h1>https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04</h1>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T16:38:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/nginx-/'>nginx,</a>, <a class='category' href='/blog/categories/php-/'>php,</a>, <a class='category' href='/blog/categories/wordpress/'>wordpress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/" title="Previous Post: golang nginx and sinatra style with pat">&laquo; golang nginx and sinatra style with pat</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
