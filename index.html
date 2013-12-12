@@ -97,7 +97,36 @@
 
 <p>The solution:  Create a new contact.php file with captcha implemented, check to see if the sites contact.php matches the first one I looked at, if it is the same, swap the new contact file for the old and keep a running list of how many you&#8217;ve updated.</p>
 
-<p><a href="https://gist.github.com/jmontross/bc382af5340ea3eb4e1f">Here&#8217;s the script</a></p>
+<p>This is a ruby script that implements the solution above in real code.  The files described in the file are provided at the end in a bit of a redacted form.</p>
+
+<pre><code>require 'fileutils'
+
+f
+ilures = []
+successes = []
+
+Dir.entries('/home3/northas0/public_html').each do |directory|
+
+  if Dir.exists?("/home3/northas0/public_html/#{directory}") &amp;&amp; Dir.chdir
+  "/home3/northas0/public_html/#{directory}")
+    if system('diff contact.php ../library/contact_old.php')
+    then
+      FileUtils.cp('../library/contact.php',"/home3/northas0/public_html/#{directory}/contact.php")
+      puts "contact.php replaced at /home3/northas0/public_html/#{directory}/contact.php"
+      successes &lt;&lt; directory
+    else
+      puts "failed to replace contact.php differences in /home3/northas0/public_html/#{directory}"
+      failures &lt;&lt; directory
+    end
+  end
+
+  end
+puts "there were #{successes.length} files replaced"
+puts "failed directories #{failures}"
+puts "success at #{successes}"
+</code></pre>
+
+<p><a href="https://gist.github.com/jmontross/bc382af5340ea3eb4e1f">Here&#8217;s the scripts</a></p>
 
 <p>The key is that I reused the contact.php logic and implemented using a recaptcha account for more than one domain. To do this just check the box when creating your <a href="https://developers.google.com/recaptcha/intro">recaptcha account</a></p>
 
