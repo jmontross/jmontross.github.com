@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="So I have some code that runs nginx and node, but I&#8217;d like to do this in a vm because my mac doesnt quite run the exact same as the production &hellip;">
+  <meta name="description" content="I wanted to pair with my friend who sat down next to me&#8230; each of us on our own laptop, but none of the gear that makes it easy for us to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,122 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/">Pairing With Tmux and Rspec on Aws Ec2 Instance</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-21T13:42:00-08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I wanted to pair with my friend who sat down next to me&#8230; each of us on our own laptop, but none of the gear that makes it easy for us to actually pair in the sense of two keyboards one screen.  I luckily have already burned through my AWS free tier and keep around an ubuntu server for playing/learning.  I ask my friend if he has ever used vim?  He says no.  Is he interested in pair programming on a server using vim and tmux, and he says sure. Thanks Dan for being such a good sport.</p>
+
+<p>I ssh into my machine</p>
+
+<pre><code>useradd dan
+password: secret
+
+sudo vi /etc/ssh/sshd_config
+:s/PasswordAuthentication no/PasswordAuthentication yes/
+:wq
+
+sudo /etc/init.d/sshd reload
+</code></pre>
+
+<p>sweet.  now dan can login.  I want him to be able to share a vim window where we can view a test suite and the code split panel.  How do I do that I wonder?</p>
+
+<pre><code> ## specify the name of your tmux socket with -S when creating it
+ tmux -S /tmp/pair
+ # chmod to allow other users to access it
+ chmod 777 /tmp/pair
+</code></pre>
+
+<p>Now I&#8217;ve got my tmux going, dan is in terminal, and I want to share our screen.</p>
+
+<pre><code> # now the other user can connect with
+ tmux -S /tmp/pair attach
+</code></pre>
+
+<p>Awesome.  I cd into ~/home/dan and make a directory where we can do the fizzbuzz problem using tdd.  This next step assumes you&#8217;ve got rubygems on your system and</p>
+
+<pre><code> mkdir fizzbuzz
+ cd fizzuzz
+ mkdir spec
+ touch spec/fizzbuzz_spec.rb
+ touch fizzbuzz.rb
+
+ echo "rspec" &gt;&gt; Gemfile
+ bundle
+ =&gt; installing rspec....
+ rspec
+</code></pre>
+
+<p>0 tests and time to get started&#8230;  Where do we start?</p>
+
+<pre><code> vi .
+ ctrl+wv
+</code></pre>
+
+<p>now we&#8217;ve got two windows each with directory open like so &#8230;</p>
+
+<p>Imagine there&#8217;s an image here&#8230;</p>
+
+<p>I make a test in the fizzbuzz_spec.rb file</p>
+
+<pre><code>require 'rspec'
+require './fizzbuzz'
+
+describe FizzBuzz do
+  it "should instantiate" do
+    FizzBuzz.new.class == FizzBuzz
+  end
+end
+</code></pre>
+
+<p>We need to save it&#8230;</p>
+
+<pre><code>:wq
+</code></pre>
+
+<p>we need to run tests</p>
+
+<pre><code>:! rspec
+</code></pre>
+
+<p>Its a nice workflow&#8230; it works&#8230;.</p>
+
+<p>sources: http://readystate4.com/2011/01/02/sharing-remote-terminal-session-between-two-users-with-tmux/</p>
+
+<p>http://stackoverflow.com/questions/8339912/allowing-users-to-ssh-to-an-ec2-ubuntu-instance</p>
+
+<p>http://pivotallabs.com/how-we-use-tmux-for-remote-pair-programming/</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1040,63 +1156,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/26/using-heroku-for-multiple-environments/">Using Heroku for Multiple Environments</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-26T07:33:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would break the prod site because of some difference in my local mac environment and the heroku servers.  Even though we have no users, I&#8217;d rather figure out these speedbumps on a development or staging server.  Let&#8217;s call it development.</p>
-
-<p>First thing is to point my DNS to heroku&#8217;s servers with a CNAME record</p>
-
-<p>With namecheap it was as simple as adding in this reference&#8230;</p>
-
-<p>Login&#8230; click &#8220;all host records&#8221;</p>
-
-<p>add a subdomain setting for dev that points to #{dev-your-heroku-appname-here}.herokuapp.com.</p>
-
-<p>The period at the end counts.  1800 for TTL.</p>
-
-<p>make sure of course that you also do a heroku create dev-your-heroku-appname-here</p>
-
-<p>After this point the guys at stack overflow have already answered it pretty well.</p>
-
-<p>  git remote add staging staging-your-app.heroku.git
-  git push staging staging:master</p>
-
-<p>http://stackoverflow.com/questions/7713042/deploying-2-different-heroku-apps-with-same-git-repository</p>
-
-<p>Now what does the staging:master mean in git push command above and in the answer on SO?</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1114,6 +1173,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/12/how-to-update-100-websites-contact-pages-at-once/">How to implement captcha on 100 php contact pages in one script using ruby</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/">installing wordpress on a linode ubuntu with nginx</a>
       </li>
     
@@ -1127,10 +1190,6 @@ end
     
       <li class="post">
         <a href="/blog/2013/06/04/go-vs-node-vs-other-hotness/">go vs node vs other hotness</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
       </li>
     
   </ul>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: php, - A hacker's attempt to document the journey</title>
+  <title>How to implement captcha on 100 php contact pages in one script using ruby - A hacker's attempt to document the journey</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Category: php,">
+  <meta name="description" content="The assignment: Can you update 100+ websites contact pages with a captcha form so I stopped getting spammed? The solution: Create a new contact.php &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.comblog/categories/php-/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/12/12/how-to-update-100-websites-contact-pages-at-once/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,35 +63,88 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Php,</h1>
+    
+      <h1 class="entry-title">How to Implement Captcha on 100 Php Contact Pages in One Script Using Ruby</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-12T11:56:00-08:00" pubdate data-updated="true">Dec 12<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>The assignment:  Can you update 100+ websites contact pages with a captcha form so I stopped getting spammed?</p>
 
-  
-  <h2>2013</h2>
+<p>The solution:  Create a new contact.php file with captcha implemented, check to see if the sites contact.php matches the first one I looked at, if it is the same, swap the new contact file for the old and keep a running list of how many you&#8217;ve updated.</p>
 
-<article>
-  
-<h1><a href="/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/">installing wordpress on a linode ubuntu with nginx</a></h1>
-<time datetime="2013-08-10T16:38:00-07:00" pubdate><span class='month'>Aug</span> <span class='day'>10</span> <span class='year'>2013</span></time>
+<p><a href="https://gist.github.com/jmontross/bc382af5340ea3eb4e1f">Here&#8217;s the script</a></p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/nginx-/'>nginx,</a>, <a class='category' href='/blog/categories/php-/'>php,</a>, <a class='category' href='/blog/categories/wordpress/'>wordpress</a></span>
-</footer>
+<p>The key is that I reused the contact.php logic and implemented using a recaptcha account for more than one domain. To do this just check the box when creating your <a href="https://developers.google.com/recaptcha/intro">recaptcha account</a></p>
 
+<p>You can even <a href="https://developers.google.com/recaptcha/docs/customization">customize recaptcha</a></p>
 
-</article>
-
+<p>Thanks.  Hope it was helpful.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Joshua Montross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-12T11:56:00-08:00" pubdate data-updated="true">Dec 12<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/12/12/how-to-update-100-websites-contact-pages-at-once/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/12/12/how-to-update-100-websites-contact-pages-at-once/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/" title="Previous Post: installing wordpress on a linode ubuntu with nginx">&laquo; installing wordpress on a linode ubuntu with nginx</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

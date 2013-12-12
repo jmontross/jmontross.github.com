@@ -4,7 +4,7 @@
   <title><![CDATA[A hacker's attempt to document the journey]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-08-10T18:44:11-07:00</updated>
+  <updated>2013-12-12T12:22:31-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to implement captcha on 100 php contact pages in one script using ruby]]></title>
+    <link href="http://jmontross.github.com/blog/2013/12/12/how-to-update-100-websites-contact-pages-at-once/"/>
+    <updated>2013-12-12T11:56:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/12/12/how-to-update-100-websites-contact-pages-at-once</id>
+    <content type="html"><![CDATA[<p>The assignment:  Can you update 100+ websites contact pages with a captcha form so I stopped getting spammed?</p>
+
+<p>The solution:  Create a new contact.php file with captcha implemented, check to see if the sites contact.php matches the first one I looked at, if it is the same, swap the new contact file for the old and keep a running list of how many you&#8217;ve updated.</p>
+
+<p><a href="https://gist.github.com/jmontross/bc382af5340ea3eb4e1f">Here&#8217;s the script</a></p>
+
+<p>The key is that I reused the contact.php logic and implemented using a recaptcha account for more than one domain. To do this just check the box when creating your <a href="https://developers.google.com/recaptcha/intro">recaptcha account</a></p>
+
+<p>You can even <a href="https://developers.google.com/recaptcha/docs/customization">customize recaptcha</a></p>
+
+<p>Thanks.  Hope it was helpful.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[installing wordpress on a linode ubuntu with nginx]]></title>
@@ -1327,36 +1346,6 @@ end
 0.000000   0.000000   0.000000 (  0.007244)
 0.010000   0.000000   0.010000 (  0.011289)
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Using heroku for multiple environments]]></title>
-    <link href="http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments/"/>
-    <updated>2013-01-26T07:33:00-08:00</updated>
-    <id>http://jmontross.github.com/blog/2013/01/26/using-heroku-for-multiple-environments</id>
-    <content type="html"><![CDATA[<p>I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would break the prod site because of some difference in my local mac environment and the heroku servers.  Even though we have no users, I&#8217;d rather figure out these speedbumps on a development or staging server.  Let&#8217;s call it development.</p>
-
-<p>First thing is to point my DNS to heroku&#8217;s servers with a CNAME record</p>
-
-<p>With namecheap it was as simple as adding in this reference&#8230;</p>
-
-<p>Login&#8230; click &#8220;all host records&#8221;</p>
-
-<p>add a subdomain setting for dev that points to #{dev-your-heroku-appname-here}.herokuapp.com.</p>
-
-<p>The period at the end counts.  1800 for TTL.</p>
-
-<p>make sure of course that you also do a heroku create dev-your-heroku-appname-here</p>
-
-<p>After this point the guys at stack overflow have already answered it pretty well.</p>
-
-<p>  git remote add staging staging-your-app.heroku.git
-  git push staging staging:master</p>
-
-<p>http://stackoverflow.com/questions/7713042/deploying-2-different-heroku-apps-with-same-git-repository</p>
-
-<p>Now what does the staging:master mean in git push command above and in the answer on SO?</p>
 ]]></content>
   </entry>
   

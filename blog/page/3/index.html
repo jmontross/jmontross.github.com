@@ -9,8 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +64,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/using-heroku-for-multiple-environments/">Using Heroku for Multiple Environments</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T07:33:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have been working on a simple rails app @ lessonOverFlow.com with a couple friends and I started noticing that some deploys to the website would break the prod site because of some difference in my local mac environment and the heroku servers.  Even though we have no users, I&#8217;d rather figure out these speedbumps on a development or staging server.  Let&#8217;s call it development.</p>
+
+<p>First thing is to point my DNS to heroku&#8217;s servers with a CNAME record</p>
+
+<p>With namecheap it was as simple as adding in this reference&#8230;</p>
+
+<p>Login&#8230; click &#8220;all host records&#8221;</p>
+
+<p>add a subdomain setting for dev that points to #{dev-your-heroku-appname-here}.herokuapp.com.</p>
+
+<p>The period at the end counts.  1800 for TTL.</p>
+
+<p>make sure of course that you also do a heroku create dev-your-heroku-appname-here</p>
+
+<p>After this point the guys at stack overflow have already answered it pretty well.</p>
+
+<p>  git remote add staging staging-your-app.heroku.git
+  git push staging staging:master</p>
+
+<p>http://stackoverflow.com/questions/7713042/deploying-2-different-heroku-apps-with-same-git-repository</p>
+
+<p>Now what does the staging:master mean in git push command above and in the answer on SO?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -312,6 +368,10 @@ and git push origin source</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/12/how-to-update-100-websites-contact-pages-at-once/">How to implement captcha on 100 php contact pages in one script using ruby</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/10/installing-wordpress-on-a-linode-ubuntu-with-nginx/">installing wordpress on a linode ubuntu with nginx</a>
       </li>
     
@@ -325,10 +385,6 @@ and git push origin source</p>
     
       <li class="post">
         <a href="/blog/2013/06/04/go-vs-node-vs-other-hotness/">go vs node vs other hotness</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/04/teaching-lessons-learned-at-ga/">Teaching Lessons Learned at GA</a>
       </li>
     
   </ul>
