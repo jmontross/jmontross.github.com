@@ -9,7 +9,7 @@
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="I wanted to pair with my friend who sat down next to me&#8230; each of us on our own laptop, but none of the gear that makes it easy for us to &hellip;">
+  <meta name="description" content="I really dislike setting up machines more than once. This is my up to date steps on how I set up my new macintosh machines. Whether I should have &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,151 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/">Deploying With Chef on a New Mac</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T14:29:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I really dislike setting up machines more than once.</p>
+
+<p>This is my up to date steps on how I set up my new macintosh machines.</p>
+
+<p>Whether I should have gone for anti-glare or retina display is hard enough&#8230; should I decide to switch the last thing I want to be worrying about is set up time for the new machine.</p>
+
+<p>With the following approach, the biggest bottleneck is bandwidth.</p>
+
+<p>https://gist.github.com/jmontross/5015950</p>
+
+<p>If you encounter an error - which I often do - just delete the offending recipe unless you really want it.  I built the file using</p>
+
+<p>http://www.solowizard.com/</p>
+
+<p>Most recently it got hung up on activemq - which i subsequently removed because I don&#8217;t really need that project.  Then it got hung up on Java&#8230; which I was able to just click the package to install, and then</p>
+
+<pre><code> bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it gets hung up on librsvg</p>
+
+<pre><code>vi set_up_my_machine.sh
+/librsvg
+dd
+:ew
+
+bash set_up_my_machine.sh
+</code></pre>
+
+<p>Then it got hung up on the use of a password for mysql&#8230; so I ripped out the usage of a password at all.. I prefer my mysql unprotected.  It&#8217;s getting close&#8230;</p>
+
+<p>That didn&#8217;t work.</p>
+
+<p>I removed the steps that were executing commands on mysql.  I dont care about mysql timezones anyways.</p>
+
+<p>Got hung up on skype. Rerun.</p>
+
+<p>Works. I pushed the code to my branch at https://github.com/jmontross/pivotal_workstation</p>
+
+<pre><code>1. installing command line tools for osx (download x-code from app store, open x-code,     preferences -&gt; downloads &gt; command line tools)
+2. mkdir ~/cookbooks; cd ~/cookbooks; git clone https://github.com/opscode-cookbooks/dmg;     git clone git://github.com/jmontross/pivotal_workstation.git
+3. gem install soloist
+4. bash pivotal_workstation/set_up_my_machine.sh
+5. wait a while
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">Airpair - Remote Pairing With Strangers for Fun and Profit</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T13:13:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently I had the pleasure of trying out a new pairing service called airpair.co</p>
+
+<p>I sign up for the developer path and list the host of technologies I feel comfortable philosophizing about over a pseudo-anonymous pairing service.</p>
+
+<p>A nice chap named Jonathan contacts me and asks if I could comment on the code at this gist below</p>
+
+<p>https://gist.github.com/anonymous/d9cb557b84a16088c64e</p>
+
+<p>I look at it and end up thinking I could add some value there.  There is a fat controller, and I can only imagine what the model and routes are - and because I&#8217;d like to see this model and routes file I suggest I could add some value.</p>
+
+<p>Somehow I find myself doing a google hangout with two strangers discussing a rails controller and how we may go about refactoring it.  We all agree it is a bit of a mess - just too much going on.  How do we improve it?</p>
+
+<p>One thing we begin to notice is that the methods / controller actions are not always mapped to routes and appear to be doing things to the model.  For instance, there is a controller method like so</p>
+
+<pre><code>def event_list
+    @events = current_company.events
+    @communication = if params[:communication_id].to_i &gt; 0
+      current_company.communications.find(params[:communication_id])
+    else
+      Communication.new
+    end
+    render layout: false
+end
+</code></pre>
+
+<p>The above could easily become a method on the communications model.</p>
+
+<p>Then we thought about the idea of creating a new controller that is subclassed from communications.  This is useful because these actions do seem to be acting on a different type of a communication.  We went through and played around with making the communications a little more restful, and it was a fun experience I&#8217;d love to do again.  Next time I think I&#8217;d like to use some tmux and actually dig into the code together&#8230; similar to how we did earlier <a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/"> here </a></p>
+
+<p>Modified controller => https://gist.github.com/anonymous/ce917ac4867b7de57bc9</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -835,327 +980,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/">Given Unsorted Array and Integer X Part 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-26T12:27:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>Given an integer x and an unsorted array of integers,
-describe an algorithm to  determine  whether two of the numbers add up to x.
-</code></pre>
-
-<p>I tell this mysterious hiring manager about my new implementation to the above solution <a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/"> here </a> that uses hashes and is faster than n<sup>2</sup> and he says,</p>
-
-<pre><code>"Hashed are good shortcuts. But can you do it without hashes?"
-</code></pre>
-
-<p>I think to myself&#8230;. unsorted array and I&#8217;m looking for sums</p>
-
-<p>I could first sort the array.  Then I could do a binary search?
-I could even optimize it for only positive integers&#8230;.</p>
-
-<p>I&#8217;m a little unsure.  Anyone have any ideas?</p>
-
-<pre><code> def even_more_awesome?(unsorted_array,integer_x)
-   sorted_array = unsorted_array.sort
-   # at this point I could search the array
-     # to see if there is
-     # an upper bound where my integer_x exists
-
-     sorted_array.each_with_index do |item, index|
-         target = integer_x - item
-       ## not sure what to do here?
-         if item &gt; integer_x
-           return false
-         end
-       if sorted_array[index+1,sorted_array.length-1].include?(target)
-           return [item, target]
-         end
-     end
-
-    end
-
-     even_more_awesome? [1,3,5], 8
- =&gt; [3, 5]
-</code></pre>
-
-<p>it works but it could be better&#8230;</p>
-
-<pre><code>def even_more_awesome?(unsorted_array,integer_x)
-  sorted_array = unsorted_array.sort
-  sorted_array.each_with_index do |item, index|
-    target = integer_x - item
-    if item &gt; integer_x
-      return false
-    end
-
-    for i in sorted_array[index+1,sorted_array.length-1]
-      break if i &gt; target
-      return [item, target] if i == target
-    end
-
-   end
-   return false
- end
-
- even_more_awesome? [1,3,5], 8
- =&gt; [3, 5]
-</code></pre>
-
-<p>Now it works&#8230; I wonder how it compares to my other solutions?  I also wonder if my earlier test was very biased.  I decided to use a larger random data set and to run it twice with bmbm instead of bm.</p>
-
-<pre><code>require 'benchmark'
-
-Benchmark.bmbm do |x|
-   unsorted_array = (1..10000).map { rand(10000) }
-   integer_x = rand(10000)
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { even_more_awesome? unsorted_array, integer_x}
-end
-
-
- user     system      total        real
-0.000000   0.000000   0.000000 (  0.003523)
-0.000000   0.000000   0.000000 (  0.000252)
-0.010000   0.000000   0.010000 (  0.002643)
-
- user     system      total        real
-0.000000   0.000000   0.000000 (  0.004666)
-0.000000   0.000000   0.000000 (  0.002127)
-0.000000   0.000000   0.000000 (  0.001775)
-</code></pre>
-
-<p>Now I&#8217;m just getting crazy but I want it to be better&#8230;</p>
-
-<pre><code>def faster?(unsorted_array,integer_x)
-  sorted_array = unsorted_array.sort
-  sorted_array.each_with_index do |item, index|
-    target = integer_x - item
-    if item &gt; integer_x
-      return false
-    end
-
-    max = sorted_array.length-1
-    next_index = index+1
-    for i in sorted_array[index+1,max]
-      max = next_index &amp;&amp; break if i &gt; target
-      return [item, target] if i == target
-      next_index +=1
-    end
-
-   end
-   return false
- end
-</code></pre>
-
-<p>I figured that this should be fastest, and my results from before may be biased because the arrays were too small.  I made them 100 times larger and moved the array declaration and integer_x outside the bmbm block.</p>
-
-<pre><code>require 'benchmark'
-unsorted_array = (1..1000000).map { rand(1000000) }
-integer_x = rand(1000000)
-
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { even_more_awesome? unsorted_array, integer_x}
-   x.report { faster?  unsorted_array, integer_x }
-end
-
-
-user     system      total        real
-0.620000   0.010000   0.630000 (  0.632894)
-0.270000   0.000000   0.270000 (  0.266455)
-0.340000   0.000000   0.340000 (  0.340122)
-0.340000   0.000000   0.340000 (  0.349022)
-
-
-user     system      total        real
-0.640000   0.010000   0.650000 (  0.644997)
-0.270000   0.000000   0.270000 (  0.269851)
-0.340000   0.000000   0.340000 (  0.348532)
-0.350000   0.000000   0.350000 (  0.354552)
-</code></pre>
-
-<p>It looks like I went down the wrong worm hole&#8230; All my newest results are much slower and are simply two variations of more inefficient solutions.  I&#8217;ll need to come back to this&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/">The Difference Between N^2 and 2n Algorithm Example</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-26T07:34:00-08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230;  And I&#8217;m linked to this question</p>
-
-<pre><code>Given an integer x and an unsorted array of integers,
-describe an algorithm to  determine  whether two of the numbers add up to x.
-</code></pre>
-
-<p>Type or speak? I write to him as we are on phone and viewing same screen&#8230; he says typing is fine&#8230; so i type out this pseudo code of sorts.</p>
-
-<p>iterate over the unsorted array, and for each number iterate over the rest adding them and checking if it is equal to our given integer.  if it is equal to given integer return the two numbers</p>
-
-<p>he says.. that&#8217;s got an efficiency of n<sup>2</sup> as shown below&#8230;</p>
-
-<p>(n-1) * n  => n<sup>2</sup></p>
-
-<p>That&#8217;s not very efficient says the interviewer from a silicon valley startup that will go unnamed.</p>
-
-<p>In actual ruby code, which I didn&#8217;t write as I attempted to write the faster solution than n<sup>2&#8230;</sup> though I was clueless</p>
-
-<pre><code>def awesome(unsorted_array,integer_x)
-  unsorted_array.each_with_index do |item, first_index|
-     unsorted_array.each_with_index do |other_item, second_index|
-       if (item + other_item == integer_x) &amp;&amp; (first_index != second_index)
-       return [item, other_item]
-       end
-     end
-  end
- end
-</code></pre>
-
-<p>awesome [1, 2, 5, 6], 7
- => [1, 6]</p>
-
-<p>How do we make this faster than n<sup>2?</sup></p>
-
-<p>The hint is to use hashes?  Why use a hash?</p>
-
-<pre><code>def more_awesome(unsorted_array,integer_x)
-  desired_addition = {}
-  unsorted_array.each_with_index do |item, first_index|
-    desired_addition[integer_x - item] = first_index
-  end
-
-  unsorted_array.each_with_index do |other_item, second_index|
-    if (desired_addition[other_item]) &amp;&amp; (desired_addition[other_item] != second_index)
-      return [integer_x - other_item, other_item]
-    end
-  end
-
- end
-</code></pre>
-
-<p>This solution is 2N because we loop over the array twice and no more to find if there is an answer.</p>
-
-<p>Let&#8217;s see if it&#8217;s actually faster&#8230;.</p>
-
-<pre><code>require 'benchmark'
-
-unsorted_array = [1,2,5,6]
-integer_x = 7
-Benchmark.bm do |x|
-  x.report { more_awesome unsorted_array,integer_x }
-  x.report { awesome unsorted_array,integer_x }
-end
-   user     system      total        real
-   0.000000   0.000000   0.000000 (  0.000036)
-   0.000000   0.000000   0.000000 (  0.000018)
-</code></pre>
-
-<p>Why isn&#8217;t it faster?</p>
-
-<p>I think it might be because the sample is too small.  Our sample data set used small list and in this case the less efficient solution executes faster  due to the fact that the answer is a combination of the first and last item, so the result is found after only 3 computations because we first loop over the 1, and then add the 2 to see if it is 7, then we check if 1 + 5 is seven, then we return 1 and 6 because they equal 7.</p>
-
-<p>In the &#8220;more efficient&#8221; solution we are only more efficient in the worst case scenario, which in the case of the above answers would be if we wanted 11.</p>
-
-<pre><code>unsorted_array = [1,2,5,6]
-integer_x = 11
-
- Benchmark.bm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
- end
-
-     user     system      total        real
- 0.000000   0.000000   0.000000 (  0.000024)
- 0.000000   0.000000   0.000000 (  0.000020)
-</code></pre>
-
-<p>Looks really close&#8230;. but still not faster?  Maybe it&#8217;s because the array is just too small and the time it takes to build the hash just doesn&#8217;t cut it.</p>
-
-<pre><code>unsorted_array = [1,1,1,1,1,1,2,5,6]
-integer_x = 11
-## same benchmark
-    user     system      total        real
- 0.000000   0.000000   0.000000 (  0.000040)
- 0.000000   0.000000   0.000000 (  0.000054)
-</code></pre>
-
-<p>Nice. We got our more efficient solution to actually run faster.  Now let&#8217;s stop making contrived tests to make our answer seem right and use something a little more fair.</p>
-
-<pre><code>require 'benchmark'
-
-unsorted_array = (1..10000).map { rand(10000) }
-integer_x = rand(10000)
-
-Benchmark.bm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-end
-
-  user     system      total        real
-0.000000   0.000000   0.000000 (  0.007244)
-0.010000   0.000000   0.010000 (  0.011289)
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1173,6 +997,14 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/02/adding-a-newsletter-to-wordpress/">adding a newsletter to wordpress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/12/how-to-run-facebook-app-locally-with-one-set-of-keys/">how to run facebook app locally with one set of keys</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/12/how-to-update-100-websites-contact-pages-at-once/">How to implement captcha on 100 php contact pages in one script using ruby</a>
       </li>
     
@@ -1182,14 +1014,6 @@ end
     
       <li class="post">
         <a href="/blog/2013/08/10/golang-nginx-and-sinatra-style-with-pat/">golang nginx and sinatra style with pat</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/25/how-to-host-sinatra-on-nginx-using-linode/">how to host sinatra on nginx using linode</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/04/go-vs-node-vs-other-hotness/">go vs node vs other hotness</a>
       </li>
     
   </ul>
@@ -1206,7 +1030,7 @@ end
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Joshua Montross -
+  Copyright &copy; 2014 - Joshua Montross -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

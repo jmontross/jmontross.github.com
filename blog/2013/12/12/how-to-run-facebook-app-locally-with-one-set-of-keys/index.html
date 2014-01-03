@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>airpair - remote pairing with strangers for fun and profit - A hacker's attempt to document the journey</title>
+  <title>how to run facebook app locally with one set of keys - A hacker's attempt to document the journey</title>
   <meta name="author" content="Joshua Montross">
 
   
-  <meta name="description" content="Recently I had the pleasure of trying out a new pairing service called airpair.co I sign up for the developer path and list the host of technologies &hellip;">
+  <meta name="description" content="https://pagekite.net/support/quickstart/
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/">
+  <link rel="canonical" href="http://jmontross.github.com/blog/2013/12/12/how-to-run-facebook-app-locally-with-one-set-of-keys/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Airpair - Remote Pairing With Strangers for Fun and Profit</h1>
+      <h1 class="entry-title">How to Run Facebook App Locally With One Set of Keys</h1>
     
     
       <p class="meta">
@@ -83,43 +84,14 @@
   
 
 
-<time datetime="2013-02-22T13:13:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+<time datetime="2013-12-12T12:26:00-08:00" pubdate data-updated="true">Dec 12<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Recently I had the pleasure of trying out a new pairing service called airpair.co</p>
-
-<p>I sign up for the developer path and list the host of technologies I feel comfortable philosophizing about over a pseudo-anonymous pairing service.</p>
-
-<p>A nice chap named Jonathan contacts me and asks if I could comment on the code at this gist below</p>
-
-<p>https://gist.github.com/anonymous/d9cb557b84a16088c64e</p>
-
-<p>I look at it and end up thinking I could add some value there.  There is a fat controller, and I can only imagine what the model and routes are - and because I&#8217;d like to see this model and routes file I suggest I could add some value.</p>
-
-<p>Somehow I find myself doing a google hangout with two strangers discussing a rails controller and how we may go about refactoring it.  We all agree it is a bit of a mess - just too much going on.  How do we improve it?</p>
-
-<p>One thing we begin to notice is that the methods / controller actions are not always mapped to routes and appear to be doing things to the model.  For instance, there is a controller method like so</p>
-
-<pre><code>def event_list
-    @events = current_company.events
-    @communication = if params[:communication_id].to_i &gt; 0
-      current_company.communications.find(params[:communication_id])
-    else
-      Communication.new
-    end
-    render layout: false
-end
-</code></pre>
-
-<p>The above could easily become a method on the communications model.</p>
-
-<p>Then we thought about the idea of creating a new controller that is subclassed from communications.  This is useful because these actions do seem to be acting on a different type of a communication.  We went through and played around with making the communications a little more restful, and it was a fun experience I&#8217;d love to do again.  Next time I think I&#8217;d like to use some tmux and actually dig into the code together&#8230; similar to how we did earlier <a href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/"> here </a></p>
-
-<p>Modified controller => https://gist.github.com/anonymous/ce917ac4867b7de57bc9</p>
+<div class="entry-content"><p>https://pagekite.net/support/quickstart/</p>
 </div>
 
 
@@ -142,7 +114,7 @@ end
   
 
 
-<time datetime="2013-02-22T13:13:00-08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+<time datetime="2013-12-12T12:26:00-08:00" pubdate data-updated="true">Dec 12<span>th</span>, 2013</time>
       
 
 
@@ -150,7 +122,7 @@ end
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/02/22/airpair-remote-pairing-with-strangers-for-fun-and-profit/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmontross.github.com/blog/2013/12/12/how-to-run-facebook-app-locally-with-one-set-of-keys/" data-via="" data-counturl="http://jmontross.github.com/blog/2013/12/12/how-to-run-facebook-app-locally-with-one-set-of-keys/" >Tweet</a>
   
   
   
@@ -159,10 +131,10 @@ end
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/21/pairing-with-tmux-and-rspec-on-aws-ec2-instance/" title="Previous Post: pairing with tmux and rspec on aws ec2 instance">&laquo; pairing with tmux and rspec on aws ec2 instance</a>
+        <a class="basic-alignment left" href="/blog/2013/12/12/how-to-update-100-websites-contact-pages-at-once/" title="Previous Post: How to implement captcha on 100 php contact pages in one script using ruby">&laquo; How to implement captcha on 100 php contact pages in one script using ruby</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/02/22/deploying-with-chef-on-a-new-mac/" title="Next Post: deploying with chef on a new mac">deploying with chef on a new mac &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2014/01/02/adding-a-newsletter-to-wordpress/" title="Next Post: adding a newsletter to wordpress">adding a newsletter to wordpress &raquo;</a>
       
     </p>
   </footer>

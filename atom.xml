@@ -4,7 +4,7 @@
   <title><![CDATA[A hacker's attempt to document the journey]]></title>
   <link href="http://jmontross.github.com/atom.xml" rel="self"/>
   <link href="http://jmontross.github.com/"/>
-  <updated>2013-12-12T12:24:07-08:00</updated>
+  <updated>2014-01-02T19:01:45-08:00</updated>
   <id>http://jmontross.github.com/</id>
   <author>
     <name><![CDATA[Joshua Montross]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[adding a newsletter to wordpress]]></title>
+    <link href="http://jmontross.github.com/blog/2014/01/02/adding-a-newsletter-to-wordpress/"/>
+    <updated>2014-01-02T18:59:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2014/01/02/adding-a-newsletter-to-wordpress</id>
+    <content type="html"><![CDATA[<p>I found some sweet <a href="http://wordpress.org/plugins/newsletter/">newsletter software</a> and added it to my wordpress.</p>
+
+<p>Downloaded the file from there..</p>
+
+<pre><code>scp /Users/josh/Downloads/newsletter.zip root@192.81.131.92:/var/www/josh/wp-content/plugins
+
+ssh root@192.81.131.92
+cd /var/www/josh/wp-content/plugins
+unzip newsletter
+</code></pre>
+
+<p>Then I go into my wordpress panel and activate the plugin.  Super easy!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[how to run facebook app locally with one set of keys]]></title>
+    <link href="http://jmontross.github.com/blog/2013/12/12/how-to-run-facebook-app-locally-with-one-set-of-keys/"/>
+    <updated>2013-12-12T12:26:00-08:00</updated>
+    <id>http://jmontross.github.com/blog/2013/12/12/how-to-run-facebook-app-locally-with-one-set-of-keys</id>
+    <content type="html"><![CDATA[<p>https://pagekite.net/support/quickstart/</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to implement captcha on 100 php contact pages in one script using ruby]]></title>
@@ -1107,273 +1136,6 @@ end
 
 <pre><code>[1,2].inject(1) { |initializer,item| initializer + item }
 =&gt; 4
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[given unsorted array and integer x part 2]]></title>
-    <link href="http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2/"/>
-    <updated>2013-01-26T12:27:00-08:00</updated>
-    <id>http://jmontross.github.com/blog/2013/01/26/given-unsorted-array-and-integer-x-part-2</id>
-    <content type="html"><![CDATA[<pre><code>Given an integer x and an unsorted array of integers,
-describe an algorithm to  determine  whether two of the numbers add up to x.
-</code></pre>
-
-<p>I tell this mysterious hiring manager about my new implementation to the above solution <a href="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/"> here </a> that uses hashes and is faster than n<sup>2</sup> and he says,</p>
-
-<pre><code>"Hashed are good shortcuts. But can you do it without hashes?"
-</code></pre>
-
-<p>I think to myself&#8230;. unsorted array and I&#8217;m looking for sums</p>
-
-<p>I could first sort the array.  Then I could do a binary search?
-I could even optimize it for only positive integers&#8230;.</p>
-
-<p>I&#8217;m a little unsure.  Anyone have any ideas?</p>
-
-<pre><code> def even_more_awesome?(unsorted_array,integer_x)
-   sorted_array = unsorted_array.sort
-   # at this point I could search the array
-     # to see if there is
-     # an upper bound where my integer_x exists
-
-     sorted_array.each_with_index do |item, index|
-         target = integer_x - item
-       ## not sure what to do here?
-         if item &gt; integer_x
-           return false
-         end
-       if sorted_array[index+1,sorted_array.length-1].include?(target)
-           return [item, target]
-         end
-     end
-
-    end
-
-     even_more_awesome? [1,3,5], 8
- =&gt; [3, 5]
-</code></pre>
-
-<p>it works but it could be better&#8230;</p>
-
-<pre><code>def even_more_awesome?(unsorted_array,integer_x)
-  sorted_array = unsorted_array.sort
-  sorted_array.each_with_index do |item, index|
-    target = integer_x - item
-    if item &gt; integer_x
-      return false
-    end
-
-    for i in sorted_array[index+1,sorted_array.length-1]
-      break if i &gt; target
-      return [item, target] if i == target
-    end
-
-   end
-   return false
- end
-
- even_more_awesome? [1,3,5], 8
- =&gt; [3, 5]
-</code></pre>
-
-<p>Now it works&#8230; I wonder how it compares to my other solutions?  I also wonder if my earlier test was very biased.  I decided to use a larger random data set and to run it twice with bmbm instead of bm.</p>
-
-<pre><code>require 'benchmark'
-
-Benchmark.bmbm do |x|
-   unsorted_array = (1..10000).map { rand(10000) }
-   integer_x = rand(10000)
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { even_more_awesome? unsorted_array, integer_x}
-end
-
-
- user     system      total        real
-0.000000   0.000000   0.000000 (  0.003523)
-0.000000   0.000000   0.000000 (  0.000252)
-0.010000   0.000000   0.010000 (  0.002643)
-
- user     system      total        real
-0.000000   0.000000   0.000000 (  0.004666)
-0.000000   0.000000   0.000000 (  0.002127)
-0.000000   0.000000   0.000000 (  0.001775)
-</code></pre>
-
-<p>Now I&#8217;m just getting crazy but I want it to be better&#8230;</p>
-
-<pre><code>def faster?(unsorted_array,integer_x)
-  sorted_array = unsorted_array.sort
-  sorted_array.each_with_index do |item, index|
-    target = integer_x - item
-    if item &gt; integer_x
-      return false
-    end
-
-    max = sorted_array.length-1
-    next_index = index+1
-    for i in sorted_array[index+1,max]
-      max = next_index &amp;&amp; break if i &gt; target
-      return [item, target] if i == target
-      next_index +=1
-    end
-
-   end
-   return false
- end
-</code></pre>
-
-<p>I figured that this should be fastest, and my results from before may be biased because the arrays were too small.  I made them 100 times larger and moved the array declaration and integer_x outside the bmbm block.</p>
-
-<pre><code>require 'benchmark'
-unsorted_array = (1..1000000).map { rand(1000000) }
-integer_x = rand(1000000)
-
-Benchmark.bmbm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-   x.report { even_more_awesome? unsorted_array, integer_x}
-   x.report { faster?  unsorted_array, integer_x }
-end
-
-
-user     system      total        real
-0.620000   0.010000   0.630000 (  0.632894)
-0.270000   0.000000   0.270000 (  0.266455)
-0.340000   0.000000   0.340000 (  0.340122)
-0.340000   0.000000   0.340000 (  0.349022)
-
-
-user     system      total        real
-0.640000   0.010000   0.650000 (  0.644997)
-0.270000   0.000000   0.270000 (  0.269851)
-0.340000   0.000000   0.340000 (  0.348532)
-0.350000   0.000000   0.350000 (  0.354552)
-</code></pre>
-
-<p>It looks like I went down the wrong worm hole&#8230; All my newest results are much slower and are simply two variations of more inefficient solutions.  I&#8217;ll need to come back to this&#8230;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The difference between n^2 and 2n algorithm example]]></title>
-    <link href="http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example/"/>
-    <updated>2013-01-26T07:34:00-08:00</updated>
-    <id>http://jmontross.github.com/blog/2013/01/26/the-difference-between-n-2-and-2n-algorithm-example</id>
-    <content type="html"><![CDATA[<p>Good morning&#8230; how about we do an algorithm together&#8230; it&#8217;s right here in my google docs&#8230;  And I&#8217;m linked to this question</p>
-
-<pre><code>Given an integer x and an unsorted array of integers,
-describe an algorithm to  determine  whether two of the numbers add up to x.
-</code></pre>
-
-<p>Type or speak? I write to him as we are on phone and viewing same screen&#8230; he says typing is fine&#8230; so i type out this pseudo code of sorts.</p>
-
-<p>iterate over the unsorted array, and for each number iterate over the rest adding them and checking if it is equal to our given integer.  if it is equal to given integer return the two numbers</p>
-
-<p>he says.. that&#8217;s got an efficiency of n<sup>2</sup> as shown below&#8230;</p>
-
-<p>(n-1) * n  => n<sup>2</sup></p>
-
-<p>That&#8217;s not very efficient says the interviewer from a silicon valley startup that will go unnamed.</p>
-
-<p>In actual ruby code, which I didn&#8217;t write as I attempted to write the faster solution than n<sup>2&#8230;</sup> though I was clueless</p>
-
-<pre><code>def awesome(unsorted_array,integer_x)
-  unsorted_array.each_with_index do |item, first_index|
-     unsorted_array.each_with_index do |other_item, second_index|
-       if (item + other_item == integer_x) &amp;&amp; (first_index != second_index)
-       return [item, other_item]
-       end
-     end
-  end
- end
-</code></pre>
-
-<p>awesome [1, 2, 5, 6], 7
- => [1, 6]</p>
-
-<p>How do we make this faster than n<sup>2?</sup></p>
-
-<p>The hint is to use hashes?  Why use a hash?</p>
-
-<pre><code>def more_awesome(unsorted_array,integer_x)
-  desired_addition = {}
-  unsorted_array.each_with_index do |item, first_index|
-    desired_addition[integer_x - item] = first_index
-  end
-
-  unsorted_array.each_with_index do |other_item, second_index|
-    if (desired_addition[other_item]) &amp;&amp; (desired_addition[other_item] != second_index)
-      return [integer_x - other_item, other_item]
-    end
-  end
-
- end
-</code></pre>
-
-<p>This solution is 2N because we loop over the array twice and no more to find if there is an answer.</p>
-
-<p>Let&#8217;s see if it&#8217;s actually faster&#8230;.</p>
-
-<pre><code>require 'benchmark'
-
-unsorted_array = [1,2,5,6]
-integer_x = 7
-Benchmark.bm do |x|
-  x.report { more_awesome unsorted_array,integer_x }
-  x.report { awesome unsorted_array,integer_x }
-end
-   user     system      total        real
-   0.000000   0.000000   0.000000 (  0.000036)
-   0.000000   0.000000   0.000000 (  0.000018)
-</code></pre>
-
-<p>Why isn&#8217;t it faster?</p>
-
-<p>I think it might be because the sample is too small.  Our sample data set used small list and in this case the less efficient solution executes faster  due to the fact that the answer is a combination of the first and last item, so the result is found after only 3 computations because we first loop over the 1, and then add the 2 to see if it is 7, then we check if 1 + 5 is seven, then we return 1 and 6 because they equal 7.</p>
-
-<p>In the &#8220;more efficient&#8221; solution we are only more efficient in the worst case scenario, which in the case of the above answers would be if we wanted 11.</p>
-
-<pre><code>unsorted_array = [1,2,5,6]
-integer_x = 11
-
- Benchmark.bm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
- end
-
-     user     system      total        real
- 0.000000   0.000000   0.000000 (  0.000024)
- 0.000000   0.000000   0.000000 (  0.000020)
-</code></pre>
-
-<p>Looks really close&#8230;. but still not faster?  Maybe it&#8217;s because the array is just too small and the time it takes to build the hash just doesn&#8217;t cut it.</p>
-
-<pre><code>unsorted_array = [1,1,1,1,1,1,2,5,6]
-integer_x = 11
-## same benchmark
-    user     system      total        real
- 0.000000   0.000000   0.000000 (  0.000040)
- 0.000000   0.000000   0.000000 (  0.000054)
-</code></pre>
-
-<p>Nice. We got our more efficient solution to actually run faster.  Now let&#8217;s stop making contrived tests to make our answer seem right and use something a little more fair.</p>
-
-<pre><code>require 'benchmark'
-
-unsorted_array = (1..10000).map { rand(10000) }
-integer_x = rand(10000)
-
-Benchmark.bm do |x|
-   x.report { more_awesome unsorted_array,integer_x }
-   x.report { awesome unsorted_array,integer_x }
-end
-
-  user     system      total        real
-0.000000   0.000000   0.000000 (  0.007244)
-0.010000   0.000000   0.010000 (  0.011289)
 </code></pre>
 ]]></content>
   </entry>
